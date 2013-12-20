@@ -1,0 +1,43 @@
+Michiel Nauta <m.d.nauta@hetnet.nl>
+  Sorting procedure
+
+Galileo Vidoni <galio2k@gmail.com>
+  Better icons
+  Spanish translation
+
+Andrew Westrate <andywestrate@yahoo.com>
+  Full screen
+  Fix a sorting bug
+
+jeroen groenenboom <jagrboom@zonnet.nl>
+  netherland locale
+
+Zachary Hopkins <zachary.hopkins@gmail.com>
+  mozImage Logo
+
+My Hoang <mhoang@linbox.com>
+  French traslation and some patch
+
+Tomas Brabenec <tomas@brabenec.net>
+  Czech translation
+  
+Norah Marinkovic <norahmarinkovic@gmail.com>
+  Japanese translation
+
+Gerard Mestre <noemfio-guan@yahoo.es>
+  Catalan translation
+
+Leif Sandvik <leif_sandvik@hotmail.com>
+  Swedish translation
+
+Toni Hermoso Pulido <toniher@softcatala.org>
+  Some hints on catalan translation
+
+Fan Ho Yin <beebebebebe@gmail.com>
+  Chinese translation
+
+Oliver Roth (aka ReinekeFux) <feedback@erweiterungen.de>
+  German translation 
+
+Peter (SlovakSoft) <info@slovaksoft.com>
+  Slovak translation

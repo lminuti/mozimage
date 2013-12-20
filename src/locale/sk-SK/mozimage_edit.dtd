@@ -1,0 +1,84 @@
+<!ENTITY mozimage.edit.ready              "Pripravené." >
+<!ENTITY mozimage.edit.ok                 "OK" >
+<!ENTITY mozimage.edit.saveas             "Uložiť aktuálny obrázok ako..." >
+<!ENTITY mozimage.edit.title              "Panel úpravy" >
+<!ENTITY mozimage.edit.quit               "Ukončiť" >
+<!ENTITY mozimage.edit.advanced           "Pokročilý režim" >
+
+<!ENTITY mozimage.edit.getchanges         "Pamätať si zmeny" >
+<!ENTITY mozimage.edit.undolastchange     "Vrátiť poslednú zmenu" >
+<!ENTITY mozimage.edit.undochanges        "Vrátiť všetky zmeny" >
+<!ENTITY mozimage.edit.getchanges.radio   "Vždy si pamätať zmeny" >
+<!ENTITY mozimage.edit.quality            "Kvalita" >
+
+<!ENTITY mozimage.edit.tmpdes             "Aktuálny obrázok" >
+<!ENTITY mozimage.edit.bakdes             "Pôvodný obrázok" >
+
+<!ENTITY mozimage.edit.t1                 "Veľkosť obrázka" >
+<!ENTITY mozimage.edit.t2                 "Transformácia" >
+<!ENTITY mozimage.edit.t3                 "Text" >
+<!ENTITY mozimage.edit.t4                 "Efekty" >
+<!ENTITY mozimage.edit.t5                 "Ostatné" >
+
+<!ENTITY mozimage.edit.resizeprt          "Zmeniť veľkosť" >
+<!ENTITY mozimage.edit.resizepix          "Zmeniť veľkosť (pixel)" >
+<!ENTITY mozimage.edit.resize.ratio       "Zachovať pomer strán" >
+<!ENTITY mozimage.edit.resize.pix         "Pixel" >
+<!ENTITY mozimage.edit.resize.percent     "&#37;" >
+<!ENTITY mozimage.edit.resize.zero        "Nastaviť na nulu" >
+<!ENTITY mozimage.edit.resize.px          "Šírka (px)" >
+<!ENTITY mozimage.edit.resize.py          "Výška (px)" >
+<!ENTITY mozimage.edit.resize.x           "Šírka" >
+<!ENTITY mozimage.edit.resize.y           "Výška" >
+<!ENTITY mozimage.edit.resize.75          "75&#37;" >
+<!ENTITY mozimage.edit.resize.50          "50&#37;" >
+<!ENTITY mozimage.edit.resize.25          "25&#37;" >
+<!ENTITY mozimage.edit.resize.200         "200&#37;" >
+<!ENTITY mozimage.edit.resize.150         "150&#37;" >
+<!ENTITY mozimage.edit.resize.125         "125&#37;" >
+
+<!ENTITY mozimage.edit.rotate             "Otočiť" >
+<!ENTITY mozimage.edit.rotate.270         "270°" >
+<!ENTITY mozimage.edit.rotate.90          "90°" >
+<!ENTITY mozimage.edit.rotate.180         "180°" >
+<!ENTITY mozimage.edit.mirror             "Zrkadlovo" >
+<!ENTITY mozimage.edit.mirror.x           "Prevrátiť vodorovne" >
+<!ENTITY mozimage.edit.mirror.y           "Prevrátiť zvisle" >
+
+<!ENTITY mozimage.edit.drawtext           "Pridať text" >
+<!ENTITY mozimage.edit.drawtext.textdes   "Text" >
+<!ENTITY mozimage.edit.drawtext.fontdes   "Písmo" >
+<!ENTITY mozimage.edit.drawtext.filldes   "Farba textu" >
+<!ENTITY mozimage.edit.drawtext.sizedes   "Veľkosť textu" >
+<!ENTITY mozimage.edit.drawtext.x         "X" >
+<!ENTITY mozimage.edit.drawtext.y         "Y" >
+<!ENTITY mozimage.edit.drawtext.pix       "Pixel" >
+<!ENTITY mozimage.edit.drawtext.percent   "&#37;" >
+<!ENTITY mozimage.edit.drawtext.northwest "Zarovnať vľavo hore" >
+<!ENTITY mozimage.edit.drawtext.northeast "Zarovnať vpravo hore" >
+<!ENTITY mozimage.edit.drawtext.southwest "Zarovnať vľavo dole" >
+<!ENTITY mozimage.edit.drawtext.southeast "Zarovnať vpravo dole" >
+<!ENTITY mozimage.edit.drawtext.north     "Zarovnať nahor" >
+<!ENTITY mozimage.edit.drawtext.south     "Zarovnať nadol" >
+<!ENTITY mozimage.edit.drawtext.center    "Zarovnať na stred" >
+
+<!ENTITY mozimage.edit.solarize           "Solarizácia" >
+<!ENTITY mozimage.edit.swirl              "Vír" >
+<!ENTITY mozimage.edit.implode            "Implodovať" >
+<!ENTITY mozimage.edit.wave               "Vlny" >
+<!ENTITY mozimage.edit.oilpaint           "Olejomaľba" >
+<!ENTITY mozimage.edit.charcoal           "Uhlík" >
+
+<!ENTITY mozimage.edit.hue                "Odtieň" >
+<!ENTITY mozimage.edit.saturation         "Nasýtenie" >
+<!ENTITY mozimage.edit.brightness         "Jas" >
+<!ENTITY mozimage.edit.gamma              "Svetlosť" >
+<!ENTITY mozimage.edit.spiff              "Spiff" >
+<!ENTITY mozimage.edit.dull               "Dull" >
+<!ENTITY mozimage.edit.equalize           "Vyrovnať" >
+<!ENTITY mozimage.edit.normalize          "Normalizovať" >
+<!ENTITY mozimage.edit.negate             "Negatív" >
+<!ENTITY mozimage.edit.grayscale          "Šedá škála" >
+<!ENTITY mozimage.edit.spread             "Rozvinúť" >
+
+<!ENTITY mozimage.edit.fulltitle          "Celá obrazovka" >

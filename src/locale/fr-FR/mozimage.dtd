@@ -1,0 +1,111 @@
+<!ENTITY mozimage.overlay.openwith      "Ouvrir dans mozImage..." >
+<!ENTITY mozimage.sidebar.title     "Panneau MozImage" >
+<!ENTITY mozimage.overlay.mozillatitle  "Ajouter la barre MozImage " >
+
+<!ENTITY mozimage.menu.file             "Fichier" >
+<!ENTITY mozimage.menu.prior            "Image précédente" >
+<!ENTITY mozimage.menu.next             "Image suivante" >
+<!ENTITY mozimage.menu.clear            "Effacer" >
+<!ENTITY mozimage.menu.autosize         "Redimensionner" >
+<!ENTITY mozimage.menu.zoomin           "Zoom avant" >
+<!ENTITY mozimage.menu.zoomout          "Zoom arrière" >
+<!ENTITY mozimage.menu.slideshow        "Diaporama" >
+<!ENTITY mozimage.menu.options          "Options..." >
+<!ENTITY mozimage.menu.exit             "Quitter" >
+<!ENTITY mozimage.menu.help             "Aide" >
+<!ENTITY mozimage.menu.about            "À propos..." >
+<!ENTITY mozimage.menu.go               "Aller à !" >
+<!ENTITY mozimage.menu.parent           "Parent" >
+<!ENTITY mozimage.menu.fullscreen       "Plein écran" >
+<!ENTITY mozimage.menu.restore          "Restaurer" >
+<!ENTITY mozimage.listbox.directories   "Répertoires" >
+<!ENTITY mozimage.listbox.bookmarks     "Favoris" >
+<!ENTITY mozimage.listbox.files         "Fichiers" >
+<!ENTITY mozimage.label.ready           "Prêt." >
+<!ENTITY mozimage.menu.togglelist       "Afficher panneau" >
+<!ENTITY mozimage.menu.tools            "Outils" >
+<!ENTITY mozimage.menu.macro            "Macro" >
+<!ENTITY mozimage.menu.configmacro      "Configurer macro..." >
+<!ENTITY mozimage.menu.saveas           "Enregistrer l'image sous..." >
+<!ENTITY mozimage.menu.saveall          "Tout enregistrer..." >
+<!ENTITY mozimage.menu.explorer         "Parcourir" >
+<!ENTITY mozimage.menu.other            "Menu" >
+<!ENTITY mozimage.menu.edit           "Édition de l'image courante" >
+<!ENTITY mozimage.menu.refresh        "Actualiser" >
+
+<!ENTITY mozimage.commandkey.clear      "c" >
+<!ENTITY mozimage.commandkey.prior      "b" >
+<!ENTITY mozimage.commandkey.next       "n" >
+<!ENTITY mozimage.commandkey.zoomin     "i" >
+<!ENTITY mozimage.commandkey.zoomout    "o" >
+<!ENTITY mozimage.commandkey.autosize   "a" >
+<!ENTITY mozimage.commandkey.slideshow  "s" >
+<!ENTITY mozimage.commandkey.openwith1  "1" >
+<!ENTITY mozimage.commandkey.openwith2  "2" >
+<!ENTITY mozimage.commandkey.openwith3  "3" >
+<!ENTITY mozimage.commandkey.openwith4  "4" >
+
+<!ENTITY mozimage.bookmarkbar.add       "Ajouter favori..." >
+<!ENTITY mozimage.bookmarkbar.del       "Supprimer favori..." >
+<!ENTITY mozimage.bookmarkbar.moveup    "Monter" >
+<!ENTITY mozimage.bookmarkbar.movedown  "Descendre" >
+
+<!ENTITY mozimage.menu.file.ak          "f" >
+<!ENTITY mozimage.menu.prior.ak         "" >
+<!ENTITY mozimage.menu.next.ak          "" >
+<!ENTITY mozimage.menu.clear.ak         "" >
+<!ENTITY mozimage.menu.fullscreen.ak    "" >
+<!ENTITY mozimage.menu.togglelist.ak    "" >
+<!ENTITY mozimage.menu.options.ak       "" >
+<!ENTITY mozimage.menu.exit.ak          "" >
+<!ENTITY mozimage.menu.tools.ak         "o" >
+<!ENTITY mozimage.menu.autosize.ak      "" >
+<!ENTITY mozimage.menu.zoomin.ak        "" >
+<!ENTITY mozimage.menu.zoomout.ak       "" >
+<!ENTITY mozimage.menu.slideshow.ak     "" >
+<!ENTITY mozimage.menu.help.ak          "a" >
+<!ENTITY mozimage.menu.about.ak         "" >
+
+<!ENTITY mozimage.prefs.homedir         "Répertoire de démarrage:" >
+<!ENTITY mozimage.prefs.delay           "Durée entre chaque image du Diaporama (sec):" >
+<!ENTITY mozimage.prefs.general         "Général" >
+<!ENTITY mozimage.prefs.tools           "Tools" >
+<!ENTITY mozimage.prefs.location        "Location" >
+<!ENTITY mozimage.prefs.options         "Options" >
+<!ENTITY mozimage.prefs.zoom            "Coefficient du zoom:" >
+<!ENTITY mozimage.prefs.filter          "Types de fichiers" >
+<!ENTITY mozimage.prefs.editors         "Éditeurs" >
+<!ENTITY mozimage.prefs.name            "Nom" >
+<!ENTITY mozimage.prefs.fullpath        "Cible" >
+<!ENTITY mozimage.prefs.fileslist       "Liste des fichiers" >
+<!ENTITY mozimage.prefs.tumbnailsize    "Taille des miniatures" >
+<!ENTITY mozimage.prefs.orderby         "Classée par" >
+<!ENTITY mozimage.prefs.filename        "Nom (lex.)" >
+<!ENTITY mozimage.prefs.filenume        "Nom (num.)" >
+<!ENTITY mozimage.prefs.filedate        "Date" >
+<!ENTITY mozimage.prefs.filesize        "Taille" >
+<!ENTITY mozimage.prefs.ascending       "Ordre normal" >
+<!ENTITY mozimage.prefs.descending      "Ordre descendant" >
+<!ENTITY mozimage.prefs.forcehttptumb   "Toujours montrer les minatures sur les pages web" >
+<!ENTITY mozimage.prefs.enablecache     "Activer le cache pour les images Internet" >
+<!ENTITY mozimage.prefs.home            "Accueil" >
+<!ENTITY mozimage.prefs.image           "Image" >
+<!ENTITY mozimage.prefs.enablecurrent   "Le répertoire de démarrage est le dernier visité" >
+<!ENTITY mozimage.prefs.browse          "Parcourir" >
+<!ENTITY mozimage.prefs.current         "Mettre le répertoire courant en démarrage" >
+<!ENTITY mozimage.prefs.none            "aucun" >
+<!ENTITY mozimage.prefs.convertpath     "Chemin vers Convert" >
+
+<!ENTITY mozimage.macro.title           "Macro" >
+<!ENTITY mozimage.macro.list            "Liste des macros" >
+<!ENTITY mozimage.macro.name            "Nom" >
+<!ENTITY mozimage.macro.macro           "Macro" >
+<!ENTITY mozimage.macro.des             "Le symbole &#37;f sera remplacé par le nom du fichier courant" >
+
+<!ENTITY mozimage.about.title           "À propos" >
+<!ENTITY mozimage.about.created         "Créé par" >
+<!ENTITY mozimage.about.homepage        "Site officiel" >
+<!ENTITY mozimage.about.releasenotes    "Notes de version" >
+<!ENTITY mozimage.about.powered         "Propulsé par" >
+
+

@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>mozImage Project News</title>
+		<link>http://mozimage.mozdev.org/</link>
+		<description>Simple image browser</description>
+		<language>en-us</language>
+		<atom:link href="http://mozimage.mozdev.org/rss.xml" rel="self" type="application/rss+xml" />
+
+		<item>
+			<title>mozImage 1.4.8 released</title>
+			<description>Support for firefox 3.0 final</description>
+			<pubDate>27 Jun 2008 09:15:22 GMT</pubDate>
+			<link>http://mozimage.mozdev.org/releases.html#1.4.8</link>
+		</item>
+
+		<item>
+			<title>mozImage 1.4.7 released</title>
+			<description>Support for firefox 3.0pre</description>
+			<pubDate>14 Apr 2008 17:15:22 GMT</pubDate>
+			<link>http://mozimage.mozdev.org/releases.html#1.4.7</link>
+		</item>
+
+		<item>
+			<title>mozImage 1.4.6 released</title>
+			<description>Support for firefox 2.0</description>
+			<pubDate>13 Oct 2006 09:30:22 GMT</pubDate>
+			<link>http://mozimage.mozdev.org/releases.html#1.4.6</link>
+		</item>
+
+		<item>
+			<title>mozImage 1.4.5 released</title>
+			<description>Slovak translation and some minor fixes.</description>
+			<pubDate>15 Mar 2005 09:30:22 GMT</pubDate>
+			<link>http://mozimage.mozdev.org/releases.html#1.4.5</link>
+		</item>
+
+		<item>
+			<title>mozImage 1.4.4 released</title>
+			<description>German translation and some minor fixes.</description>
+			<pubDate>12 Dec 2005 16:56:22 GMT</pubDate>
+			<link>http://mozimage.mozdev.org/releases.html#1.4.4</link>
+		</item>
+
+		<item>
+			<title>mozImage 1.4.3 released</title>
+			<description>This release fixes a critical bug on image load.</description>
+			<pubDate>25 Oct 2005 07:38:25 GMT</pubDate>
+			<link>http://mozimage.mozdev.org/releases.html#1.4.3</link>
+		</item>
+
+		<item>
+			<title>mozImage 1.4.2 released</title>
+			<description>mozImage 1.4.2 support Firefox 1.5b2</description>
+			<pubDate>11 Oct 2005 07:08:11 GMT</pubDate>
+			<link>http://mozimage.mozdev.org/releases.html#1.4.2</link>
+		</item>
+
+		<item>
+			<title>mozImage 1.4.1 released</title>
+			<description>&lt;p&gt;mozImage 1.4.1 released. Changes include:&lt;/p&gt;  &lt;ul&gt;   &lt;li&gt;Options window can be opened by the extention manager&lt;/li&gt;   &lt;li&gt;ImageMagik path can be set by the options windows&lt;/li&gt; &lt;/ul&gt;</description>
+			<pubDate>30 Sep 2005 09:38:11 GMT</pubDate>
+			<link>http://mozimage.mozdev.org/releases.html#1.4.1</link>
+		</item>
+
+	</channel>
+</rss>

@@ -1,0 +1,66 @@
+Versione 1.4.2
+
+[ ] Elimina pre-fetch per file:///*
+[ ] Shortcut per le macro (ctrl+1, ctrl+2, ecc)
+[ ] Refactoring (creare oggetti globali per i componenti e per gli oggetti Utility)
+[ ] Usare ultima release di JSLib
+[ ] Bookmark multilivello o eliminati
+
+Versione 1.4.0
+
+[*] Integrare mozimage_edit
+[*] Opzioni a schede
+[*] Inserire MozImage nel menù view/sidebar
+[*] Inserire il supporto per le toolbar personalizzabili di firebird
+[*] Corretta gestione del referrer
+[*] Supporto per DeerPark (My Hoang)
+[*] Supporto per Mozilla Suite (My Hoang)
+[*] BugFix su MozImage_edit (My Hoang)
+
+Versione 1.2
+
+[*] Ridefinire ordine dei bookmark
+[*] Icona che definisce lo stato di caricamento dell'immagine
+
+Versione ???
+
+[*] Lancio programmi esterni
+[*] Anteprima
+[*] Gestione zoom
+[*] Salvataggio dimensione mainwindow
+
+Versione 0.5.0
+
+[*] Remember position of the main window
+[*] Add autosize toolbutton
+[*] Preferences dialog
+[*] Enabled options button under Mozilla Firebird extension panel
+
+Versione 0.4.0
+
+[*] Slide show
+[*] Added some keyboard shortcut
+[*] Icon for the directory listbox
+[*] Clear image function
+[*] Better image resize
+
+Versione 0.0.3
+
+[*] About box
+[*] Autosize
+[*] Informazioni sull'immagine
+
+Versione 0.0.2
+
+[*] Verifica compatibilità con mozilla
+[*] Mostra solamente le immagini
+[*] Salvataggio ultima directory
+
+Versione 0.0.1
+
+[*] Inserire la voce all'interno di firebird
+[*] Renderlo crossplatform (concatenazione path e directory iniziale)
+[*] XPInstall
+[*] Includere JSLib utilizzate all'interno del progetto
+[*] Possibilità di selezionare la directory parent
+[*] Menu/Toolbar: navigazione|chiudi|about

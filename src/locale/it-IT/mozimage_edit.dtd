@@ -1,0 +1,84 @@
+<!ENTITY mozimage.edit.ready           "Pronto." >
+<!ENTITY mozimage.edit.ok             "Ok" >
+<!ENTITY mozimage.edit.saveas         "Salva immagine come..." >
+<!ENTITY mozimage.edit.title          "Pannello di modifica" >
+<!ENTITY mozimage.edit.quit           "Chiudi" >
+<!ENTITY mozimage.edit.advanced        "Modalià avanzata" >
+
+<!ENTITY mozimage.edit.getchanges     "Salva le modifiche" >
+<!ENTITY mozimage.edit.undolastchange  "Annulla l'ultima modifica" >
+<!ENTITY mozimage.edit.undochanges    "Annulla tutte le modifiche" >
+<!ENTITY mozimage.edit.getchanges.radio  "Salva sempre le modifiche" >
+<!ENTITY mozimage.edit.quality         "Qualità" >
+
+<!ENTITY mozimage.edit.tmpdes        "Immagine corrente" >
+<!ENTITY mozimage.edit.bakdes        "Immagine originale" >
+
+<!ENTITY mozimage.edit.t1             "Dimensioni" >
+<!ENTITY mozimage.edit.t2             "Trasformazioni" >
+<!ENTITY mozimage.edit.t3             "Testo" >
+<!ENTITY mozimage.edit.t4             "Effetti" >
+<!ENTITY mozimage.edit.t5             "Colori" >
+
+<!ENTITY mozimage.edit.resizeprt      "Ridimensiona" >
+<!ENTITY mozimage.edit.resizepix      "Ridimensiona (px)" >
+<!ENTITY mozimage.edit.resize.ratio   "Mantieni proporzioni" >
+<!ENTITY mozimage.edit.resize.pix     "Pixel" >
+<!ENTITY mozimage.edit.resize.percent "&#37;" >
+<!ENTITY mozimage.edit.resize.zero    "Imposta a zero" >
+<!ENTITY mozimage.edit.resize.px      "Larghezza (px)" >
+<!ENTITY mozimage.edit.resize.py      "Altezza (px)" >
+<!ENTITY mozimage.edit.resize.x       "Larghezza" >
+<!ENTITY mozimage.edit.resize.y       "Larghezza" >
+<!ENTITY mozimage.edit.resize.75     "75&#37;" >
+<!ENTITY mozimage.edit.resize.50     "50&#37;" >
+<!ENTITY mozimage.edit.resize.25     "25&#37;" >
+<!ENTITY mozimage.edit.resize.200    "200&#37;" >
+<!ENTITY mozimage.edit.resize.150    "150&#37;" >
+<!ENTITY mozimage.edit.resize.125    "125&#37;" >
+
+<!ENTITY mozimage.edit.rotate         "Ruota" >
+<!ENTITY mozimage.edit.rotate.270     "270°" >
+<!ENTITY mozimage.edit.rotate.90      "90°" >
+<!ENTITY mozimage.edit.rotate.180     "180°" >
+<!ENTITY mozimage.edit.mirror         "Speculare" >
+<!ENTITY mozimage.edit.mirror.x       "Inverti orizontalmente" >
+<!ENTITY mozimage.edit.mirror.y       "Inverti Verticalmente" >
+
+<!ENTITY mozimage.edit.drawtext           "Aggiungi testo" >
+<!ENTITY mozimage.edit.drawtext.textdes   "Testo" >
+<!ENTITY mozimage.edit.drawtext.fontdes   "Carattere" >
+<!ENTITY mozimage.edit.drawtext.filldes   "Colore testo" >
+<!ENTITY mozimage.edit.drawtext.sizedes   "Dimensione" >
+<!ENTITY mozimage.edit.drawtext.x         "X" >
+<!ENTITY mozimage.edit.drawtext.y         "Y" >
+<!ENTITY mozimage.edit.drawtext.pix       "Pixel" >
+<!ENTITY mozimage.edit.drawtext.percent   "&#37;" >
+<!ENTITY mozimage.edit.drawtext.northwest "Scrivi in alto a sinistra" >
+<!ENTITY mozimage.edit.drawtext.northeast "Scrivi in alto a destra" >
+<!ENTITY mozimage.edit.drawtext.southwest "Scrivi in basso a sinistra" >
+<!ENTITY mozimage.edit.drawtext.southeast "Scrivi in basso a destra" >
+<!ENTITY mozimage.edit.drawtext.north     "Scrivi sopra" >
+<!ENTITY mozimage.edit.drawtext.south     "Scrivi sotto" >
+<!ENTITY mozimage.edit.drawtext.center    "Scrivi al centro" >
+
+<!ENTITY mozimage.edit.solarize   "Solarize" >
+<!ENTITY mozimage.edit.swirl      "Swirl" >
+<!ENTITY mozimage.edit.implode    "Implode" >
+<!ENTITY mozimage.edit.wave       "Wave" >
+<!ENTITY mozimage.edit.oilpaint   "Oil paint" >
+<!ENTITY mozimage.edit.charcoal   "Charcoal" >
+
+<!ENTITY mozimage.edit.hue        "Hue" >
+<!ENTITY mozimage.edit.saturation "Saturation" >
+<!ENTITY mozimage.edit.brightness "Brightness" >
+<!ENTITY mozimage.edit.gamma      "Gamma" >
+<!ENTITY mozimage.edit.spiff      "Spiff" >
+<!ENTITY mozimage.edit.dull       "Dull" >
+<!ENTITY mozimage.edit.equalize   "Equalize" >
+<!ENTITY mozimage.edit.normalize  "Normalize" >
+<!ENTITY mozimage.edit.negate     "Negate" >
+<!ENTITY mozimage.edit.grayscale  "Grayscale" >
+<!ENTITY mozimage.edit.spread     "Spread" >
+
+<!ENTITY mozimage.edit.fulltitle     "A tutto schermo" >

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://mozimage/skin" type="text/css"?>
+<!DOCTYPE page SYSTEM "chrome://mozimage/locale/mozimage.dtd">
+<page title="mozImage"
+  id="mozimage-window"
+  xmlns:html="http://www.w3.org/1999/xhtml"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  onload="window_load(event);"
+  onunload="window_close(event);"
+  persist="screenX screenY width height sizemode">
+<script type="application/x-javascript" src="chrome://global/content/dialogOverlay.js" />
+<script type="application/x-javascript" src="chrome://mozimage/content/jslib.js" />
+<script type="application/x-javascript" src="chrome://mozimage/content/mozimage.js" />
+
+<toolbox>
+  
+  <toolbar id="main-toolbar">
+    <toolbaritem flex="1">
+      <textbox id="fullpath-text" flex="1" onkeypress="fullpath_keypress(event);" />
+    </toolbaritem>
+    <toolbarbutton id="go-button" tooltiptext="&mozimage.menu.go;" oncommand="go_click();" image="chrome://mozimage/skin/go.png" />
+  </toolbar>
+
+  <toolbar id="nav-toolbar">
+    <toolbarbutton id="prior-button" tooltiptext="&mozimage.menu.prior;" oncommand="prior_click();" image="chrome://mozimage/skin/prior.png" />
+    <toolbarbutton id="next-button" tooltiptext="&mozimage.menu.next;" oncommand="next_click();" image="chrome://mozimage/skin/next.png" />
+    <toolbarseparator />
+    <toolbarbutton id="up-button" tooltiptext="&mozimage.menu.parent;" oncommand="up_click();" image="chrome://mozimage/skin/up.png" />
+    <toolbarseparator />
+    <toolbarbutton id="autosize-button" type="checkbox" autoCheck="false" tooltiptext="&mozimage.menu.autosize;" oncommand="autosize_click();" image="chrome://mozimage/skin/autosize.png" />
+    <toolbarbutton id="zoomin-button" autoCheck="false" tooltiptext="&mozimage.menu.zoomin;" oncommand="zoomin_click();" image="chrome://mozimage/skin/zoomin.png" />
+    <toolbarbutton id="zoomout-button" autoCheck="false" tooltiptext="&mozimage.menu.zoomout;" oncommand="zoomout_click();" image="chrome://mozimage/skin/zoomout.png" />
+    <toolbarseparator />
+    <toolbarbutton id="all-button" type="menu" label="&mozimage.menu.other;">
+
+      <menupopup id="all-popup">
+
+        <menuitem id="explorer-menu" label="&mozimage.menu.explorer;" class="menuitem-iconic" onclick="explorer_click();" image="chrome://mozimage/skin/browse.png" />
+        <menuitem id="clear-menu" accesskey="&mozimage.menu.clear.ak;" label="&mozimage.menu.clear;" class="menuitem-iconic" onclick="clear_click();" key="clear-key" image="chrome://mozimage/skin/clear.png" />
+        <menuitem id="refresh-menu" label="&mozimage.menu.refresh;" class="menuitem-iconic" onclick="refresh_click();" image="chrome://mozimage/skin/refresh.png" />
+
+        <menu id="tools-menu" accesskey="&mozimage.menu.tools.ak;" label="&mozimage.menu.tools;">
+          <menupopup id="tools-popup">
+            <menuitem id="openwith1-menu" label="openwith1" onclick="openwith_click(1);" key="openwith1-key"/>
+            <menuitem id="openwith2-menu" label="openwith2" onclick="openwith_click(2);" key="openwith2-key"/>
+            <menuitem id="openwith3-menu" label="openwith3" onclick="openwith_click(3);" key="openwith3-key"/>
+            <menuitem id="openwith4-menu" label="openwith4" onclick="openwith_click(4);" key="openwith4-key"/>
+          </menupopup>
+        </menu>
+    
+        <menu id="macro-menu" accesskey="m" label="&mozimage.menu.macro;">
+          <menupopup id="macro-popup">
+            <menuitem id="macro0-menu" label="Macro1" onclick="macro_click(0);"/>
+            <menuitem id="macro1-menu" label="Macro2" onclick="macro_click(1);"/>
+            <menuitem id="macro2-menu" label="Macro2" onclick="macro_click(2);"/>
+            <menuitem id="macro3-menu" label="Macro2" onclick="macro_click(3);"/>
+            <menuitem id="macro4-menu" label="Macro2" onclick="macro_click(4);"/>
+            <menuitem id="macro5-menu" label="Macro2" onclick="macro_click(5);"/>
+            <menuitem id="macro6-menu" label="Macro2" onclick="macro_click(6);"/>
+            <menuitem id="macro7-menu" label="Macro2" onclick="macro_click(7);"/>
+            <menuitem id="macro8-menu" label="Macro2" onclick="macro_click(8);"/>
+            <menuitem id="macro9-menu" label="Macro2" onclick="macro_click(9);"/>
+          </menupopup>
+        </menu>
+    
+        <menuitem id="edit-button" label="&mozimage.menu.edit;" onclick="edit_click();" class="menuitem-iconic" image="chrome://mozimage/skin/options.png"/>
+        <menuitem id="slideshow-button" type="checkbox" label="&mozimage.menu.slideshow;" onclick="slideshow_click();" class="menuitem-iconic" image="chrome://mozimage/skin/slideshow.png"/>
+        <menuitem id="options-menu" accesskey="&mozimage.menu.options.ak;" label="&mozimage.menu.options;" onclick="options_click();"  />
+        <menuitem id="about-menu" label="&mozimage.menu.about;" accesskey="&mozimage.menu.about.ak;" class="menuitem-iconic" onclick="about_click();" />
+
+      </menupopup>
+
+    </toolbarbutton>
+  </toolbar>
+
+</toolbox>
+
+<keyset>
+  <key id="prior-key" key="&mozimage.commandkey.prior;" oncommand="prior_click();"/>
+  <key id="next-key" key="&mozimage.commandkey.next;" oncommand="next_click();"/>
+  <key id="clear-key" key="&mozimage.commandkey.clear;" oncommand="clear_click();"/>
+  <key id="zoomin-key" key="&mozimage.commandkey.zoomin;" oncommand="zoomin_click();"/>
+  <key id="zoomout-key" key="&mozimage.commandkey.zoomout;" oncommand="zoomout_click();"/>
+  <key id="autosize-key" key="&mozimage.commandkey.autosize;" oncommand="autosize_click();"/>
+  <key id="slideshow-key" key="&mozimage.commandkey.slideshow;" oncommand="slideshow_click();"/>
+  <key id="openwith1-key" key="&mozimage.commandkey.openwith1;" oncommand="openwith_click(1);"/>
+  <key id="openwith2-key" key="&mozimage.commandkey.openwith2;" oncommand="openwith_click(2);"/>
+  <key id="openwith3-key" key="&mozimage.commandkey.openwith3;" oncommand="openwith_click(3);"/>
+  <key id="openwith4-key" key="&mozimage.commandkey.openwith4;" oncommand="openwith_click(4);"/>
+</keyset>
+
+<popupset>
+  <popup id="image-popup">
+    <menuitem label="&mozimage.menu.saveas;" oncommand="save_click();" />
+    <menuseparator/>
+    <menuitem label="&mozimage.menu.zoomin;" class="menuitem-iconic" oncommand="zoomin_click();" image="chrome://mozimage/skin/zoomin.png" />
+    <menuitem label="&mozimage.menu.zoomout;" class="menuitem-iconic" oncommand="zoomout_click();" image="chrome://mozimage/skin/zoomout.png" />
+    <menuitem label="&mozimage.menu.clear;" class="menuitem-iconic" oncommand="clear_click();" image="chrome://mozimage/skin/clear.png" />
+  </popup>
+  <popup id="filelist-popup">
+    <menuitem label="&mozimage.menu.saveas;" oncommand="save_click();" />
+    <menuitem label="&mozimage.menu.saveall;" oncommand="saveall_click();" />
+    <menuitem label="&mozimage.menu.edit;" oncommand="edit_click();" class="menuitem-iconic" image="chrome://mozimage/skin/options.png"/>
+    <menuseparator/>
+    <menuitem label="&mozimage.menu.prior;" class="menuitem-iconic" oncommand="prior_click();" image="chrome://mozimage/skin/prior.png" />
+    <menuitem label="&mozimage.menu.next;" class="menuitem-iconic" oncommand="next_click();" image="chrome://mozimage/skin/next.png" />
+  </popup>
+</popupset>
+
+  <hbox flex="1">
+
+    <vbox id="filelist_box" flex="1">
+
+        <tabbox id="main_tabbox" flex="1">
+          <tabs>
+            <tab label="&mozimage.listbox.directories;"/>
+            <tab label="&mozimage.listbox.bookmarks;"/>
+          </tabs>
+          <tabpanels flex="1">
+            <tabpanel id="directories-tab">
+
+              <listbox id="directory-listbox" onselect="directory_select(event);" flex="1">
+                <listcols>
+                  <listcol flex="1" />
+                </listcols>
+                <listhead>
+                  <listheader label="&mozimage.listbox.directories;" />
+                </listhead>
+              </listbox>
+
+            </tabpanel>
+            <tabpanel id="bookmarks-tab">
+              
+              <vbox flex="1">
+                <listbox id="bookmark-listbox" flex="1">
+                  <listcols>
+                    <listcol flex="1" />
+                  </listcols>
+                  <listhead>
+                    <listheader label="&mozimage.listbox.bookmarks;" />
+                  </listhead>
+                </listbox>
+                
+                <toolbox>
+                  <toolbar id="bookmark-toolbar" grippyhidden="true">
+		    <toolbarbutton id="addbookmark-button" tooltiptext="&mozimage.bookmarkbar.add;" oncommand="addbookmark_click();" image="chrome://mozimage/skin/bookmark_add.png" />
+		    <toolbarbutton id="deletebookmark-button" tooltiptext="&mozimage.bookmarkbar.del;" oncommand="deletebookmark_click();" image="chrome://mozimage/skin/bookmark_delete.png" />
+		    <toolbarbutton id="bookmarkup-button" tooltiptext="&mozimage.bookmarkbar.moveup;" oncommand="bookmarkup_click();" image="chrome://mozimage/skin/bookmark_up.png" />
+		    <toolbarbutton id="bookmarkdown-button" tooltiptext="&mozimage.bookmarkbar.movedown;" oncommand="bookmarkdown_click();" image="chrome://mozimage/skin/bookmark_bottom.png" />
+                  </toolbar>
+                </toolbox>
+
+                <!--
+                <hbox>
+                  <button id="addbookmark-button" tooltiptext="Add bookmark" />
+                  <button id="managebookmark-button" tooltiptext="Manage bookmark" />
+                </hbox>
+                -->
+              </vbox>
+
+            </tabpanel>
+          </tabpanels>
+        </tabbox>
+  
+      <splitter />
+  
+      <listbox id="file-listbox" onselect="file_select(event);" flex="1">
+        <listcols>
+          <listcol flex="1" />
+        </listcols>
+        <listhead>
+          <listheader label="&mozimage.listbox.files;" />
+        </listhead>
+      </listbox>
+
+    </vbox>
+    
+  </hbox>
+  
+  <browser id="html-browser" flex="1" maxheight="0" type="content" />
+  
+  <hbox id="info-statusbar">
+    <description id="info-label" flex="1" value="&mozimage.label.ready;" />
+  </hbox>
+
+</page>

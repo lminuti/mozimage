@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://mozimage/skin" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://mozimage/locale/mozimage.dtd">
+<dialog buttons="accept"
+  title="&mozimage.about.title;"
+  xmlns:html="http://www.w3.org/1999/xhtml"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  >
+  
+<script type="application/x-javascript" src="chrome://global/content/dialogOverlay.js" />
+
+<groupbox align="center" orient="horizontal">
+<vbox>
+  <text value="mozImage" style="font-weight: bold; font-size: x-large;"/>
+  <text value="version 1.4.9"/>
+  <separator class="thin"/>
+  <text value="&mozimage.about.created;" style="font-weight: bold;"/>
+  <text value="Lithian" class="url"
+        onclick="window.open('http://mozimage.mozdev.org/credits.html'); window.close();"/>
+  <separator class="thin"/>
+  <text value="&mozimage.about.homepage;" style="font-weight: bold;"/>
+  <text value="http://mozimage.mozdev.org/"
+        class="url"
+        onclick="window.open('http://mozimage.mozdev.org/'); window.close();"/>
+  <separator class="thin"/>
+  <text value="&mozimage.about.releasenotes;" style="font-weight: bold;"/>
+  <text value="http://mozimage.mozdev.org/releases.html"
+        class="url"
+        onclick="window.open('http://mozimage.mozdev.org/releases.html'); window.close();"/>
+<separator class="thin"/>
+  <text value="&mozimage.about.powered;" style="font-weight: bold;"/>
+  <text value="http://jslib.mozdev.org/"
+        class="url"
+        onclick="window.open('http://jslib.mozdev.org/'); window.close();"/>
+</vbox>
+<spring flex="1"/>
+<image src="logo.png" />
+
+</groupbox>
+
+</dialog>

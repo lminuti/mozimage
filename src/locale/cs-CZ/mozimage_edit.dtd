@@ -1,0 +1,84 @@
+<!ENTITY mozimage.edit.ready           "Připraven." >
+<!ENTITY mozimage.edit.ok             "OK" >
+<!ENTITY mozimage.edit.saveas         "Uložit upravený obrázek jako..." >
+<!ENTITY mozimage.edit.title          "Panel editace" >
+<!ENTITY mozimage.edit.quit           "Konec" >
+<!ENTITY mozimage.edit.advanced        "Rozšířený mód" >
+
+<!ENTITY mozimage.edit.getchanges     "Pamatovat si změny" >
+<!ENTITY mozimage.edit.undolastchange  "Zpět poslední změnu" >
+<!ENTITY mozimage.edit.undochanges    "Zpět všechny změny" >
+<!ENTITY mozimage.edit.getchanges.radio  "Vždy si pamatovat změny" >
+<!ENTITY mozimage.edit.quality         "Kvalita" >
+
+<!ENTITY mozimage.edit.tmpdes        "Upravený obrázek" >
+<!ENTITY mozimage.edit.bakdes        "Původní obrázek" >
+
+<!ENTITY mozimage.edit.t1             "Velikost obrázku" >
+<!ENTITY mozimage.edit.t2             "Transformace" >
+<!ENTITY mozimage.edit.t3             "Text" >
+<!ENTITY mozimage.edit.t4             "Efekty" >
+<!ENTITY mozimage.edit.t5             "Další" >
+
+<!ENTITY mozimage.edit.resizeprt      "Změnit velikost" >
+<!ENTITY mozimage.edit.resizepix      "Změnit velikost (px)" >
+<!ENTITY mozimage.edit.resize.ratio   "Zachovat poměr stran" >
+<!ENTITY mozimage.edit.resize.pix     "Pixely" >
+<!ENTITY mozimage.edit.resize.percent "&#37;" >
+<!ENTITY mozimage.edit.resize.zero    "Vynulovat" >
+<!ENTITY mozimage.edit.resize.px      "Šířka (px)" >
+<!ENTITY mozimage.edit.resize.py      "Výška (px)" >
+<!ENTITY mozimage.edit.resize.x       "Šířka" >
+<!ENTITY mozimage.edit.resize.y       "Výška" >
+<!ENTITY mozimage.edit.resize.75     "75&#37;" >
+<!ENTITY mozimage.edit.resize.50     "50&#37;" >
+<!ENTITY mozimage.edit.resize.25     "25&#37;" >
+<!ENTITY mozimage.edit.resize.200    "200&#37;" >
+<!ENTITY mozimage.edit.resize.150    "150&#37;" >
+<!ENTITY mozimage.edit.resize.125    "125&#37;" >
+
+<!ENTITY mozimage.edit.rotate         "Otočit" >
+<!ENTITY mozimage.edit.rotate.270     "270°" >
+<!ENTITY mozimage.edit.rotate.90      "90°" >
+<!ENTITY mozimage.edit.rotate.180     "180°" >
+<!ENTITY mozimage.edit.mirror         "Zrcadlit" >
+<!ENTITY mozimage.edit.mirror.x       "Převrátit horizontálně" >
+<!ENTITY mozimage.edit.mirror.y       "Převrátit vertikálně" >
+
+<!ENTITY mozimage.edit.drawtext           "Přidat text" >
+<!ENTITY mozimage.edit.drawtext.textdes   "Text" >
+<!ENTITY mozimage.edit.drawtext.fontdes   "Font" >
+<!ENTITY mozimage.edit.drawtext.filldes   "Barva textu" >
+<!ENTITY mozimage.edit.drawtext.sizedes   "Velikost textu" >
+<!ENTITY mozimage.edit.drawtext.x         "X" >
+<!ENTITY mozimage.edit.drawtext.y         "Y" >
+<!ENTITY mozimage.edit.drawtext.pix       "Pixely" >
+<!ENTITY mozimage.edit.drawtext.percent   "&#37;" >
+<!ENTITY mozimage.edit.drawtext.northwest "Zarovnat doleva nahoru" >
+<!ENTITY mozimage.edit.drawtext.northeast "Zarovnat doprava nahoru" >
+<!ENTITY mozimage.edit.drawtext.southwest "Zarovnat doleva dolů" >
+<!ENTITY mozimage.edit.drawtext.southeast "Zarovnat doprava dolů" >
+<!ENTITY mozimage.edit.drawtext.north     "Zarovnat na střed nahoru" >
+<!ENTITY mozimage.edit.drawtext.south     "Zarovnat na střed dolů" >
+<!ENTITY mozimage.edit.drawtext.center    "Zarovnat na střed" >
+
+<!ENTITY mozimage.edit.solarize   "Solarizace" >
+<!ENTITY mozimage.edit.swirl      "Vír" >
+<!ENTITY mozimage.edit.implode    "Implodace" >
+<!ENTITY mozimage.edit.wave       "Vlny" >
+<!ENTITY mozimage.edit.oilpaint   "Olejomalba" >
+<!ENTITY mozimage.edit.charcoal   "Uhlokresba" >
+
+<!ENTITY mozimage.edit.hue        "Odstín" >
+<!ENTITY mozimage.edit.saturation "Nasycení" >
+<!ENTITY mozimage.edit.brightness "Světlost" >
+<!ENTITY mozimage.edit.gamma      "Gamma" >
+<!ENTITY mozimage.edit.spiff      "Spiff" >
+<!ENTITY mozimage.edit.dull       "Dull" >
+<!ENTITY mozimage.edit.equalize   "Nivelizovat" > 
+<!ENTITY mozimage.edit.normalize  "Normalizovat" > 
+<!ENTITY mozimage.edit.negate     "Negativ" > 
+<!ENTITY mozimage.edit.grayscale  "Odstíny šedé" >  
+<!ENTITY mozimage.edit.spread     "Spread" >
+
+<!ENTITY mozimage.edit.fulltitle     "Na celou obrazovku" >

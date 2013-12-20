@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE window SYSTEM "chrome://mozimage/locale/mozimage.dtd">
+
+<overlay id="mozimageOverlay_moz" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+<script type="application/x-javascript" src="chrome://mozimage/content/jslib.js" />
+<script type="application/x-javascript" src="chrome://mozimage/content/mozimageOverlay_moz.js" />
+
+ <menupopup id="taskPopup">
+    <menuitem id="launch-mozimage"
+              oncommand="launchmozimage_click_mozilla(false);" 
+              position="1"
+              label="&mozimage.overlay.mozillatitle;"  />
+  </menupopup>
+  
+  <!-- <popup id="contentAreaContextMenu">
+    <menuitem id="launch-mozimageLink" 
+              label="&mozimage.overlay.openwith;" 
+              oncommand="launchmozimage_click_mozilla(true);"  />
+  </popup> -->
+
+<!--  	<broadcasterset id="mainBroadcasterSet">
+		<broadcaster id="viewMozImageSidebar"
+			autoCheck="false"
+			label="MozImage"
+			type="checkbox" group="sidebar"
+			sidebarurl="chrome://mozimage/content/mozimage.xul"
+			sidebartitle="MozImage SideBar"
+			oncommand="addPanel('MozImage SideBar', 'chrome://mozimage/content/mozimage.xul', '');"			
+			/>
+	</broadcasterset>  -->
+
+</overlay>

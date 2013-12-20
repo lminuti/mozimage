@@ -1,0 +1,110 @@
+<!ENTITY mozimage.overlay.openwith      "用 mozImage 開啟..." >
+<!ENTITY mozimage.sidebar.title     "MozImage SideBar" >
+<!ENTITY mozimage.overlay.mozillatitle  "把 mozImage 加到資訊方塊列" >
+
+<!ENTITY mozimage.menu.file             "檔案" >
+<!ENTITY mozimage.menu.prior            "上一張" >
+<!ENTITY mozimage.menu.next             "下一張" >
+<!ENTITY mozimage.menu.clear            "清除" >
+<!ENTITY mozimage.menu.autosize         "自動縮放" >
+<!ENTITY mozimage.menu.zoomin           "放大" >
+<!ENTITY mozimage.menu.zoomout          "縮小" >
+<!ENTITY mozimage.menu.slideshow        "自動播放" >
+<!ENTITY mozimage.menu.options          "選項..." >
+<!ENTITY mozimage.menu.exit             "結束 mozImage" >
+<!ENTITY mozimage.menu.help             "說明" >
+<!ENTITY mozimage.menu.about            "關於 mozImage..." >
+<!ENTITY mozimage.menu.go               "移至" >
+<!ENTITY mozimage.menu.parent           "上一層" >
+<!ENTITY mozimage.menu.fullscreen       "全螢幕" >
+<!ENTITY mozimage.menu.restore          "還原" >
+<!ENTITY mozimage.listbox.directories   "資料夾" >
+<!ENTITY mozimage.listbox.bookmarks     "書籤" >
+<!ENTITY mozimage.listbox.files         "檔案" >
+<!ENTITY mozimage.label.ready           "就緒" >
+<!ENTITY mozimage.menu.togglelist       "切換檔案列表" >
+<!ENTITY mozimage.menu.tools            "工具" >
+<!ENTITY mozimage.menu.macro            "巨集" >
+<!ENTITY mozimage.menu.configmacro      "巨集設定..." >
+<!ENTITY mozimage.menu.saveas           "另存圖像為..." >
+<!ENTITY mozimage.menu.saveall          "儲存所有圖像..." >
+<!ENTITY mozimage.menu.explorer         "瀏覽" >
+<!ENTITY mozimage.menu.other            "Menu" >
+<!ENTITY mozimage.menu.edit           "修改圖像..." >
+<!ENTITY mozimage.menu.refresh        "更新" >
+
+<!ENTITY mozimage.commandkey.clear      "c" >
+<!ENTITY mozimage.commandkey.prior      "b" >
+<!ENTITY mozimage.commandkey.next       "n" >
+<!ENTITY mozimage.commandkey.zoomin     "i" >
+<!ENTITY mozimage.commandkey.zoomout    "o" >
+<!ENTITY mozimage.commandkey.autosize   "a" >
+<!ENTITY mozimage.commandkey.slideshow  "s" >
+<!ENTITY mozimage.commandkey.openwith1  "1" >
+<!ENTITY mozimage.commandkey.openwith2  "2" >
+<!ENTITY mozimage.commandkey.openwith3  "3" >
+<!ENTITY mozimage.commandkey.openwith4  "4" >
+
+<!ENTITY mozimage.bookmarkbar.add       "加入書籤..." >
+<!ENTITY mozimage.bookmarkbar.del       "移除書籤..." >
+<!ENTITY mozimage.bookmarkbar.moveup    "上移" >
+<!ENTITY mozimage.bookmarkbar.movedown  "下移" >
+
+<!ENTITY mozimage.menu.file.ak          "f" >
+<!ENTITY mozimage.menu.prior.ak         "" >
+<!ENTITY mozimage.menu.next.ak          "" >
+<!ENTITY mozimage.menu.clear.ak         "" >
+<!ENTITY mozimage.menu.fullscreen.ak    "" >
+<!ENTITY mozimage.menu.togglelist.ak    "" >
+<!ENTITY mozimage.menu.options.ak       "" >
+<!ENTITY mozimage.menu.exit.ak          "" >
+<!ENTITY mozimage.menu.tools.ak         "t" >
+<!ENTITY mozimage.menu.autosize.ak      "" >
+<!ENTITY mozimage.menu.zoomin.ak        "" >
+<!ENTITY mozimage.menu.zoomout.ak       "" >
+<!ENTITY mozimage.menu.slideshow.ak     "" >
+<!ENTITY mozimage.menu.help.ak          "h" >
+<!ENTITY mozimage.menu.about.ak         "" >
+
+<!ENTITY mozimage.prefs.homedir         "首頁:" >
+<!ENTITY mozimage.prefs.delay           "自動播放時間（秒）:" >
+<!ENTITY mozimage.prefs.general         "一般" >
+<!ENTITY mozimage.prefs.tools           "Tools" >
+<!ENTITY mozimage.prefs.location        "Location" >
+<!ENTITY mozimage.prefs.options         "選項" >
+<!ENTITY mozimage.prefs.zoom            "縮放倍率:" >
+<!ENTITY mozimage.prefs.filter          "圖像類型" >
+<!ENTITY mozimage.prefs.editors         "圖像編輯器" >
+<!ENTITY mozimage.prefs.name            "名稱" >
+<!ENTITY mozimage.prefs.fullpath        "完整路徑" >
+<!ENTITY mozimage.prefs.fileslist       "檔案列表" >
+<!ENTITY mozimage.prefs.tumbnailsize    "縮圖大小" >
+<!ENTITY mozimage.prefs.orderby         "排列序" >
+<!ENTITY mozimage.prefs.filename        "檔案名稱（文字）" >
+<!ENTITY mozimage.prefs.filenume        "檔案名稱（數字）" >
+<!ENTITY mozimage.prefs.filedate        "檔案日期" >
+<!ENTITY mozimage.prefs.filesize        "檔案大小" >
+<!ENTITY mozimage.prefs.ascending       "由小至大" >
+<!ENTITY mozimage.prefs.descending      "由大至小" >
+<!ENTITY mozimage.prefs.forcehttptumb	"經常為網頁顯示縮圖" >
+<!ENTITY mozimage.prefs.enablecache	"為網路上的圖像啟動快取" >
+<!ENTITY mozimage.prefs.home            "首頁" >
+<!ENTITY mozimage.prefs.image           "圖像" >
+<!ENTITY mozimage.prefs.enablecurrent   "首頁為最近使用的資料夾" >
+<!ENTITY mozimage.prefs.browse          "瀏覽" >
+<!ENTITY mozimage.prefs.current         "把現在的資料夾設為首頁" >
+<!ENTITY mozimage.prefs.none            "無" >
+<!ENTITY mozimage.prefs.convertpath     "「Convert」的位置" >
+
+<!ENTITY mozimage.macro.title           "巨集" >
+<!ENTITY mozimage.macro.list            "巨集列表" >
+<!ENTITY mozimage.macro.name            "名稱" >
+<!ENTITY mozimage.macro.macro           "巨集" >
+<!ENTITY mozimage.macro.des             "&#37;f 符號將會為檔案名稱取代" >
+
+<!ENTITY mozimage.about.title           "關於 mozImage" >
+<!ENTITY mozimage.about.created         "開發者:" >
+<!ENTITY mozimage.about.homepage        "網頁" >
+<!ENTITY mozimage.about.releasenotes    "出版記事" >
+<!ENTITY mozimage.about.powered         "本軟體使用 JSLib" >
+

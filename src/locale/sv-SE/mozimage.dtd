@@ -1,0 +1,110 @@
+<!ENTITY mozimage.overlay.openwith      "Öppna i mozImage..." >
+<!ENTITY mozimage.sidebar.title     "MozImage SideBar" >
+<!ENTITY mozimage.overlay.mozillatitle  "Add mozImage sidebar" >
+
+<!ENTITY mozimage.menu.file             "Fil" >
+<!ENTITY mozimage.menu.prior            "Föregående" >
+<!ENTITY mozimage.menu.next             "Nästa" >
+<!ENTITY mozimage.menu.clear            "Rensa" >
+<!ENTITY mozimage.menu.autosize         "Automatisk storlek" >
+<!ENTITY mozimage.menu.zoomin           "Zooma in" >
+<!ENTITY mozimage.menu.zoomout          "Zooma ut" >
+<!ENTITY mozimage.menu.slideshow        "Bildspel" >
+<!ENTITY mozimage.menu.options          "Alternativ..." >
+<!ENTITY mozimage.menu.exit             "Avsluta" >
+<!ENTITY mozimage.menu.help             "Hjälp" >
+<!ENTITY mozimage.menu.about            "Om..." >
+<!ENTITY mozimage.menu.go               "Kör!" >
+<!ENTITY mozimage.menu.parent           "Huvud" >
+<!ENTITY mozimage.menu.fullscreen       "Helskärm" >
+<!ENTITY mozimage.menu.restore          "Återställ" >
+<!ENTITY mozimage.listbox.directories   "Kataloger" >
+<!ENTITY mozimage.listbox.bookmarks     "Bokmärken" >
+<!ENTITY mozimage.listbox.files         "Filer" >
+<!ENTITY mozimage.label.ready           "Klar." >
+<!ENTITY mozimage.menu.togglelist       "Växla till sidovy" >
+<!ENTITY mozimage.menu.tools            "Verktyg" >
+<!ENTITY mozimage.menu.macro            "Macro" >
+<!ENTITY mozimage.menu.configmacro      "Konfigurera macro..." >
+<!ENTITY mozimage.menu.saveas           "Spara bild som..." >
+<!ENTITY mozimage.menu.saveall          "Spara alla bilder..." >
+<!ENTITY mozimage.menu.explorer         "Bläddra" >
+<!ENTITY mozimage.menu.other            "Menu" >
+<!ENTITY mozimage.menu.edit           "Edit of current image" >
+<!ENTITY mozimage.menu.refresh        "Refresh" >
+
+<!ENTITY mozimage.commandkey.clear      "c" >
+<!ENTITY mozimage.commandkey.prior      "b" >
+<!ENTITY mozimage.commandkey.next       "n" >
+<!ENTITY mozimage.commandkey.zoomin     "i" >
+<!ENTITY mozimage.commandkey.zoomout    "o" >
+<!ENTITY mozimage.commandkey.autosize   "a" >
+<!ENTITY mozimage.commandkey.slideshow  "s" >
+<!ENTITY mozimage.commandkey.openwith1  "1" >
+<!ENTITY mozimage.commandkey.openwith2  "2" >
+<!ENTITY mozimage.commandkey.openwith3  "3" >
+<!ENTITY mozimage.commandkey.openwith4  "4" >
+
+<!ENTITY mozimage.bookmarkbar.add       "Lägg till bokmärke..." >
+<!ENTITY mozimage.bookmarkbar.del       "Radera bokmärke..." >
+<!ENTITY mozimage.bookmarkbar.moveup    "Gå upp" >
+<!ENTITY mozimage.bookmarkbar.movedown  "Gå ner" >
+
+<!ENTITY mozimage.menu.file.ak          "f" >
+<!ENTITY mozimage.menu.prior.ak         "" >
+<!ENTITY mozimage.menu.next.ak          "" >
+<!ENTITY mozimage.menu.clear.ak         "" >
+<!ENTITY mozimage.menu.fullscreen.ak    "" >
+<!ENTITY mozimage.menu.togglelist.ak    "" >
+<!ENTITY mozimage.menu.options.ak       "" >
+<!ENTITY mozimage.menu.exit.ak          "" >
+<!ENTITY mozimage.menu.tools.ak         "v" >
+<!ENTITY mozimage.menu.autosize.ak      "" >
+<!ENTITY mozimage.menu.zoomin.ak        "" >
+<!ENTITY mozimage.menu.zoomout.ak       "" >
+<!ENTITY mozimage.menu.slideshow.ak     "" >
+<!ENTITY mozimage.menu.help.ak          "h" >
+<!ENTITY mozimage.menu.about.ak         "" >
+
+<!ENTITY mozimage.prefs.homedir         "Hemkatalog:" >
+<!ENTITY mozimage.prefs.delay           "Fördröjning av bildspel (sek):" >
+<!ENTITY mozimage.prefs.general         "Generell" >
+<!ENTITY mozimage.prefs.tools           "Tools" >
+<!ENTITY mozimage.prefs.location        "Location" >
+<!ENTITY mozimage.prefs.options         "Alternativ" >
+<!ENTITY mozimage.prefs.zoom            "Zoom faktor:" >
+<!ENTITY mozimage.prefs.filter          "Bild filter" >
+<!ENTITY mozimage.prefs.editors         "Editorer" >
+<!ENTITY mozimage.prefs.name            "Namn" >
+<!ENTITY mozimage.prefs.fullpath        "Fullständig väg" >
+<!ENTITY mozimage.prefs.fileslist       "Fillista" >
+<!ENTITY mozimage.prefs.tumbnailsize    "Miniatyr storlek" >
+<!ENTITY mozimage.prefs.orderby         "Sortera efter" >
+<!ENTITY mozimage.prefs.filename        "Filnamn (lex.)" >
+<!ENTITY mozimage.prefs.filenume        "Filnamn (num.)" >
+<!ENTITY mozimage.prefs.filedate        "Fildatum" >
+<!ENTITY mozimage.prefs.filesize        "Filstorlek" >
+<!ENTITY mozimage.prefs.ascending       "Stigande" >
+<!ENTITY mozimage.prefs.descending      "Nedstigande" >
+<!ENTITY mozimage.prefs.forcehttptumb	"Vissa alltid miniatyrbild på webbsidor" >
+<!ENTITY mozimage.prefs.enablecache	"Möjliggör cache på bilder från webben" >
+<!ENTITY mozimage.prefs.home            "Hem" >
+<!ENTITY mozimage.prefs.image           "Bild" >
+<!ENTITY mozimage.prefs.enablecurrent   "Hemkatalogen är det senaste besökta" >
+<!ENTITY mozimage.prefs.browse          "Bläddra" >
+<!ENTITY mozimage.prefs.current         "Sätt nuvarande katalog som hemkatalog" >
+<!ENTITY mozimage.prefs.none            "Ingen" >
+<!ENTITY mozimage.prefs.convertpath     "Path to Convert" >
+
+<!ENTITY mozimage.macro.title           "Macro" >
+<!ENTITY mozimage.macro.list            "Macro lista" >
+<!ENTITY mozimage.macro.name            "Namn" >
+<!ENTITY mozimage.macro.macro           "Macro" >
+<!ENTITY mozimage.macro.des             "Symbolen &#37;f kommer att ersättas med det nuvarande filnamnet" >
+
+<!ENTITY mozimage.about.title           "Om mozImage" >
+<!ENTITY mozimage.about.created         "Skapad av:" >
+<!ENTITY mozimage.about.homepage        "Hemsida" >
+<!ENTITY mozimage.about.releasenotes    "Utgivningsnoteringar" >
+<!ENTITY mozimage.about.powered         "Driven av JSLib" >
+

@@ -1,0 +1,11 @@
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+/* Overlay styles */
+
+#mozimage-button {
+  list-style-image: url("chrome://mozimage/skin/mozimage.png");
+}
+
+toolbar[iconsize="small"] #mozimage-button {
+  list-style-image: url("chrome://mozimage/skin/mozimage-small.png");
+}

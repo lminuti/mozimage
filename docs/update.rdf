@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+
+  <Description about="urn:mozilla:extension:{2485990f-d3b0-4e57-bd0f-5abdffa70773}">
+
+    <!-- Firefox 1.0 format: list of all available updates -->
+    <em:updates>
+      <Seq>
+        <li resource="urn:mozilla:extension:{2485990f-d3b0-4e57-bd0f-5abdffa70773}:1.4.8"/>
+      </Seq>
+    </em:updates>
+
+  </Description>
+
+  <!-- mozImage 1.0 is compatible with firefox 1.0 -->
+  <Description about="urn:mozilla:extension:{2485990f-d3b0-4e57-bd0f-5abdffa70773}:1.4.8">
+
+    <em:version>1.4.8</em:version>
+    
+    <em:targetApplication>
+    <!-- Mozilla Firefox -->
+      <Description>
+        <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id> <!-- Firefox -->
+        <em:minVersion>1.0</em:minVersion>
+        <em:maxVersion>3.0</em:maxVersion>
+        <em:updateLink>http://releases.mozilla.org/pub/mozilla.org/addons/168/mozimage-1.4.8-fx+mz.xpi</em:updateLink>
+      </Description>
+    </em:targetApplication>
+    
+  </Description>  
+
+</RDF>

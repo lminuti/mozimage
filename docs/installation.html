@@ -1,0 +1,106 @@
+<!-- MAIN CONTENT -->
+
+<h2 id="h1">Installation</h2>
+
+<p>The current release works with both Mozilla Browser and Firefox
+on win32 and with linux.
+
+<p>To install mozImage read the <a href="http://mozimage.mozdev.org/releases.html">release notes</a>
+and then download the xpi <a href="https://addons.mozilla.org/firefox/168/">here</a>.</p>
+
+<p>Once installed, a new menu item should appear under MozillaFirefox
+tools menu; click on this new menu item to open mozImage sidebar.
+
+<h2 id="h2">Web page analysis</h2>
+
+<p>
+There are two ways to open <i>mozImage</i>: through the
+tools menu and with the context menu of the current web page.
+With this last method mozImage reads the current page in search of links that point
+to an image. If the link itself is an image <i>mozImage</i> will display the image on
+the left of the link name (you must enable the thumbnails on the options panel).
+</p>
+
+<h2 id="h3">Configuring macros</h2>
+
+This release of mozImage offers the possibility of creating some <i>macros</i>. This macros
+allow you to use <i>external applications</i> to enhanche mozImage. For example you can use
+<a href="http://www.imagemagick.org/">ImageMagick</a> to rotate or resize an image.
+If you go to the "macro|Config macro" menu, you will find a configuration panel that allows you to create
+your own macros. This panel consists of two columns: <i>name</i> and <i>macro</i>. In the "name" column
+you can insert a symbolic name, for example "Rotate 90°", while in the "macro" column you must write
+the <i>command line</i> to run the external application, for example:</p>
+
+<pre>'C:\Program files\ImageMagick6\convert.exe' %f -rotate 90 %f</pre>
+
+If the application name contains some spaces, it’s important to enclose its path in quotes. In
+this example the %f will be replaced by the name of the current image. See also the
+<a href="http://mozimage.mozdev.org/screenshots.html">Screen shots</a>.
+
+<h2 id="h4">Bookmarks</h2>
+
+<p>
+The bookmarks concept is much like that of a browser: when you are seeing the
+images inside a folder you can click on the "add bookmark" button and that folder will
+go to your bookmarks.
+</p>
+<p>
+The bookmarks are stored on a file named <i>mozimage-bookmarks.txt</i> on your
+profile directory, with name and directory separated by a new line.
+</p>
+
+<h2 id="h5">MozImage edit</h2>
+
+<p>This module was developed by <a href="http://mozimage.mozdev.org/credits.html">
+My Hoang</a> and offers you the possibility to modify images throught
+<a href="http://www.imagemagick.org/">ImageMagick</a>. So you must first install
+<i>ImageMagick</i> then open the <i>options panel</i> of <i>MozImage</i> and fill
+the voice named "Path to convert" with the main executable of ImageMagick, for
+examples:
+
+<pre>
+C:\Program files\ImageMagick6\convert.exe
+</pre>
+
+<h2 id="h6">Shortcuts</h2>
+
+<p><i>MozImage</i> provide many single key shortcuts. Thus, you only have to press a
+single key (without ctrl, alt, etc) to activate a function.</p>
+<ul>
+  <li><b>b</b>: View prior image
+  <li><b>n</b>: View next image
+  <li><b>c</b>: Clear image
+  <li><b>i</b>: Zoom in
+  <li><b>o</b>: Zoom out
+  <li><b>a</b>: Autosize
+  <li><b>s</b>: Slide show
+  <li><b>1</b>: 1st configured tool
+  <li><b>2</b>: 2nd configured tool
+  <li><b>3</b>: 3rd configured tool
+  <li><b>4</b>: 4th configured tool
+</ul>
+
+
+<h2 id="h7">Old releases</h2>
+
+<p>Click <a href="http://downloads.mozdev.org/mozimage/">here</a> to see all releases</p>
+
+<h2 id="h8">License</h2>
+
+<p>This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.</p>
+
+<p>This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.</p>
+
+<p>You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA</p>
+
+<script type="text/javascript">
+createIndex('page index:');
+</script>

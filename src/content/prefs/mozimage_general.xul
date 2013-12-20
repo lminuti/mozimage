@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://mozimage/skin" type="text/css"?>
+<!DOCTYPE page SYSTEM "chrome://mozimage/locale/mozimage.dtd">
+<page xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
+      onload="prefs_load(event);"
+      onclose="prefs_close(event);">
+  
+  <script type="application/x-javascript" src="chrome://global/content/dialogOverlay.js" />
+  <script type="application/x-javascript" src="chrome://global/content/strres.js" />
+  <script type="application/x-javascript" src="chrome://mozimage/content/jslib.js" />
+  <script type="application/x-javascript" src="chrome://mozimage/content/prefs/mozimage_general.js" />
+
+  <groupbox>
+
+    <caption label="&mozimage.prefs.homedir;" />
+
+    <hbox>
+      <label value="&mozimage.prefs.location;" />
+      <textbox width="300" id="homedir-text" flex="1" />
+    </hbox>
+
+    <hbox>
+  	<button id="folder-button" oncommand="getFolder();" label="&mozimage.prefs.browse;" />
+	<button id="current-button" oncommand="setCurrent();" label="&mozimage.prefs.current;" />
+    </hbox>
+
+    <checkbox id="enablecurrent-check" checked="false" label="&mozimage.prefs.enablecurrent;" onclick="toggleEnableCurrent()"/>
+
+  </groupbox>
+
+  <groupbox>
+
+    <caption label="&mozimage.prefs.image;" />
+    <hbox>
+      <label value="&mozimage.prefs.delay;" />
+      <textbox id="delay-text" width="50" />
+    </hbox>
+   
+    <hbox>
+      <label value="&mozimage.prefs.zoom;" />
+      <textbox id="zoom-text" width="50" />
+    </hbox>
+   
+  </groupbox>
+
+  <groupbox>
+
+    <caption label="&mozimage.prefs.fileslist;" />
+
+    <hbox>
+      <label value="&mozimage.prefs.tumbnailsize;" />
+      
+      <menulist id="thumb-menu">
+        <menupopup>
+          <menuitem value="0" label="&mozimage.prefs.none;"/>
+          <menuitem value="32" label="32x32"/>
+          <menuitem value="48" label="48x48"/>
+          <menuitem value="64" label="64x64"/>
+          <menuitem value="80" label="80x80"/>
+          <menuitem value="128" label="128x128"/>
+        </menupopup>
+      </menulist>
+      
+      <label value="&mozimage.prefs.orderby;" />
+      
+      <menulist id="orderby-menu">
+        <menupopup>
+          <menuitem value="nume" label="&mozimage.prefs.filenume;"/>
+          <menuitem value="name" label="&mozimage.prefs.filename;"/>
+          <menuitem value="date" label="&mozimage.prefs.filedate;"/>
+          <menuitem value="size" label="&mozimage.prefs.filesize;"/>
+        </menupopup>
+      </menulist>
+    </hbox>
+
+    <hbox>
+      
+      <checkbox id="descending-check" checked="false" label="&mozimage.prefs.descending;" onclick="toggleDes()"/>
+
+      <checkbox id="forcehttptumb-check" checked="false" label="&mozimage.prefs.forcehttptumb;" onclick="toggleForceHTTPTumb()"/>
+      
+    </hbox>
+
+    <checkbox id="enablecache-check" checked="true" label="&mozimage.prefs.enablecache;" onclick="toggleEnableCache()"/>
+    
+  </groupbox>  
+  
+  <groupbox>
+
+    <caption label="&mozimage.prefs.filter;" />
+
+    <hbox>
+    <checkbox id="jpg-check" checked="false" label="jpg" onclick="toggleExt('jpg')"/>
+    <checkbox id="jpeg-check" checked="false" label="jpeg" onclick="toggleExt('jpeg')"/>
+    <checkbox id="gif-check" checked="false" label="gif" onclick="toggleExt('gif')"/>
+    <checkbox id="bmp-check" checked="false" label="bmp" onclick="toggleExt('bmp')"/>
+    <checkbox id="png-check" checked="false" label="png" onclick="toggleExt('png')"/>
+    </hbox>
+    
+  </groupbox>
+  
+</page>

@@ -1,0 +1,86 @@
+<!ENTITY mozimage.edit.ready "待機中。">
+<!ENTITY mozimage.edit.ok "Ok">
+<!ENTITY mozimage.edit.saveas "現在の画像を名前を付けて保存...">
+<!ENTITY mozimage.edit.title "編集パネル">
+<!ENTITY mozimage.edit.quit "終了">
+<!ENTITY mozimage.edit.advanced "高度な機能">
+
+<!ENTITY mozimage.edit.getchanges "変更を記憶">
+<!ENTITY mozimage.edit.undolastchange "元に戻す">
+<!ENTITY mozimage.edit.undochanges "復帰">
+<!ENTITY mozimage.edit.getchanges.radio "常に変更を記憶">
+<!ENTITY mozimage.edit.quality "画像品質">
+
+<!ENTITY mozimage.edit.tmpdes "現在の画像">
+<!ENTITY mozimage.edit.bakdes "元の画像">
+
+<!ENTITY mozimage.edit.t1 "画像の大きさ">
+<!ENTITY mozimage.edit.t2 "変形">
+<!ENTITY mozimage.edit.t3 "文字">
+<!ENTITY mozimage.edit.t4 "特殊効果">
+<!ENTITY mozimage.edit.t5 "画像修正">
+
+<!ENTITY mozimage.edit.resizeprt "サイズ変更">
+<!ENTITY mozimage.edit.resizepix "大きさの変更 (px)">
+<!ENTITY mozimage.edit.resize.ratio "縦横比の維持">
+<!ENTITY mozimage.edit.resize.pix "ピクセル">
+<!ENTITY mozimage.edit.resize.percent "&#37;">
+<!ENTITY mozimage.edit.resize.zero "0 に合わせる">
+<!ENTITY mozimage.edit.resize.px "横幅 (px)">
+<!ENTITY mozimage.edit.resize.py "高さ (px)">
+<!ENTITY mozimage.edit.resize.x "横幅">
+<!ENTITY mozimage.edit.resize.y "高さ">
+<!ENTITY mozimage.edit.resize.75 "75&#37;">
+<!ENTITY mozimage.edit.resize.50 "50&#37;">
+<!ENTITY mozimage.edit.resize.25 "25&#37;">
+<!ENTITY mozimage.edit.resize.200 "200&#37;">
+<!ENTITY mozimage.edit.resize.150 "150&#37;">
+<!ENTITY mozimage.edit.resize.125 "125&#37;">
+
+<!ENTITY mozimage.edit.rotate "回転">
+<!ENTITY mozimage.edit.rotate.270 "270°">
+<!ENTITY mozimage.edit.rotate.90 "90°">
+<!ENTITY mozimage.edit.rotate.180 "180°">
+<!ENTITY mozimage.edit.mirror "反転">
+<!ENTITY mozimage.edit.mirror.x "水平方向">
+<!ENTITY mozimage.edit.mirror.y "垂直方向">
+
+<!ENTITY mozimage.edit.drawtext "文字の追加">
+<!ENTITY mozimage.edit.drawtext.textdes "文字列">
+<!ENTITY mozimage.edit.drawtext.fontdes "フォント">
+<!ENTITY mozimage.edit.drawtext.filldes "文字の色">
+<!ENTITY mozimage.edit.drawtext.sizedes "文字の大きさ">
+<!ENTITY mozimage.edit.drawtext.x "X">
+<!ENTITY mozimage.edit.drawtext.y "Y">
+<!ENTITY mozimage.edit.drawtext.pix "ピクセル">
+<!ENTITY mozimage.edit.drawtext.percent "&#37;">
+<!ENTITY mozimage.edit.drawtext.northwest "左上に書き込む">
+<!ENTITY mozimage.edit.drawtext.northeast "右上に書き込む">
+<!ENTITY mozimage.edit.drawtext.southwest "左下に書き込む">
+<!ENTITY mozimage.edit.drawtext.southeast "右下に書き込む">
+<!ENTITY mozimage.edit.drawtext.north "上部に書き込む">
+<!ENTITY mozimage.edit.drawtext.south "下部に書き込む">
+<!ENTITY mozimage.edit.drawtext.center "中央に書き込む">
+
+<!ENTITY mozimage.edit.solarize "焼き付け">
+<!ENTITY mozimage.edit.swirl "渦巻き">
+<!ENTITY mozimage.edit.implode "潰す">
+<!ENTITY mozimage.edit.wave "ウェーブ">
+<!ENTITY mozimage.edit.oilpaint "オイルペイント">
+<!ENTITY mozimage.edit.charcoal "チャコール">
+
+<!ENTITY mozimage.edit.hue "色合い">
+<!ENTITY mozimage.edit.saturation "彩度">
+<!ENTITY mozimage.edit.brightness "明るさ">
+<!ENTITY mozimage.edit.gamma "ガンマ値">
+<!ENTITY mozimage.edit.spiff "Spiff">
+<!ENTITY mozimage.edit.dull "ぼかし">
+<!ENTITY mozimage.edit.equalize "均等化">
+<!ENTITY mozimage.edit.normalize "自動補正">
+<!ENTITY mozimage.edit.negate "ネガ">
+<!ENTITY mozimage.edit.grayscale "グレースケール">
+<!ENTITY mozimage.edit.spread "拡散化">
+
+<!ENTITY mozimage.edit.fulltitle "フルスクリーン">
+
+

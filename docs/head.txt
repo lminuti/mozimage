@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="/project.css" type="text/css">
+<link type="application/rss+xml" rel="alternate" title="mozImage Project News" href="http://mozimage.mozdev.org/rss.xml">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta content="text/css" http-equiv="Content-Style-Type">
+<meta name="KEYWORDS" CONTENT="Browser, image, mozilla, firefox, thumbnail, slideshow">
+<meta name="DESCRIPTION" CONTENT="Simple image browser">
+
+<script type="text/javascript">
+
+function createIndex(title)
+{
+  var resElem = document.getElementById("resources");
+  var trElem = document.createElement("tr");
+  var thElem = document.createElement("th");
+  thElem.setAttribute("scope", "row");
+  var textElem = document.createTextNode(title);
+  thElem.appendChild(textElem);
+  trElem.appendChild(thElem);
+  resElem.appendChild(trElem);
+  var tdElem = document.createElement("td");
+  trElem.appendChild(tdElem);
+  var indexElem = null;
+
+  var contParsing = true;
+  var header = null;
+  var anchor = null;
+
+  for (var i = 1 ; contParsing && i < 10; i++)
+  {
+    header = document.getElementById("h" + i);
+    contParsing = header != null;
+    if (contParsing)
+    {
+  //  alert(header.childNodes[0].nodeValue);
+    anchor = document.createElement("a");
+    if (i==1)
+      anchor.setAttribute("class", "first-item");
+    anchor.setAttribute("href", "#h" + i);
+    indexElem = document.createTextNode(header.childNodes[0].nodeValue);
+    anchor.appendChild(indexElem);
+    tdElem.appendChild(anchor);
+    }
+  }
+}
+
+</script>

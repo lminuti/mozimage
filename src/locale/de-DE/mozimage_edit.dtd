@@ -1,0 +1,84 @@
+<!ENTITY mozimage.edit.ready           "Fertig" >
+<!ENTITY mozimage.edit.ok             	"OK" >
+<!ENTITY mozimage.edit.saveas         	"Aktuelle Grafik speichern unter..." >
+<!ENTITY mozimage.edit.title          	"Grafik bearbeiten" >
+<!ENTITY mozimage.edit.quit           	"Beenden" >
+<!ENTITY mozimage.edit.advanced        	"Erweiterter Modus" >
+
+<!ENTITY mozimage.edit.getchanges     	"Änderungen beibehalten" >
+<!ENTITY mozimage.edit.undolastchange  	"Letzte Änderung verwerfen" >
+<!ENTITY mozimage.edit.undochanges    	"Alle Änderungen verwerfen" >
+<!ENTITY mozimage.edit.getchanges.radio "Änderungen immer beibehalten" >
+<!ENTITY mozimage.edit.quality         	"Qualität" >
+
+<!ENTITY mozimage.edit.tmpdes        		"Aktuelle Grafik" >
+<!ENTITY mozimage.edit.bakdes        		"Originalgrafik" >
+
+<!ENTITY mozimage.edit.t1             	"Grafikgröße" >
+<!ENTITY mozimage.edit.t2             	"Transformieren" >
+<!ENTITY mozimage.edit.t3             	"Text" >
+<!ENTITY mozimage.edit.t4             	"Effekte" >
+<!ENTITY mozimage.edit.t5             	"Anpassungen" >
+
+<!ENTITY mozimage.edit.resizeprt      	"Skalieren" >
+<!ENTITY mozimage.edit.resizepix      	"Skalieren (px)" >
+<!ENTITY mozimage.edit.resize.ratio   	"Seitenverhältnis beibehalten" >
+<!ENTITY mozimage.edit.resize.pix     	"Pixel" >
+<!ENTITY mozimage.edit.resize.percent 	"&#37;" >
+<!ENTITY mozimage.edit.resize.zero    	"Auf Null setzen" >
+<!ENTITY mozimage.edit.resize.px      	"Breite (px)" >
+<!ENTITY mozimage.edit.resize.py      	"Höhe (px)" >
+<!ENTITY mozimage.edit.resize.x       	"Breite" >
+<!ENTITY mozimage.edit.resize.y       	"Höhe" >
+<!ENTITY mozimage.edit.resize.75     		"75&#37;" >
+<!ENTITY mozimage.edit.resize.50     		"50&#37;" >
+<!ENTITY mozimage.edit.resize.25     		"25&#37;" >
+<!ENTITY mozimage.edit.resize.200    		"200&#37;" >
+<!ENTITY mozimage.edit.resize.150    		"150&#37;" >
+<!ENTITY mozimage.edit.resize.125    		"125&#37;" >
+
+<!ENTITY mozimage.edit.rotate         	"Drehen" >
+<!ENTITY mozimage.edit.rotate.270     	"270°" >
+<!ENTITY mozimage.edit.rotate.90      	"90°" >
+<!ENTITY mozimage.edit.rotate.180     	"180°" >
+<!ENTITY mozimage.edit.mirror         	"Spiegeln" >
+<!ENTITY mozimage.edit.mirror.x       	"Horizontal spiegeln" >
+<!ENTITY mozimage.edit.mirror.y       	"Vertikal spiegeln" >
+
+<!ENTITY mozimage.edit.drawtext         "Text hinzufügen" >
+<!ENTITY mozimage.edit.drawtext.textdes "Text" >
+<!ENTITY mozimage.edit.drawtext.fontdes "Text" >
+<!ENTITY mozimage.edit.drawtext.filldes "Textfarbe" >
+<!ENTITY mozimage.edit.drawtext.sizedes "Textgröße" >
+<!ENTITY mozimage.edit.drawtext.x       "X" >
+<!ENTITY mozimage.edit.drawtext.y       "Y" >
+<!ENTITY mozimage.edit.drawtext.pix     "Pixel" >
+<!ENTITY mozimage.edit.drawtext.percent "&#37;" >
+<!ENTITY mozimage.edit.drawtext.northwest "Oben links einfügen" >
+<!ENTITY mozimage.edit.drawtext.northeast "Oben rechts einfügen" >
+<!ENTITY mozimage.edit.drawtext.southwest "Unten links einfügen" >
+<!ENTITY mozimage.edit.drawtext.southeast "Unten rechts einfügen" >
+<!ENTITY mozimage.edit.drawtext.north     "Oben einfügen" >
+<!ENTITY mozimage.edit.drawtext.south     "Unten einfügen" >
+<!ENTITY mozimage.edit.drawtext.center    "In der Mitte einfügen" >
+
+<!ENTITY mozimage.edit.solarize   "Solarisation" >
+<!ENTITY mozimage.edit.swirl      "Strudel" >
+<!ENTITY mozimage.edit.implode    "Implodieren" >
+<!ENTITY mozimage.edit.wave       "Wellen" >
+<!ENTITY mozimage.edit.oilpaint   "Ölfarbe" >
+<!ENTITY mozimage.edit.charcoal   "Kohlezeichnung" >
+
+<!ENTITY mozimage.edit.hue        "Farbton" >
+<!ENTITY mozimage.edit.saturation "Sättigung" >
+<!ENTITY mozimage.edit.brightness "Helligkeit" >
+<!ENTITY mozimage.edit.gamma      "Gamma" >
+<!ENTITY mozimage.edit.spiff      "Spiff" >
+<!ENTITY mozimage.edit.dull       "Dull" >
+<!ENTITY mozimage.edit.equalize   "Angleichen" >
+<!ENTITY mozimage.edit.normalize  "Normalisieren" >
+<!ENTITY mozimage.edit.negate     "Umkehren" >
+<!ENTITY mozimage.edit.grayscale  "Graustufen" >
+<!ENTITY mozimage.edit.spread     "Spread" >
+
+<!ENTITY mozimage.edit.fulltitle     "Vollansicht" >

@@ -1,0 +1,109 @@
+<!ENTITY mozimage.overlay.openwith      "Open in mozImage..." >
+<!ENTITY mozimage.overlay.mozillatitle  "Afegeix barra lateral mozImage" >
+<!ENTITY mozimage.sidebar.title         "Barra lateral mozImage" >
+
+<!ENTITY mozimage.menu.file             "Fitxer" >
+<!ENTITY mozimage.menu.prior            "Anterior" >
+<!ENTITY mozimage.menu.next             "Següent" >
+<!ENTITY mozimage.menu.clear            "Buidar" >
+<!ENTITY mozimage.menu.autosize         "Redimensiona automàticament" >
+<!ENTITY mozimage.menu.zoomin           "Apropa" >
+<!ENTITY mozimage.menu.zoomout          "Allunya" >
+<!ENTITY mozimage.menu.slideshow        "Presentació" >
+<!ENTITY mozimage.menu.options          "Opcions..." >
+<!ENTITY mozimage.menu.exit             "Sortir" >
+<!ENTITY mozimage.menu.help             "Ajuda" >
+<!ENTITY mozimage.menu.about            "Quant a..." >
+<!ENTITY mozimage.menu.go               "Vés!" >
+<!ENTITY mozimage.menu.parent           "Amunt" >
+<!ENTITY mozimage.menu.fullscreen       "Pantalla completa" >
+<!ENTITY mozimage.menu.restore          "Restaura" >
+<!ENTITY mozimage.listbox.directories   "Directoris" >
+<!ENTITY mozimage.listbox.bookmarks     "Marcadors" >
+<!ENTITY mozimage.listbox.files         "Fitxers" >
+<!ENTITY mozimage.label.ready           "Preparat." >
+<!ENTITY mozimage.menu.togglelist       "Barra lateral" >
+<!ENTITY mozimage.menu.tools            "Eines" >
+<!ENTITY mozimage.menu.macro            "Macro" >
+<!ENTITY mozimage.menu.configmacro      "Configurar macro..." >
+<!ENTITY mozimage.menu.saveas           "Anomena i desa..." >
+<!ENTITY mozimage.menu.saveall          "Desa totes les imatges..." >
+<!ENTITY mozimage.menu.explorer         "Explora" >
+<!ENTITY mozimage.menu.other            "Menu" >
+<!ENTITY mozimage.menu.edit             "Edita la imatge actual" >
+<!ENTITY mozimage.menu.refresh          "Actualitza" >
+
+<!ENTITY mozimage.commandkey.clear      "c" >
+<!ENTITY mozimage.commandkey.prior      "b" >
+<!ENTITY mozimage.commandkey.next       "n" >
+<!ENTITY mozimage.commandkey.zoomin     "i" >
+<!ENTITY mozimage.commandkey.zoomout    "o" >
+<!ENTITY mozimage.commandkey.autosize   "a" >
+<!ENTITY mozimage.commandkey.slideshow  "s" >
+<!ENTITY mozimage.commandkey.openwith1  "1" >
+<!ENTITY mozimage.commandkey.openwith2  "2" >
+<!ENTITY mozimage.commandkey.openwith3  "3" >
+<!ENTITY mozimage.commandkey.openwith4  "4" >
+
+<!ENTITY mozimage.bookmarkbar.add       "Afegeix als marcadors..." >
+<!ENTITY mozimage.bookmarkbar.del       "Suprimeix marcador..." >
+<!ENTITY mozimage.bookmarkbar.moveup    "Mou amunt" >
+<!ENTITY mozimage.bookmarkbar.movedown  "Mou avall" >
+
+<!ENTITY mozimage.menu.file.ak          "f" >
+<!ENTITY mozimage.menu.prior.ak         "" >
+<!ENTITY mozimage.menu.next.ak          "" >
+<!ENTITY mozimage.menu.clear.ak         "" >
+<!ENTITY mozimage.menu.fullscreen.ak    "" >
+<!ENTITY mozimage.menu.togglelist.ak    "" >
+<!ENTITY mozimage.menu.options.ak       "" >
+<!ENTITY mozimage.menu.exit.ak          "" >
+<!ENTITY mozimage.menu.tools.ak         "e" >
+<!ENTITY mozimage.menu.autosize.ak      "" >
+<!ENTITY mozimage.menu.zoomin.ak        "" >
+<!ENTITY mozimage.menu.zoomout.ak       "" >
+<!ENTITY mozimage.menu.slideshow.ak     "" >
+<!ENTITY mozimage.menu.help.ak          "a" >
+<!ENTITY mozimage.menu.about.ak         "" >
+
+<!ENTITY mozimage.prefs.homedir         "Directori d'inici:" >
+<!ENTITY mozimage.prefs.delay           "Retard en la presentació (seg):" >
+<!ENTITY mozimage.prefs.general         "General" >
+<!ENTITY mozimage.prefs.tools           "Tools" >
+<!ENTITY mozimage.prefs.location        "Location" >
+<!ENTITY mozimage.prefs.options         "Opcions" >
+<!ENTITY mozimage.prefs.zoom            "Augment d'imatge:" >
+<!ENTITY mozimage.prefs.filter          "Filtre d'imatges" >
+<!ENTITY mozimage.prefs.editors         "Editors" >
+<!ENTITY mozimage.prefs.name            "Nom" >
+<!ENTITY mozimage.prefs.fullpath        "Ruta completa" >
+<!ENTITY mozimage.prefs.fileslist       "Llista d'arxius" >
+<!ENTITY mozimage.prefs.tumbnailsize    "Mida de les miniatures" >
+<!ENTITY mozimage.prefs.orderby         "Ordenar per" >
+<!ENTITY mozimage.prefs.filename        "Nom de l'arxiu (lex.)" >
+<!ENTITY mozimage.prefs.filenume        "Nom de l'arxiu (num.)" >
+<!ENTITY mozimage.prefs.filedate        "Data de l'arxiu" >
+<!ENTITY mozimage.prefs.filesize        "Mida de l'arxiu" >
+<!ENTITY mozimage.prefs.ascending       "Ascendent" >
+<!ENTITY mozimage.prefs.descending      "Descendent" >
+<!ENTITY mozimage.prefs.forcehttptumb	"Mostra sempre miniatures en les pàgines web" >
+<!ENTITY mozimage.prefs.enablecache	"Habilita la memòria cau per a les imatges web" >
+<!ENTITY mozimage.prefs.home            "Inici" >
+<!ENTITY mozimage.prefs.image           "Imatge" >
+<!ENTITY mozimage.prefs.enablecurrent   "El directori d'inici serà el darrer visitat" >
+<!ENTITY mozimage.prefs.browse          "Explora" >
+<!ENTITY mozimage.prefs.current         "Defineix el directori actual com a directori d'inici" >
+<!ENTITY mozimage.prefs.none            "Cap" >
+<!ENTITY mozimage.prefs.convertpath     "Ruta de conversió" >
+
+<!ENTITY mozimage.macro.title           "Macro" >
+<!ENTITY mozimage.macro.list            "Llista de macros" >
+<!ENTITY mozimage.macro.name            "Nom" >
+<!ENTITY mozimage.macro.macro           "Macro" >
+<!ENTITY mozimage.macro.des             "El símbol %#37;f serà reemplaçat per l'actual nom de fitxer" >
+
+<!ENTITY mozimage.about.title           "Quant a mozImage" >
+<!ENTITY mozimage.about.created         "Creat per:" >
+<!ENTITY mozimage.about.homepage        "Pàgina web" >
+<!ENTITY mozimage.about.releasenotes    "Notes de la versió" >
+<!ENTITY mozimage.about.powered         "Impulsat per JSLib" >

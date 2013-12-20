@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://mozimage/skin" type="text/css"?>
+<!DOCTYPE page SYSTEM "chrome://mozimage/locale/mozimage.dtd">
+<page xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
+      onload="prefs_load(event);"
+      onclose="prefs_close(event);">
+  
+  <script type="application/x-javascript" src="chrome://global/content/dialogOverlay.js" />
+  <script type="application/x-javascript" src="chrome://global/content/strres.js" />
+  <script type="application/x-javascript" src="chrome://mozimage/content/jslib.js" />
+  <script type="application/x-javascript" src="chrome://mozimage/content/prefs/mozimage_tools.js" />
+
+
+   <groupbox>
+    <caption label="&mozimage.prefs.convertpath;"/>
+      <hbox>
+        <button id="open-filerconvert-button" oncommand="openFilerConvert();" label="&mozimage.prefs.browse;" />
+        <textbox id="convertpath-text" flex="1" />
+      </hbox>
+  </groupbox>
+  
+  <groupbox>
+
+    <caption label="&mozimage.prefs.editors;" />
+
+    <hbox>
+      <label width="100" value="&mozimage.prefs.name;" />
+      <label flex="1" value="&mozimage.prefs.fullpath;" />
+    </hbox>
+    <hbox>
+      <textbox width="100" id="editorname1-text" />
+      <textbox id="editorpath1-text" flex="1" />
+    </hbox>
+    <hbox>
+      <textbox width="100" id="editorname2-text" />
+      <textbox id="editorpath2-text" flex="1" />
+    </hbox>
+    <hbox>
+      <textbox width="100" id="editorname3-text" />
+      <textbox id="editorpath3-text" flex="1" />
+    </hbox>
+    <hbox>
+      <textbox width="100" id="editorname4-text" />
+      <textbox id="editorpath4-text" flex="1" />
+    </hbox>
+   
+  </groupbox>
+  
+  <groupbox flex="1">
+
+    <caption label="&mozimage.macro.list;" />
+
+    <hbox>
+      <label width="100" value="&mozimage.macro.name;" />
+      <label flex="1" value="&mozimage.macro.macro;" />
+    </hbox>
+    
+    <vbox style="overflow: auto" flex="1">
+
+    <hbox><textbox width="100" id="macroname0-text" /><textbox width="400" id="macrocode0-text" flex="1" /></hbox>
+    <hbox><textbox width="100" id="macroname1-text" /><textbox id="macrocode1-text" flex="1" /></hbox>
+    <hbox><textbox width="100" id="macroname2-text" /><textbox id="macrocode2-text" flex="1" /></hbox>
+    <hbox><textbox width="100" id="macroname3-text" /><textbox id="macrocode3-text" flex="1" /></hbox>
+    <hbox><textbox width="100" id="macroname4-text" /><textbox id="macrocode4-text" flex="1" /></hbox>
+    <hbox><textbox width="100" id="macroname5-text" /><textbox id="macrocode5-text" flex="1" /></hbox>
+    <hbox><textbox width="100" id="macroname6-text" /><textbox id="macrocode6-text" flex="1" /></hbox>
+    <hbox><textbox width="100" id="macroname7-text" /><textbox id="macrocode7-text" flex="1" /></hbox>
+    <hbox><textbox width="100" id="macroname8-text" /><textbox id="macrocode8-text" flex="1" /></hbox>
+    <hbox><textbox width="100" id="macroname9-text" /><textbox id="macrocode9-text" flex="1" /></hbox>
+   
+    </vbox>
+
+    <label value="&mozimage.macro.des;" />
+
+  </groupbox>
+  
+</page>
+

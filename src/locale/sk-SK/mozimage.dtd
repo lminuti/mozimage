@@ -1,0 +1,109 @@
+<!ENTITY mozimage.overlay.openwith      "Otvoriť v mozImage..." >
+<!ENTITY mozimage.overlay.mozillatitle  "Pridať bočný panel mozImage" >
+<!ENTITY mozimage.sidebar.title         "Bočný panel mozImage" >
+
+<!ENTITY mozimage.menu.file             "Súbor" >
+<!ENTITY mozimage.menu.prior            "Predchádzajúci" >
+<!ENTITY mozimage.menu.next             "Ďalší" >
+<!ENTITY mozimage.menu.clear            "Vymazať" >
+<!ENTITY mozimage.menu.autosize         "Automatická veľkosť" >
+<!ENTITY mozimage.menu.zoomin           "Priblížiť" >
+<!ENTITY mozimage.menu.zoomout          "Vzdialiť" >
+<!ENTITY mozimage.menu.slideshow        "Prezentácia" >
+<!ENTITY mozimage.menu.options          "Možnosti..." >
+<!ENTITY mozimage.menu.exit             "Ukončiť" >
+<!ENTITY mozimage.menu.help             "Pomocník" >
+<!ENTITY mozimage.menu.about            "O rozšírení..." >
+<!ENTITY mozimage.menu.go               "Prejsť!" >
+<!ENTITY mozimage.menu.parent           "Nadradený" >
+<!ENTITY mozimage.menu.fullscreen       "Celá obrazovka" >
+<!ENTITY mozimage.menu.restore          "Obnoviť" >
+<!ENTITY mozimage.listbox.directories   "Priečinky" >
+<!ENTITY mozimage.listbox.bookmarks     "Záložky" >
+<!ENTITY mozimage.listbox.files         "Súbory" >
+<!ENTITY mozimage.label.ready           "Pripravené." >
+<!ENTITY mozimage.menu.togglelist       "Prepnúť bočný panel" >
+<!ENTITY mozimage.menu.tools            "Nástroje" >
+<!ENTITY mozimage.menu.macro            "Makro" >
+<!ENTITY mozimage.menu.configmacro      "Nastaviť makro..." >
+<!ENTITY mozimage.menu.saveas           "Uložiť obrázok ako..." >
+<!ENTITY mozimage.menu.saveall          "Uložiť všetky obrázky..." >
+<!ENTITY mozimage.menu.explorer         "Prehľadávať" >
+<!ENTITY mozimage.menu.other            "Ponuka" >
+<!ENTITY mozimage.menu.edit             "Upraviť aktuálny obrázok" >
+<!ENTITY mozimage.menu.refresh          "Aktualizovať" >
+
+<!ENTITY mozimage.commandkey.clear      "V" >
+<!ENTITY mozimage.commandkey.prior      "P" >
+<!ENTITY mozimage.commandkey.next       "a" >
+<!ENTITY mozimage.commandkey.zoomin     "b" >
+<!ENTITY mozimage.commandkey.zoomout    "d" >
+<!ENTITY mozimage.commandkey.autosize   "m" >
+<!ENTITY mozimage.commandkey.slideshow  "e" >
+<!ENTITY mozimage.commandkey.openwith1  "1" >
+<!ENTITY mozimage.commandkey.openwith2  "2" >
+<!ENTITY mozimage.commandkey.openwith3  "3" >
+<!ENTITY mozimage.commandkey.openwith4  "4" >
+
+<!ENTITY mozimage.bookmarkbar.add       "Pridať záložku..." >
+<!ENTITY mozimage.bookmarkbar.del       "Odstrániť záložku..." >
+<!ENTITY mozimage.bookmarkbar.moveup    "Nahor" >
+<!ENTITY mozimage.bookmarkbar.movedown  "Nadol" >
+
+<!ENTITY mozimage.menu.file.ak          "s" >
+<!ENTITY mozimage.menu.prior.ak         "" >
+<!ENTITY mozimage.menu.next.ak          "" >
+<!ENTITY mozimage.menu.clear.ak         "" >
+<!ENTITY mozimage.menu.fullscreen.ak    "" >
+<!ENTITY mozimage.menu.togglelist.ak    "" >
+<!ENTITY mozimage.menu.options.ak       "" >
+<!ENTITY mozimage.menu.exit.ak          "" >
+<!ENTITY mozimage.menu.tools.ak         "t" >
+<!ENTITY mozimage.menu.autosize.ak      "" >
+<!ENTITY mozimage.menu.zoomin.ak        "" >
+<!ENTITY mozimage.menu.zoomout.ak       "" >
+<!ENTITY mozimage.menu.slideshow.ak     "" >
+<!ENTITY mozimage.menu.help.ak          "P" >
+<!ENTITY mozimage.menu.about.ak         "" >
+
+<!ENTITY mozimage.prefs.homedir         "Predvolený priečinok:" >
+<!ENTITY mozimage.prefs.delay           "Interval prezentácie (sek.):" >
+<!ENTITY mozimage.prefs.general         "Všeobecné" >
+<!ENTITY mozimage.prefs.tools           "Nástroje" >
+<!ENTITY mozimage.prefs.location        "Umiestnenie" >
+<!ENTITY mozimage.prefs.options         "Možnosti" >
+<!ENTITY mozimage.prefs.zoom            "Krok priblíženia:" >
+<!ENTITY mozimage.prefs.filter          "Filter obrázkov" >
+<!ENTITY mozimage.prefs.editors         "Editory" >
+<!ENTITY mozimage.prefs.name            "Názov" >
+<!ENTITY mozimage.prefs.fullpath        "Celá cesta" >
+<!ENTITY mozimage.prefs.fileslist       "Zoznam súborov" >
+<!ENTITY mozimage.prefs.tumbnailsize    "Veľkosť miniatúry" >
+<!ENTITY mozimage.prefs.orderby         "Zoradiť podľa" >
+<!ENTITY mozimage.prefs.filename        "názvov súborov (lex.)" >
+<!ENTITY mozimage.prefs.filenume        "názvov súborov (num.)" >
+<!ENTITY mozimage.prefs.filedate        "dátumu" >
+<!ENTITY mozimage.prefs.filesize        "veľkosti" >
+<!ENTITY mozimage.prefs.ascending       "Vzostupne" >
+<!ENTITY mozimage.prefs.descending      "Zostupne" >
+<!ENTITY mozimage.prefs.forcehttptumb	  "Na webových stránkach vždy zobraziť miniatúru" >
+<!ENTITY mozimage.prefs.enablecache	    "Povoliť vyrovnávaciu pamäť pre webové obrázky" >
+<!ENTITY mozimage.prefs.home            "Predvolený" >
+<!ENTITY mozimage.prefs.image           "Obrázok" >
+<!ENTITY mozimage.prefs.enablecurrent   "Predvolený priečinok bude vždy ten naposledy navštívený" >
+<!ENTITY mozimage.prefs.browse          "Prehľadávať" >
+<!ENTITY mozimage.prefs.current         "Nastaviť aktuálny priečinok ako predvolený" >
+<!ENTITY mozimage.prefs.none            "Žiadne" >
+<!ENTITY mozimage.prefs.convertpath     "Cesta ku konvertoru" >
+
+<!ENTITY mozimage.macro.title           "Makro" >
+<!ENTITY mozimage.macro.list            "Zoznam makier" >
+<!ENTITY mozimage.macro.name            "Názov" >
+<!ENTITY mozimage.macro.macro           "Makro" >
+<!ENTITY mozimage.macro.des             "Symbol &#37;f bude nahradený aktuálnym názvom súboru" >
+
+<!ENTITY mozimage.about.title           "O rozšírení mozImage" >
+<!ENTITY mozimage.about.created         "Vytvoril:" >
+<!ENTITY mozimage.about.homepage        "Domovská stránka" >
+<!ENTITY mozimage.about.releasenotes    "Poznámky k vydaniu" >
+<!ENTITY mozimage.about.powered         "S podporou JSLib" >

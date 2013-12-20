@@ -1,0 +1,110 @@
+<!ENTITY mozimage.overlay.openwith "mozImage で開く...">
+<!ENTITY mozimage.sidebar.title "MozImage サイドバー">
+<!ENTITY mozimage.overlay.mozillatitle "mozImage サイドバーの追加">
+
+<!ENTITY mozimage.menu.file "ファイル">
+<!ENTITY mozimage.menu.prior "前の画像">
+<!ENTITY mozimage.menu.next "次の画像">
+<!ENTITY mozimage.menu.clear "クリア">
+<!ENTITY mozimage.menu.autosize "自動調整">
+<!ENTITY mozimage.menu.zoomin "大きく">
+<!ENTITY mozimage.menu.zoomout "小さく">
+<!ENTITY mozimage.menu.slideshow "スライドショー">
+<!ENTITY mozimage.menu.options "オプション...">
+<!ENTITY mozimage.menu.exit "終了">
+<!ENTITY mozimage.menu.help "ヘルプ">
+<!ENTITY mozimage.menu.about "拡張機能について...">
+<!ENTITY mozimage.menu.go "移動！">
+<!ENTITY mozimage.menu.parent "上の階層へ">
+<!ENTITY mozimage.menu.fullscreen "全画面表示">
+<!ENTITY mozimage.menu.restore "元に戻す">
+<!ENTITY mozimage.listbox.directories "フォルダ">
+<!ENTITY mozimage.listbox.bookmarks "ブックマーク">
+<!ENTITY mozimage.listbox.files "ファイル">
+<!ENTITY mozimage.label.ready "待機中。">
+<!ENTITY mozimage.menu.togglelist "サイドバー">
+<!ENTITY mozimage.menu.tools "ツール">
+<!ENTITY mozimage.menu.macro "マクロ">
+<!ENTITY mozimage.menu.configmacro "マクロの設定...">
+<!ENTITY mozimage.menu.saveas "画像を名前を付けて保存...">
+<!ENTITY mozimage.menu.saveall "画像をすべて保存...">
+<!ENTITY mozimage.menu.explorer "参照">
+<!ENTITY mozimage.menu.other            "Menu" >
+<!ENTITY mozimage.menu.edit "現在の画像を編集">
+<!ENTITY mozimage.menu.refresh "更新">
+
+<!ENTITY mozimage.commandkey.clear      "c" >
+<!ENTITY mozimage.commandkey.prior      "b" >
+<!ENTITY mozimage.commandkey.next       "n" >
+<!ENTITY mozimage.commandkey.zoomin     "i" >
+<!ENTITY mozimage.commandkey.zoomout    "o" >
+<!ENTITY mozimage.commandkey.autosize   "a" >
+<!ENTITY mozimage.commandkey.slideshow  "s" >
+<!ENTITY mozimage.commandkey.openwith1  "1" >
+<!ENTITY mozimage.commandkey.openwith2  "2" >
+<!ENTITY mozimage.commandkey.openwith3  "3" >
+<!ENTITY mozimage.commandkey.openwith4  "4" >
+
+<!ENTITY mozimage.bookmarkbar.add "ブックマークへ追加...">
+<!ENTITY mozimage.bookmarkbar.del "ブックマークから削除...">
+<!ENTITY mozimage.bookmarkbar.moveup "上へ">
+<!ENTITY mozimage.bookmarkbar.movedown "下へ">
+
+<!ENTITY mozimage.menu.file.ak "f">
+<!ENTITY mozimage.menu.prior.ak "">
+<!ENTITY mozimage.menu.next.ak "">
+<!ENTITY mozimage.menu.clear.ak "">
+<!ENTITY mozimage.menu.fullscreen.ak "">
+<!ENTITY mozimage.menu.togglelist.ak "">
+<!ENTITY mozimage.menu.options.ak "">
+<!ENTITY mozimage.menu.exit.ak "">
+<!ENTITY mozimage.menu.tools.ak "t">
+<!ENTITY mozimage.menu.autosize.ak "">
+<!ENTITY mozimage.menu.zoomin.ak "">
+<!ENTITY mozimage.menu.zoomout.ak "">
+<!ENTITY mozimage.menu.slideshow.ak "">
+<!ENTITY mozimage.menu.help.ak "h">
+<!ENTITY mozimage.menu.about.ak "">
+
+<!ENTITY mozimage.prefs.homedir "起動時のフォルダ:">
+<!ENTITY mozimage.prefs.delay "スライドショーの更新間隔 (秒):">
+<!ENTITY mozimage.prefs.general "全般">
+<!ENTITY mozimage.prefs.tools "ツール">
+<!ENTITY mozimage.prefs.location "場所">
+<!ENTITY mozimage.prefs.options "オプション">
+<!ENTITY mozimage.prefs.zoom "一度に拡大する量:">
+<!ENTITY mozimage.prefs.filter "表示する画像の拡張子">
+<!ENTITY mozimage.prefs.editors "使用するエディター">
+<!ENTITY mozimage.prefs.name "名前">
+<!ENTITY mozimage.prefs.fullpath "アプリケーションへのパス">
+<!ENTITY mozimage.prefs.fileslist "ファイル一覧">
+<!ENTITY mozimage.prefs.tumbnailsize "サムネイルの大きさ">
+<!ENTITY mozimage.prefs.orderby "表示順">
+<!ENTITY mozimage.prefs.filename "ファイルの名前 (lex.)">
+<!ENTITY mozimage.prefs.filenume "ファイルの名前 (num.)">
+<!ENTITY mozimage.prefs.filedate "ファイルの日付">
+<!ENTITY mozimage.prefs.filesize "ファイルの容量">
+<!ENTITY mozimage.prefs.ascending "昇順">
+<!ENTITY mozimage.prefs.descending "降順">
+<!ENTITY mozimage.prefs.forcehttptumb "常にページ上のサムネイルを表示">
+<!ENTITY mozimage.prefs.enablecache "画像のキャッシュを有効">
+<!ENTITY mozimage.prefs.home "ホーム">
+<!ENTITY mozimage.prefs.image "画像">
+<!ENTITY mozimage.prefs.enablecurrent "最後に表示したフォルダから再開する。">
+<!ENTITY mozimage.prefs.browse "参照">
+<!ENTITY mozimage.prefs.current "現在のフォルダを起動時のフォルダに設定">
+<!ENTITY mozimage.prefs.none "無し">
+<!ENTITY mozimage.prefs.convertpath "Convert へのパス">
+
+<!ENTITY mozimage.macro.title "マクロ">
+<!ENTITY mozimage.macro.list "マクロの一覧">
+<!ENTITY mozimage.macro.name "名前">
+<!ENTITY mozimage.macro.macro "マクロ">
+<!ENTITY mozimage.macro.des "&#37;f で現在のファイルを指定する事が出来ます。">
+
+<!ENTITY mozimage.about.title "mozImage について。">
+<!ENTITY mozimage.about.created "作成者">
+<!ENTITY mozimage.about.homepage "ホームページ">
+<!ENTITY mozimage.about.releasenotes "リリースノート">
+<!ENTITY mozimage.about.powered "Powered by JSLib">
+

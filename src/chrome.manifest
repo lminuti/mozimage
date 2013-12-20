@@ -1,0 +1,18 @@
+overlay	  chrome://browser/content/browser.xul           chrome://mozimage/content/mozimageOverlay_FB.xul
+overlay	  chrome://global/content/customizeToolbar.xul   chrome://mozimage/content/mozimageOverlay_FB.xul
+
+content   mozimage                 jar:chrome/mozimage.jar!/content/
+
+skin      mozimage   classic/1.0   jar:chrome/mozimage.jar!/skin/
+
+locale    mozimage   en-US         jar:chrome/mozimage.jar!/locale/en-US/
+locale    mozimage   it-IT         jar:chrome/mozimage.jar!/locale/it-IT/
+locale    mozimage   es-ES         jar:chrome/mozimage.jar!/locale/es-ES/
+locale    mozimage   fr-FR         jar:chrome/mozimage.jar!/locale/fr-FR/
+locale    mozimage   cs-CZ         jar:chrome/mozimage.jar!/locale/cs-CZ/
+locale    mozimage   ja-JP         jar:chrome/mozimage.jar!/locale/ja-JP/
+locale    mozimage   ca-AD         jar:chrome/mozimage.jar!/locale/ca-AD/
+locale    mozimage   sv-SE         jar:chrome/mozimage.jar!/locale/sv-SE/
+locale    mozimage   zh-TW         jar:chrome/mozimage.jar!/locale/zh-TW/
+locale    mozimage   de-DE         jar:chrome/mozimage.jar!/locale/de-DE/
+locale    mozimage   sk-SK         jar:chrome/mozimage.jar!/locale/sk-SK/

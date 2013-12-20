@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+     
+  <Description about="urn:mozilla:install-manifest">
+
+    <!-- Front End MetaData -->
+    
+    <em:name>mozImage</em:name>
+    <em:version>1.4.9</em:version>
+    <em:id>{2485990f-d3b0-4e57-bd0f-5abdffa70773}</em:id>
+    <em:description>Allow you to browse image on your local machine.</em:description>
+    <em:creator>Lithian</em:creator>
+    <em:contributor>My Hoang</em:contributor>
+    <em:homepageURL>http://mozimage.mozdev.org</em:homepageURL>
+<!--    <em:updateURL>http://mozimage.mozdev.org/update.rdf</em:updateURL>-->
+    <em:iconURL>chrome://mozimage/skin/mozimage-icon.png</em:iconURL>
+    
+    
+    <!-- Target Application this extension can install into, 
+        with minimum and maximum supported versions. --> 
+        
+    <em:targetApplication>
+    <!-- Mozilla Firefox -->
+      <Description>
+        <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+        <em:minVersion>1.0</em:minVersion>
+        <em:maxVersion>25.*</em:maxVersion>
+      </Description>
+    </em:targetApplication>
+    
+    <em:targetApplication>
+    <!-- Mozilla Suite -->
+      <Description>
+        <em:id>{86c18b42-e466-45a9-ae7a-9b95ba6f5640}</em:id>
+        <em:minVersion>1.0</em:minVersion>
+        <em:maxVersion>1.8</em:maxVersion>
+      </Description>
+    </em:targetApplication>
+    
+    
+    <!-- Packages, Skins and Locales that this extension registers -->
+    <em:file>
+      <Description about="urn:mozilla:extension:file:mozimage.jar">
+        <em:package>content/</em:package>
+        <em:locale>locale/en-US/</em:locale>
+        <em:locale>locale/it-IT/</em:locale>
+        <em:locale>locale/es-ES/</em:locale>
+        <em:locale>locale/fr-FR/</em:locale>
+        <em:locale>locale/cs-CZ/</em:locale>
+        <em:locale>locale/ja-JP/</em:locale>
+        <em:locale>locale/ca-AD/</em:locale>
+        <em:locale>locale/sv-SE/</em:locale>
+        <em:locale>locale/zh-TW/</em:locale>
+        <em:locale>locale/de-DE/</em:locale>
+        <em:locale>locale/sk-SK/</em:locale>
+        <em:skin>skin/</em:skin>
+      </Description>
+    </em:file>
+    
+    <!-- Front End Integration Hooks (used by Extension Manager)-->
+    
+    <em:optionsURL>chrome://mozimage/content/prefs/mozimage_prefs.xul</em:optionsURL>
+    <em:aboutURL>chrome://mozimage/content/mozimage_about.xul</em:aboutURL>
+    
+  </Description>      
+</RDF>
+

@@ -1,0 +1,86 @@
+<!ENTITY mozimage.edit.ready           "就緒" >
+<!ENTITY mozimage.edit.ok             "確定" >
+<!ENTITY mozimage.edit.saveas         "把修改後的圖像儲存為..." >
+<!ENTITY mozimage.edit.title          "修改圖像" >
+<!ENTITY mozimage.edit.quit           "離開" >
+<!ENTITY mozimage.edit.advanced        "進階模式" >
+
+<!ENTITY mozimage.edit.getchanges     "暫存修改" >
+<!ENTITY mozimage.edit.undolastchange  "復原上一次修改" >
+<!ENTITY mozimage.edit.undochanges    "復原所有修改" >
+<!ENTITY mozimage.edit.getchanges.radio  "經常暫存修改" >
+<!ENTITY mozimage.edit.quality         "品質" >
+
+<!ENTITY mozimage.edit.tmpdes        "修改後" >
+<!ENTITY mozimage.edit.bakdes        "原圖" >
+
+<!ENTITY mozimage.edit.t1             "圖像大小" >
+<!ENTITY mozimage.edit.t2             "旋轉及翻轉" >
+<!ENTITY mozimage.edit.t3             "文字" >
+<!ENTITY mozimage.edit.t4             "特效" >
+<!ENTITY mozimage.edit.t5             "色彩" >
+
+<!ENTITY mozimage.edit.resizeprt      "改變大小" >
+<!ENTITY mozimage.edit.resizepix      "改變大小 (像素)" >
+<!ENTITY mozimage.edit.resize.ratio   "保持比例" >
+<!ENTITY mozimage.edit.resize.pix     "像素" >
+<!ENTITY mozimage.edit.resize.percent "&#37;" >
+<!ENTITY mozimage.edit.resize.zero    "設為零" >
+<!ENTITY mozimage.edit.resize.px      "寬度 (像素)" >
+<!ENTITY mozimage.edit.resize.py      "高度 (像素)" >
+<!ENTITY mozimage.edit.resize.x       "寬度" >
+<!ENTITY mozimage.edit.resize.y       "高度" >
+<!ENTITY mozimage.edit.resize.75     "75&#37;" >
+<!ENTITY mozimage.edit.resize.50     "50&#37;" >
+<!ENTITY mozimage.edit.resize.25     "25&#37;" >
+<!ENTITY mozimage.edit.resize.200    "200&#37;" >
+<!ENTITY mozimage.edit.resize.150    "150&#37;" >
+<!ENTITY mozimage.edit.resize.125    "125&#37;" >
+
+<!ENTITY mozimage.edit.rotate         "旋轉" >
+<!ENTITY mozimage.edit.rotate.270     "270°" >
+<!ENTITY mozimage.edit.rotate.90      "90°" >
+<!ENTITY mozimage.edit.rotate.180     "180°" >
+<!ENTITY mozimage.edit.mirror         "翻轉" >
+<!ENTITY mozimage.edit.mirror.x       "水平翻轉" >
+<!ENTITY mozimage.edit.mirror.y       "垂直翻轉" >
+
+<!ENTITY mozimage.edit.drawtext           "加入文字" >
+<!ENTITY mozimage.edit.drawtext.textdes   "文字" >
+<!ENTITY mozimage.edit.drawtext.fontdes   "字形" >
+<!ENTITY mozimage.edit.drawtext.filldes   "文字顏色" >
+<!ENTITY mozimage.edit.drawtext.sizedes   "文字大小" >
+<!ENTITY mozimage.edit.drawtext.x         "X" >
+<!ENTITY mozimage.edit.drawtext.y         "Y" >
+<!ENTITY mozimage.edit.drawtext.pix       "像素" >
+<!ENTITY mozimage.edit.drawtext.percent   "&#37;" >
+<!ENTITY mozimage.edit.drawtext.northwest "加於左上方" >
+<!ENTITY mozimage.edit.drawtext.northeast "加於右上方" >
+<!ENTITY mozimage.edit.drawtext.southwest "加於左下方" >
+<!ENTITY mozimage.edit.drawtext.southeast "加於右下方" >
+<!ENTITY mozimage.edit.drawtext.north     "加於上方" >
+<!ENTITY mozimage.edit.drawtext.south     "加於下方" >
+<!ENTITY mozimage.edit.drawtext.center    "加於中間" >
+
+<!ENTITY mozimage.edit.solarize   "曝光過度" >
+<!ENTITY mozimage.edit.swirl      "扭轉" >
+<!ENTITY mozimage.edit.implode    "收縮" >
+<!ENTITY mozimage.edit.wave       "波浪" >
+<!ENTITY mozimage.edit.oilpaint   "油畫" >
+<!ENTITY mozimage.edit.charcoal   "炭筆" >
+
+<!ENTITY mozimage.edit.hue        "色相" >
+<!ENTITY mozimage.edit.saturation "飽和度" >
+<!ENTITY mozimage.edit.brightness "亮度" >
+<!ENTITY mozimage.edit.gamma      "伽瑪" >
+<!ENTITY mozimage.edit.spiff      "Spiff" >
+<!ENTITY mozimage.edit.dull       "鈍化" >
+<!ENTITY mozimage.edit.equalize   "等化" >
+<!ENTITY mozimage.edit.normalize  "自動對比" >
+<!ENTITY mozimage.edit.negate     "負片" >
+<!ENTITY mozimage.edit.grayscale  "灰階" >
+<!ENTITY mozimage.edit.spread     "擴散" >
+
+<!ENTITY mozimage.edit.fulltitle     "全圖" >
+
+

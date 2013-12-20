@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+
+<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+          xmlns:chrome="http://www.mozilla.org/rdf/chrome#">
+
+  <!-- list all the packages being supplied -->
+   
+  <RDF:Seq about="urn:mozilla:package:root">
+    <RDF:li resource="urn:mozilla:package:mozimage"/>
+  </RDF:Seq>
+
+  <!-- package information -->
+   
+  <RDF:Description about="urn:mozilla:package:mozimage"
+       chrome:displayName="mozImage"
+       chrome:author="Lithian"
+       chrome:authorURL="http://mozimage.mozdev.org/" 
+       chrome:settingsURL="chrome://mozimage/content/mozimage_prefs.xul"
+       chrome:name="mozimage"
+       chrome:description="Allow you to browse image on your local machine" 
+       chrome:extension="true">
+  </RDF:Description>
+   
+  <!-- overlay information -->
+  
+  <RDF:Seq about="urn:mozilla:overlays">
+    <RDF:li resource="chrome://browser/content/browser.xul" />
+    <RDF:li resource="chrome://communicator/content/tasksOverlay.xul"/>
+    <RDF:li resource="chrome://messenger/content/mailWindowOverlay.xul"/>
+</RDF:Seq>
+	
+  <!-- Firebird -->
+  <RDF:Seq about="chrome://browser/content/browser.xul">
+    <RDF:li>chrome://mozimage/content/mozimageOverlay_FB.xul</RDF:li>
+  </RDF:Seq>
+
+  <!-- Thunderbird -->
+  <RDF:Seq about="chrome://messenger/content/mailWindowOverlay.xul">
+    <RDF:li>chrome://mozimage/content/mozimageOverlay_moz.xul</RDF:li>
+  </RDF:Seq>
+
+  <!-- Mozilla -->
+  <RDF:Seq about="chrome://communicator/content/tasksOverlay.xul">
+    <RDF:li>chrome://mozimage/content/mozimageOverlay_moz.xul</RDF:li>
+  </RDF:Seq>
+  
+</RDF:RDF>

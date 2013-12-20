@@ -1,0 +1,47 @@
+1.4.4
+- German translation
+- Localizable command key and menu label
+- All locale translated to unicode
+
+1.3.3
+- Image prefetching now set the correct referer
+- Missed DTD entities added
+- Options panel improved
+- Better autosize support
+- Code reorganization
+
+1.1.5
+- Localization bug fixed
+
+1.1.4
+- Japanese translation
+- New home directory settings
+- New browse button on the toolbar
+
+1.1.3
+
+- Manage bookmarks (reorder)
+- Image loading progress indicator (throbber)
+- Translation of the about box
+
+- Window state (normal,maximized...) saved
+- Possibility to save all images on the side bar
+- French translation
+- Czech translation
+
+1.1.2
+
+- Layout bug fixed
+- Remote Image preload added
+- Absolute URL retrived for images
+
+1.1.1
+
+- Support for localization
+- Bookmarks saving
+- Launch from context-menu
+- Search image in web pages
+
+1.1.0
+
+- Bookmarks added

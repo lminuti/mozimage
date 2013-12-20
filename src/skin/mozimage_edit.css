@@ -1,0 +1,172 @@
+@import url("chrome://global/skin/global.css");
+
+/* -------------------------------------------- */
+
+/* New features CSS */
+
+#explorer-button {
+  list-style-image: url("chrome://mozimage/skin/browse.png");
+}
+
+/* ----- Resize */
+
+#mozimage-edit-dialog {
+}
+
+#edit-resize-groupbox {
+  min-width:240px;
+}
+
+/* ----- Rotate */
+
+
+/* ----- Drawtext */
+
+#edit-draw-groupbox {
+  min-width:240px;
+}
+
+/* ----- Others */
+
+* { 
+/*color:lightgreen; */
+}
+
+/* text { color:green; } */
+/*text.keyword { color:drakgreen; } */
+
+button[-moz-appearance="button"] { background-color:red; }
+
+#edit-all {
+ /*width: 440px;
+ height: 600px;*/
+}
+
+#edit-main {
+ /*width: 440px; */
+ min-height: 520px;
+}
+
+#edit-saveasexit-box {
+/*margin-bottom: 5px;
+margin-top: 5px; */
+}
+
+#edit-list {
+}
+
+#edit-visu {
+  margin-left: 5px;
+}
+
+#edit-image-expert {
+  /*width: 240px;
+  height: 240px;
+  padding:5px;
+  border: 1px solid;
+  margin-bottom: 5px;*/
+}
+
+#edit-image-nonexpert {
+  /*width: 240px;
+  height: 240px;
+  padding:5px;
+  border: 1px solid;
+  margin-bottom: 5px;*/
+}
+
+#edit-tmp-infos {
+border-left: 2px solid;
+border-right: 2px solid;
+border-bottom: 2px solid;
+margin-bottom: 5px;
+}
+
+#edit-bak-infos {
+border-left: 2px solid;
+border-right: 2px solid;
+border-bottom: 2px solid;
+    margin-bottom: 5px;
+}
+
+#edit-tmp {
+width: 200px;
+  height: 200px;
+    background-color: white;
+      border: 2px solid;
+} 
+
+#edit-bak {
+width: 200px;
+  height: 200px;
+background-color: white;
+  border: 2px solid;
+}
+
+#edit-tmp-image {
+
+}
+
+#edit-bak-image {
+}
+
+#edit-tmp.scroll {
+  overflow: auto; 
+  background-color: white;
+}
+
+#edit-bak.scroll {
+  overflow: auto; 
+}
+
+#edit-changes {
+border-left: 2px solid;
+border-right: 2px solid;
+border-bottom: 2px solid;
+border-top: 2px solid;
+  padding: 5px;
+    margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#edit-quality {
+ margin-top: 5px;
+ }
+
+#edit-full {
+}
+
+#edit-fullimage-box {
+max-width:400px;
+max-height: 400px;
+}
+
+/*#edit-fullimage-box.scroll {
+overflow: auto;
+}*/
+
+/* ---------- New Features CSS ------ */
+
+box.saveasexit {
+    -moz-binding: url('chrome://mozimage/content/bindings.xml#saveasexit');
+}
+
+box.scrollbar {
+    -moz-binding: url('chrome://mozimage/content/bindings.xml#scrollbar');
+}
+
+box.scrollbartextbox {
+  -moz-binding: url('chrome://mozimage/content/bindings.xml#scrollbartextbox');
+ }
+
+box.textboxwithhttp {
+  -moz-binding: url('chrome://mozimage/content/bindings.xml#textboxwithhttp');
+ }
+
+box.slideshow {
+  -moz-binding: url('chrome://mozimage/content/bindings.xml#slideshow');
+ }
+
+menu.dropbox {
+  -moz-binding: url('chrome://mozimage/content/bindings.xml#dropbox');
+ }

@@ -1,0 +1,84 @@
+<!ENTITY mozimage.edit.ready           "Ready." >
+<!ENTITY mozimage.edit.ok             "Ok" >
+<!ENTITY mozimage.edit.saveas         "Save current image as..." >
+<!ENTITY mozimage.edit.title          "Edit panel" >
+<!ENTITY mozimage.edit.quit           "Quit" >
+<!ENTITY mozimage.edit.advanced        "Advanced mode" >
+
+<!ENTITY mozimage.edit.getchanges     "Memorize changes" >
+<!ENTITY mozimage.edit.undolastchange  "Undo last change" >
+<!ENTITY mozimage.edit.undochanges    "Undo all changes" >
+<!ENTITY mozimage.edit.getchanges.radio  "Always memorize the changes" >
+<!ENTITY mozimage.edit.quality         "Quality" >
+
+<!ENTITY mozimage.edit.tmpdes        "Current image" >
+<!ENTITY mozimage.edit.bakdes        "Original image" >
+
+<!ENTITY mozimage.edit.t1             "Image size" >
+<!ENTITY mozimage.edit.t2             "Transformate" >
+<!ENTITY mozimage.edit.t3             "Text" >
+<!ENTITY mozimage.edit.t4             "Effects" >
+<!ENTITY mozimage.edit.t5             "Enhances" >
+
+<!ENTITY mozimage.edit.resizeprt      "Resize" >
+<!ENTITY mozimage.edit.resizepix      "Resize (px)" >
+<!ENTITY mozimage.edit.resize.ratio   "Keep ratio" >
+<!ENTITY mozimage.edit.resize.pix     "Pixel" >
+<!ENTITY mozimage.edit.resize.percent "&#37;" >
+<!ENTITY mozimage.edit.resize.zero    "Set to zero" >
+<!ENTITY mozimage.edit.resize.px      "Width (px)" >
+<!ENTITY mozimage.edit.resize.py      "Height (px)" >
+<!ENTITY mozimage.edit.resize.x       "Width" >
+<!ENTITY mozimage.edit.resize.y       "Height" >
+<!ENTITY mozimage.edit.resize.75     "75&#37;" >
+<!ENTITY mozimage.edit.resize.50     "50&#37;" >
+<!ENTITY mozimage.edit.resize.25     "25&#37;" >
+<!ENTITY mozimage.edit.resize.200    "200&#37;" >
+<!ENTITY mozimage.edit.resize.150    "150&#37;" >
+<!ENTITY mozimage.edit.resize.125    "125&#37;" >
+
+<!ENTITY mozimage.edit.rotate         "Rotate" >
+<!ENTITY mozimage.edit.rotate.270     "270°" >
+<!ENTITY mozimage.edit.rotate.90      "90°" >
+<!ENTITY mozimage.edit.rotate.180     "180°" >
+<!ENTITY mozimage.edit.mirror         "Mirror" >
+<!ENTITY mozimage.edit.mirror.x       "Flip horizontally" >
+<!ENTITY mozimage.edit.mirror.y       "Flip vertically" >
+
+<!ENTITY mozimage.edit.drawtext           "Add text" >
+<!ENTITY mozimage.edit.drawtext.textdes   "Text" >
+<!ENTITY mozimage.edit.drawtext.fontdes   "Font" >
+<!ENTITY mozimage.edit.drawtext.filldes   "Text color" >
+<!ENTITY mozimage.edit.drawtext.sizedes   "Text size" >
+<!ENTITY mozimage.edit.drawtext.x         "X" >
+<!ENTITY mozimage.edit.drawtext.y         "Y" >
+<!ENTITY mozimage.edit.drawtext.pix       "Pixel" >
+<!ENTITY mozimage.edit.drawtext.percent   "&#37;" >
+<!ENTITY mozimage.edit.drawtext.northwest "Write on top left" >
+<!ENTITY mozimage.edit.drawtext.northeast "Write on top right" >
+<!ENTITY mozimage.edit.drawtext.southwest "Write on bottom left" >
+<!ENTITY mozimage.edit.drawtext.southeast "Write on bottom right" >
+<!ENTITY mozimage.edit.drawtext.north     "Write on top" >
+<!ENTITY mozimage.edit.drawtext.south     "Write on bottom" >
+<!ENTITY mozimage.edit.drawtext.center    "Write on center" >
+
+<!ENTITY mozimage.edit.solarize   "Solarize" >
+<!ENTITY mozimage.edit.swirl      "Swirl" >
+<!ENTITY mozimage.edit.implode    "Implode" >
+<!ENTITY mozimage.edit.wave       "Wave" >
+<!ENTITY mozimage.edit.oilpaint   "Oil paint" >
+<!ENTITY mozimage.edit.charcoal   "Charcoal" >
+
+<!ENTITY mozimage.edit.hue        "Hue" >
+<!ENTITY mozimage.edit.saturation "Saturation" >
+<!ENTITY mozimage.edit.brightness "Brightness" >
+<!ENTITY mozimage.edit.gamma      "Gamma" >
+<!ENTITY mozimage.edit.spiff      "Spiff" >
+<!ENTITY mozimage.edit.dull       "Dull" >
+<!ENTITY mozimage.edit.equalize   "Equalize" >
+<!ENTITY mozimage.edit.normalize  "Normalize" >
+<!ENTITY mozimage.edit.negate     "Negate" >
+<!ENTITY mozimage.edit.grayscale  "Grayscale" >
+<!ENTITY mozimage.edit.spread     "Spread" >
+
+<!ENTITY mozimage.edit.fulltitle     "Fullscreen" >

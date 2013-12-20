@@ -1,0 +1,95 @@
+@import url("chrome://global/skin/global.css");
+
+/* List item images */
+
+#directory-listbox listitem {
+  list-style-image: url("chrome://mozimage/skin/folder.png");
+}
+
+#bookmark-listbox listitem {
+  list-style-image: url("chrome://mozimage/skin/bookmark_folder.png");
+}
+
+/* Others */
+
+.url { 
+   color: blue;
+   text-decoration : underline;
+   cursor: pointer;
+}
+
+#image-box.scroll {
+  overflow: auto; 
+  background-color: white;
+}
+
+#image-box.noscroll {
+  overflow: -moz-scrollbars-none; 
+  background-color: white;
+}
+
+/*
+#html-browser {
+  display: none;
+}
+*/
+
+#throbber-image {
+  list-style-image: url("chrome://mozimage/skin/throbber-static.gif");
+  height: 16px;
+  width: 16px;
+}  
+
+#throbber-image[busy=true] {
+  list-style-image: url("chrome://mozimage/skin/throbber-anim.gif");
+  height: 16px;
+  width: 16px;
+}
+
+/*
+
+  Prefs
+
+*/
+
+.buttonBox {
+  background-color: #fff;
+}
+
+.buttonBoxButton {
+  -moz-appearance: none;
+  border: 1px solid transparent;
+  background-color: transparent;
+  margin-left: 1px;
+  margin-right: 1px;
+  color: WindowText;
+}
+
+.buttonBoxButton > .button-box {
+  border: none !important;
+}
+
+.buttonBoxButton > .button-box > .button-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.buttonBoxButton:hover, .buttonBoxButton:focus {
+  border: 1px solid;
+  -moz-border-left-colors: #98B4E2;
+  -moz-border-top-colors: #98B4E2;
+  -moz-border-right-colors: #98B4E2;
+  -moz-border-bottom-colors: #98B4E2;
+  background-color: #E0E8F6;
+	color: black;  
+}
+
+.buttonBoxButton[checked="true"] {
+  border: 1px solid;
+  -moz-border-left-colors: #316AC5;
+  -moz-border-top-colors: #316AC5;
+  -moz-border-right-colors: #316AC5;
+  -moz-border-bottom-colors: #316AC5;
+  background-color: #C1D2EE;
+  color: black;  
+}

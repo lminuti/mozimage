@@ -22,7 +22,8 @@ if (typeof(JS_LIB_LOADED)=='boolean')
   const jslib_dir        = JS_LIB_PATH+'io/dir.js';
   const jslib_dirutils   = JS_LIB_PATH+'io/dirUtils.js';
   const jslib_chromefile = JS_LIB_PATH+'io/chromeFile.js';
-  
+  const jslib_debug      = JS_LIB_PATH+'debug/debug.js';
+
   // data structures
   const jslib_dictionary       = JS_LIB_PATH+'ds/dictionary.js';
   const jslib_chaindictionary  = JS_LIB_PATH+'ds/chainDictionary.js';

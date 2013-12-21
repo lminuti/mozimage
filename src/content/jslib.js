@@ -44,9 +44,9 @@ if (typeof(JS_LIB_LOADED) == "undefined") {
 		const jslib_results = jslibRes
 
 		if (typeof(JS_LIB_DEBUG) != "boolean")
-			var JS_LIB_DEBUG = JS_LIB_OFF;
+			var JS_LIB_DEBUG = JS_LIB_ON; // TODO: should be JS_LIB_OFF before release
 
-		var JS_LIB_VERBOSE = JS_LIB_OFF;
+		var JS_LIB_VERBOSE = JS_LIB_ON; // TODO: should be JS_LIB_OFF before release
 		var JS_LIB_DEBUG_ALERT = JS_LIB_OFF;
 		var JS_LIB_ERROR = JS_LIB_ON;
 		var JS_LIB_ERROR_ALERT = JS_LIB_OFF;

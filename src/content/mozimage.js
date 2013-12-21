@@ -2,7 +2,6 @@ include(jslib_dir);
 include(jslib_dirutils);
 include(jslib_fileutils);
 include(jslib_file);
-include(jslib_debug);
 include("chrome://mozimage/content/prefs/mozimage_prefs.js");
 include("chrome://global/content/strres.js");
 

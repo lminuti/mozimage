@@ -1,5 +1,4 @@
 syntax: glob
-src/mozimage.xpi
-src/chrome/mozimage.jar
 .idea
+src/build
 *.lnk

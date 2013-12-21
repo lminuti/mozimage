@@ -2,39 +2,43 @@
 <?xml-stylesheet href="chrome://mozimage/skin" type="text/css"?>
 <!DOCTYPE window SYSTEM "chrome://mozimage/locale/mozimage.dtd">
 <dialog buttons="accept,cancel"
-  title="&mozimage.prefs.options;"
-  xmlns:html="http://www.w3.org/1999/xhtml"
-  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-  style="width: 52em; height: 41em;"
-  ondialogaccept="prefs_close(event);">
-  
-  <script type="application/x-javascript" src="chrome://global/content/dialogOverlay.js" />
-  <script type="application/x-javascript" src="chrome://global/content/strres.js" />
-  <script type="application/x-javascript" src="chrome://mozimage/content/jslib.js" />
-  <script type="application/x-javascript" src="chrome://mozimage/content/prefs/mozimage_prefs.js" />
+        title="&mozimage.prefs.options;"
+        xmlns:html="http://www.w3.org/1999/xhtml"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        style="width: 52em; height: 41em;"
+        ondialogaccept="prefs_close(event);">
 
-  <hbox flex="1">
-    <vbox id="prefsCategories" class="listBox buttonBox" oncommand="switchPage(event.target.id);" orient="vertical" onmouseover="focus();">
-      <button id="catGeneralButton"   orient="vertical" class="buttonBoxButton" type="radio" group="categories" label="&mozimage.prefs.general;"   
-              url="chrome://mozimage/content/prefs/mozimage_general.xul" image="chrome://mozimage/skin/general.png"/>
-      <button id="catToolsButton"   orient="vertical" class="buttonBoxButton" type="radio" group="categories" label="&mozimage.prefs.tools;"   
-              url="chrome://mozimage/content/prefs/mozimage_tools.xul" image="chrome://mozimage/skin/tools.png"/>
-    </vbox>
-    
-    <vbox flex="1">
-      <dialogheader id="header" title="&mozimage.prefs.general;" />
-      <iframe id="panelFrame" name="panelFrame" style="width: 0px" flex="1"/>
-    </vbox>
-  </hbox>
-  
-  <script type="application/x-javascript">
+    <script type="application/x-javascript" src="chrome://global/content/dialogOverlay.js"/>
+    <script type="application/x-javascript" src="chrome://global/content/strres.js"/>
+    <script type="application/x-javascript" src="chrome://mozimage/content/jslib.js"/>
+    <script type="application/x-javascript" src="chrome://mozimage/content/prefs/mozimage_prefs.js"/>
+
+    <hbox flex="1">
+        <vbox id="prefsCategories" class="listBox buttonBox" oncommand="switchPage(event.target.id);" orient="vertical"
+              onmouseover="focus();">
+            <button id="catGeneralButton" orient="vertical" class="buttonBoxButton" type="radio" group="categories"
+                    label="&mozimage.prefs.general;"
+                    url="chrome://mozimage/content/prefs/mozimage_general.xul"
+                    image="chrome://mozimage/skin/general.png"/>
+            <button id="catToolsButton" orient="vertical" class="buttonBoxButton" type="radio" group="categories"
+                    label="&mozimage.prefs.tools;"
+                    url="chrome://mozimage/content/prefs/mozimage_tools.xul" image="chrome://mozimage/skin/tools.png"/>
+        </vbox>
+
+        <vbox flex="1">
+            <dialogheader id="header" title="&mozimage.prefs.general;"/>
+            <iframe id="panelFrame" name="panelFrame" style="width: 0px" flex="1"/>
+        </vbox>
+    </hbox>
+
+    <script type="application/x-javascript">
   <![CDATA[
-    var prefsCategories = document.getElementById("prefsCategories");
-    var button = prefsCategories.childNodes[0];
-    document.getElementById("panelFrame").setAttribute("src", button.getAttribute("url"));
-    button.checked = true;
-  ]]>
+        var prefsCategories = document.getElementById("prefsCategories");
+        var button = prefsCategories.childNodes[0];
+        document.getElementById("panelFrame").setAttribute("src", button.getAttribute("url"));
+        button.checked = true;
+        ]]>
   </script>
-  
+
 </dialog>
 

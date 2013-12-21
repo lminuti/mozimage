@@ -1,285 +1,299 @@
-if (typeof(JS_LIB_LOADED) == 'boolean') 
-{
-  // test to make sure base classes are loaded
-  include(jslib_zip);
-  include(jslib_file);
-  include(jslib_fileutils);
-  
-  /**
-   * Globals 
-   */
-  const JS_CHROME_FILE_LOADED           = true;
-  const JS_CHROME_FILE_FILE             = "chromeFile.js";
+if (typeof(JS_LIB_LOADED) == 'boolean') {
+	// test to make sure base classes are loaded
+	include(jslib_zip);
+	include(jslib_file);
+	include(jslib_fileutils);
 
-/*****************************************************************
- * void ChromeFile(aPath)                                        *
- *                                                               *
- * class constructor                                             *
- * aPath is an argument of string chrome file path               *
- *   Ex:                                                         *
- *     var p = '/tmp/foo.dat';                                   *
- *     var f = new File(p);                                      *
- *                                                               *
- *****************************************************************/
+	/**
+	 * Globals
+	 */
+	const JS_CHROME_FILE_LOADED = true;
+	const JS_CHROME_FILE_FILE = "chromeFile.js";
 
-  // constructor 
-  function ChromeFile (aPath) 
-  {
-    var jarResults;
+	/*****************************************************************
+	 * void ChromeFile(aPath)                                        *
+	 *                                                               *
+	 * class constructor                                             *
+	 * aPath is an argument of string chrome file path               *
+	 *   Ex:                                                         *
+	 *     var p = '/tmp/foo.dat';                                   *
+	 *     var f = new File(p);                                      *
+	 *                                                               *
+	 *****************************************************************/
 
-    if (!aPath)
-      throw Components.results.NS_ERROR_INVALID_ARG;
-  
-    this.mFU = new FileUtils;
+		// constructor
+	function ChromeFile(aPath) {
+		var jarResults;
 
-    this.mChromePath = aPath;    
-    this.mURLPath    = this.mFU.chromeToURL(aPath);
-    this.mLocalPath  = this.mFU.chromeToPath(aPath);
+		if (!aPath)
+			throw Components.results.NS_ERROR_INVALID_ARG;
 
-    // if you pass a non existant chrome URL on FF
-    // nsIChromeRegistry convertChromeURL fails
-    // if we fail here, we know that aPath is bogus
-    // as well --pete
-    if (this.mURLPath < 0 || this.mLocalPath < 0)
-      return;
+		this.mFU = new FileUtils;
 
-    if (!this.mURLPath)
-      throw Components.results.NS_ERROR_FAILURE;
+		this.mChromePath = aPath;
+		this.mURLPath = this.mFU.chromeToURL(aPath);
+		this.mLocalPath = this.mFU.chromeToPath(aPath);
 
-    /* If this is a jar:
-     * jarResults[0] is the full path.
-     * jarResults[1] is the path to the jar file.
-     * jarResults[2] is the path within the jar file to the chrome file.
-     *
-     * If this is a flat file:
-     * jarResults == null.
-     */
+		// if you pass a non existant chrome URL on FF
+		// nsIChromeRegistry convertChromeURL fails
+		// if we fail here, we know that aPath is bogus
+		// as well --pete
+		if (this.mURLPath < 0 || this.mLocalPath < 0)
+			return;
 
-    // isJarResults = /^jar:(file:\/\/\/.*\.jar)!\/(.*)/.exec(urlPath);
+		if (!this.mURLPath)
+			throw Components.results.NS_ERROR_FAILURE;
 
-    this.mIsJarFile = /^jar:/.test(this.mURLPath);
+		/* If this is a jar:
+		 * jarResults[0] is the full path.
+		 * jarResults[1] is the path to the jar file.
+		 * jarResults[2] is the path within the jar file to the chrome file.
+		 *
+		 * If this is a flat file:
+		 * jarResults == null.
+		 */
 
-    if (this.isJarFile) {
-      jarResults = this.mLocalPath.split("!");
-      this.mLocalPath = jarResults[0];
+		// isJarResults = /^jar:(file:\/\/\/.*\.jar)!\/(.*)/.exec(urlPath);
 
-      // strip off the leading "/"
-      this.mJarPath = jarResults[1].replace(/^\//, "");
+		this.mIsJarFile = /^jar:/.test(this.mURLPath);
 
-      this.mZip          = new Zip(this.mLocalPath);
+		if (this.isJarFile) {
+			jarResults = this.mLocalPath.split("!");
+			this.mLocalPath = jarResults[0];
 
-    } else {
-      this.mJarPath      = null;
-      this._nsIZipReader = null;
-      this.mZip          = null;
-    }
+			// strip off the leading "/"
+			this.mJarPath = jarResults[1].replace(/^\//, "");
 
-    this.mFile = new File(this.mLocalPath);
+			this.mZip = new Zip(this.mLocalPath);
 
-    if (this.exists()) {
-      if (this.isJarFile)
-        this.mSize = this.Zip.getEntryRealSize(this.jarPath)
-      else
-        this.mSize = this.mFile.size;
-    }
-  }
+		} else {
+			this.mJarPath = null;
+			this._nsIZipReader = null;
+			this.mZip = null;
+		}
 
-  ChromeFile.prototype = 
-  {
-    mIsJarFile:    false,
-    mFU:           null,
-    mChromePath:   null,
-    mSize:         0,
-    mURLPath:      null,
-    mLocalPath:    null,
-    mJarPath:      null,
-    mFile:         null,
-    mZip:          null,
-    _nsIZipReader: null,
+		this.mFile = new File(this.mLocalPath);
 
-    /**
-     * Open the file for read-only access.
-     *
-     * @return nsresult Error code for failure (0 if success).
-     */
-    open: function open () 
-    {
-      if (!this.exists())
-        return jslibError("NS_ERROR_FILE_NOT_FOUND");
+		if (this.exists()) {
+			if (this.isJarFile)
+				this.mSize = this.Zip.getEntryRealSize(this.jarPath)
+			else
+				this.mSize = this.mFile.size;
+		}
+	}
 
-      if (this.isJarFile)
-        return this.Zip.open();
+	ChromeFile.prototype =
+	{
+		mIsJarFile: false,
+		mFU: null,
+		mChromePath: null,
+		mSize: 0,
+		mURLPath: null,
+		mLocalPath: null,
+		mJarPath: null,
+		mFile: null,
+		mZip: null,
+		_nsIZipReader: null,
 
-      return this.File.open("r");
-    },
+		/**
+		 * Open the file for read-only access.
+		 *
+		 * @return nsresult Error code for failure (0 if success).
+		 */
+		open: function open() {
+			if (!this.exists())
+				return jslibError("NS_ERROR_FILE_NOT_FOUND");
 
-    /**
-     * Read the contents of the file into a returned string.
-     *
-     * @return JSString reflecting the file's contents.
-     */
-    read: function read () 
-    {
-      if (!this.exists())
-        return jslibError("NS_ERROR_FILE_NOT_FOUND");
+			if (this.isJarFile)
+				return this.Zip.open();
 
-      if (this.isJarFile)
-        return this.Zip.readEntry(this.jarPath);
+			return this.File.open("r");
+		},
 
-      return this.File.read();
-    },
+		/**
+		 * Read the contents of the file into a returned string.
+		 *
+		 * @return JSString reflecting the file's contents.
+		 */
+		read: function read() {
+			if (!this.exists())
+				return jslibError("NS_ERROR_FILE_NOT_FOUND");
 
-    /**
-     * Copy the file to a new destination.
-     *
-     * @param aDest JSString local file path to new file.
-     *
-     * @return nsresult Error code for failure (0 if success).
-     */
-    copy: function copy (aDest) 
-    {
-      if (!this.exists())
-        return jslibError("NS_ERROR_FILE_NOT_FOUND");
+			if (this.isJarFile)
+				return this.Zip.readEntry(this.jarPath);
 
-      if (this.isJarFile)
-        return this.Zip.extractEntry(this.jarPath, aDest);
+			return this.File.read();
+		},
 
-      return this.File.copy(aDest);
-    },
+		/**
+		 * Copy the file to a new destination.
+		 *
+		 * @param aDest JSString local file path to new file.
+		 *
+		 * @return nsresult Error code for failure (0 if success).
+		 */
+		copy: function copy(aDest) {
+			if (!this.exists())
+				return jslibError("NS_ERROR_FILE_NOT_FOUND");
 
-    /**
-     * Close the file.
-     *
-     * @return nsresult Error code for failure (0 if success).
-     */
-    close: function close () 
-    {
-      if (!this.exists())
-        return jslibError("NS_ERROR_FILE_NOT_FOUND");
+			if (this.isJarFile)
+				return this.Zip.extractEntry(this.jarPath, aDest);
 
-      if (this.isJarFile)
-        return this.Zip.close();
+			return this.File.copy(aDest);
+		},
 
-      return this.File.close();
-    },
+		/**
+		 * Close the file.
+		 *
+		 * @return nsresult Error code for failure (0 if success).
+		 */
+		close: function close() {
+			if (!this.exists())
+				return jslibError("NS_ERROR_FILE_NOT_FOUND");
 
-    /**
-     * Determine if the file referenced actually exists.
-     *
-     * @return bool True if the file exists.
-     */
-    exists: function exists () 
-    {
-      // If our path to the local file doesn't exist, nothing else matters.
-      if (!this.File || !this.File.exists())
-        return false;
+			if (this.isJarFile)
+				return this.Zip.close();
 
-      // If it's a .jar file, check to see if we can retrieve it.
-      if (this.isJarFile)
-        return this.Zip.findEntries(this.jarPath).hasMoreElements();
+			return this.File.close();
+		},
 
-      return true;
-    }, 
+		/**
+		 * Determine if the file referenced actually exists.
+		 *
+		 * @return bool True if the file exists.
+		 */
+		exists: function exists() {
+			// If our path to the local file doesn't exist, nothing else matters.
+			if (!this.File || !this.File.exists())
+				return false;
 
-    /**
-     * Determine if the file is a jarred file.
-     *
-     * @return bool True if the chrome file is jarred.
-     */
+			// If it's a .jar file, check to see if we can retrieve it.
+			if (this.isJarFile)
+				return this.Zip.findEntries(this.jarPath).hasMoreElements();
 
-    get isJarFile () { return this.mIsJarFile; },
+			return true;
+		},
 
-    /**
-     * Original chrome:// protocol path to the chrome file.
-     *
-     * @return JSString for the chrome path.
-     */
+		/**
+		 * Determine if the file is a jarred file.
+		 *
+		 * @return bool True if the chrome file is jarred.
+		 */
 
-    get chromePath () { return this.mChromePath; },
+		get isJarFile() {
+			return this.mIsJarFile;
+		},
 
-    /**
-     * The size of the chrome file.
-     *
-     * @return JSNumber of bytes in the file.
-     */
+		/**
+		 * Original chrome:// protocol path to the chrome file.
+		 *
+		 * @return JSString for the chrome path.
+		 */
 
-    get size () { return this.mSize; },
+		get chromePath() {
+			return this.mChromePath;
+		},
 
-    /**
-     * List the properties and methods this object supports.
-     *
-     * @return JSString of member properties and methods.
-     */
+		/**
+		 * The size of the chrome file.
+		 *
+		 * @return JSNumber of bytes in the file.
+		 */
 
-    /**
-     * URL path to the chrome file 
-     * (jar://file:///path/to.jar!/path/within/jar/to/file.txt)
-     *
-     * @return JSString for the url path.
-     */
-    
-    get urlPath() { return this.mURLPath; },
+		get size() {
+			return this.mSize;
+		},
 
-    /**
-     * The path to the jar file or unjarred chrome file on the 
-     * local file system.
-     */
-    get localPath () { return this.mFU.chromeToPath(this.mChromePath); },
+		/**
+		 * List the properties and methods this object supports.
+		 *
+		 * @return JSString of member properties and methods.
+		 */
 
-    /**
-     * The path to the jarred chrome file within a jar file.
-     */
-    
-    get jarPath () { return this.mJarPath; },
+		/**
+		 * URL path to the chrome file
+		 * (jar://file:///path/to.jar!/path/within/jar/to/file.txt)
+		 *
+		 * @return JSString for the url path.
+		 */
 
-    /**
-     * The File constructor function.
-     */
-    
-    get File() { return this.mFile; },
+		get urlPath() {
+			return this.mURLPath;
+		},
 
-    /**
-     * The nsIFile object for this interface.
-     */
-    
-    get nsIFile() { return this.File.nsIFile; },
+		/**
+		 * The path to the jar file or unjarred chrome file on the
+		 * local file system.
+		 */
+		get localPath() {
+			return this.mFU.chromeToPath(this.mChromePath);
+		},
 
-    /**
-     * The Zip constructor function.
-     */
-    
-    get Zip() { return this.mZip; },
+		/**
+		 * The path to the jarred chrome file within a jar file.
+		 */
 
-    /**
-     * The nsIZipReader object for this interface.
-     */
-    
-    get nsIZipReader() { return this._nsIZipReader; },
+		get jarPath() {
+			return this.mJarPath;
+		},
 
-    get help () 
-    {
-      const help = ""        +
-        "   exists();\n"     +
-        "   open();\n"       +
-        "   read();\n"       +
-        "   close();\n"      +
-        "   copy(aDest);\n"  +
-        "   size;\n"         +
-        "   isJarFile;\n"    +
-        "   chromePath;\n"   +
-        "   urlPath;\n"      +
-        "   localPath;\n"    +
-        "   jarPath;\n"      +
-        "   FIle;\n"         +
-        "   nsIFile;\n"      +
-        "   Zip;\n"          +
-        "   nsIZipReader;\n" +
-        "   help;\n";
+		/**
+		 * The File constructor function.
+		 */
 
-      return help;
-    }
-  };
-  
-  jslibLoadMsg(JS_CHROME_FILE_FILE);
+		get File() {
+			return this.mFile;
+		},
 
-} else { dump("Load Failure: chromeFile.js\n"); }
+		/**
+		 * The nsIFile object for this interface.
+		 */
+
+		get nsIFile() {
+			return this.File.nsIFile;
+		},
+
+		/**
+		 * The Zip constructor function.
+		 */
+
+		get Zip() {
+			return this.mZip;
+		},
+
+		/**
+		 * The nsIZipReader object for this interface.
+		 */
+
+		get nsIZipReader() {
+			return this._nsIZipReader;
+		},
+
+		get help() {
+			const help = "" +
+				"   exists();\n" +
+				"   open();\n" +
+				"   read();\n" +
+				"   close();\n" +
+				"   copy(aDest);\n" +
+				"   size;\n" +
+				"   isJarFile;\n" +
+				"   chromePath;\n" +
+				"   urlPath;\n" +
+				"   localPath;\n" +
+				"   jarPath;\n" +
+				"   FIle;\n" +
+				"   nsIFile;\n" +
+				"   Zip;\n" +
+				"   nsIZipReader;\n" +
+				"   help;\n";
+
+			return help;
+		}
+	};
+
+	jslibLoadMsg(JS_CHROME_FILE_FILE);
+
+} else {
+	dump("Load Failure: chromeFile.js\n");
+}

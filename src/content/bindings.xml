@@ -9,18 +9,20 @@ Only the saveasexit binding is used for this time. :) -->
           xmlns:xbl="http://www.mozilla.org/xbl"
           xmlns:html="http://www.w3.org/1999/xhtml"
           xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-	  <script type="application/x-javascript" src="chrome://mozimage/content/mozimage_edit.js" />
+    <script type="application/x-javascript" src="chrome://mozimage/content/mozimage_edit.js"/>
 
-  <binding id="saveasexit">
-    <content>
-      <xul:hbox align="right" flex="1" >
-      	<xul:checkbox flex="none" align="left" id="advanced-checkbox" xbl:inherits="label=advanced-label" oncommand="advanced_check ();" />
-	<xul:spacer flex="1" />
-        <xul:button flex="none" align="right" xbl:inherits="label=saveas-label" oncommand="save_changed_image();" />
-	<!-- <xul:button align="right" xbl:inherits="label=saveas" oncommand="test_custom_filer();" /> -->
-        <xul:button flex="none" align="right" xbl:inherits="label=exit-label" oncommand="edit_close(event);" />
-      </xul:hbox>
-    </content>
-  </binding>
+    <binding id="saveasexit">
+        <content>
+            <xul:hbox align="right" flex="1">
+                <xul:checkbox flex="none" align="left" id="advanced-checkbox" xbl:inherits="label=advanced-label"
+                              oncommand="advanced_check ();"/>
+                <xul:spacer flex="1"/>
+                <xul:button flex="none" align="right" xbl:inherits="label=saveas-label"
+                            oncommand="save_changed_image();"/>
+                <!-- <xul:button align="right" xbl:inherits="label=saveas" oncommand="test_custom_filer();" /> -->
+                <xul:button flex="none" align="right" xbl:inherits="label=exit-label" oncommand="edit_close(event);"/>
+            </xul:hbox>
+        </content>
+    </binding>
 
 </bindings>

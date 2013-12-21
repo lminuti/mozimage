@@ -11,25 +11,29 @@
   onload="edit_fullimage_load(event);"
   onclose="edit_fullimage_close(event);" >  -->
 
- <dialog buttons="none" 
-  id="mozimage-edit-fullimage-dialog"
-  title="&mozimage.edit.fulltitle;"
-  xmlns:html="http://www.org/1999/xhtml"
-  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-  onload="edit_fullimage_load(event);"
-  ondialogcancel="edit_fullimage_close(event);"
-  ondialogaccept="edit_fullimage_close(event);"
-  onclose="edit_fullimage_close(event);" >
+<dialog buttons="none"
+        id="mozimage-edit-fullimage-dialog"
+        title="&mozimage.edit.fulltitle;"
+        xmlns:html="http://www.org/1999/xhtml"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        onload="edit_fullimage_load(event);"
+        ondialogcancel="edit_fullimage_close(event);"
+        ondialogaccept="edit_fullimage_close(event);"
+        onclose="edit_fullimage_close(event);">
 
-  <script type="application/x-javascript" src="chrome://global/content/dialogOverlay.js" />
-  <script type="application/x-javascript" src="chrome://mozimage/content/jslib.js" />;
-  <script type="application/x-javascript" src="chrome://mozimage/content/edit/mozimage_edit_fullimage.js" />
+    <script type="application/x-javascript" src="chrome://global/content/dialogOverlay.js"/>
+    <script type="application/x-javascript" src="chrome://mozimage/content/jslib.js"/>;
+    <script type="application/x-javascript" src="chrome://mozimage/content/edit/mozimage_edit_fullimage.js"/>
 
- <hbox id="edit-fullimage-box" class="scroll" flex="1">
-  <vbox>
-   <hbox><image id="edit-full" validate="always" /></hbox>
-  </vbox>
- </hbox>
-     <hbox> <description flex="none" value=" " id="edit-full-info" /></hbox>
+    <hbox id="edit-fullimage-box" class="scroll" flex="1">
+        <vbox>
+            <hbox>
+                <image id="edit-full" validate="always"/>
+            </hbox>
+        </vbox>
+    </hbox>
+    <hbox>
+        <description flex="none" value=" " id="edit-full-info"/>
+    </hbox>
 
 </dialog>

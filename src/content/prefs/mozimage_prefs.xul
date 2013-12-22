@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet href="chrome://mozimage/skin" type="text/css"?>
 <!DOCTYPE window SYSTEM "chrome://mozimage/locale/mozimage.dtd">
-<dialog buttons="accept,cancel"
+<dialog id="mozimage-prefs-dialog"
+        buttons="accept,cancel"
         title="&mozimage.prefs.options;"
         xmlns:html="http://www.w3.org/1999/xhtml"
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-        style="width: 52em; height: 41em;"
-        ondialogaccept="prefs_close(event);">
+        style="width: 52em; height: 41em;">
 
     <script type="application/x-javascript" src="chrome://global/content/dialogOverlay.js"/>
     <script type="application/x-javascript" src="chrome://global/content/strres.js"/>
     <script type="application/x-javascript" src="chrome://mozimage/content/jslib.js"/>
+    <script type="application/x-javascript" src="chrome://mozimage/content/mozimage.js"/>
     <script type="application/x-javascript" src="chrome://mozimage/content/prefs/mozimage_prefs.js"/>
+    <script type="application/x-javascript" src="chrome://mozimage/content/prefs/mozimage_prefs_dialog.js"/>
 
     <hbox flex="1">
-        <vbox id="prefsCategories" class="listBox buttonBox" oncommand="switchPage(event.target.id);" orient="vertical"
+        <vbox id="prefsCategories" class="listBox buttonBox" orient="vertical"
               onmouseover="focus();">
             <button id="catGeneralButton" orient="vertical" class="buttonBoxButton" type="radio" group="categories"
                     label="&mozimage.prefs.general;"

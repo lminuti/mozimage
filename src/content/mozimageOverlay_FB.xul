@@ -16,7 +16,7 @@
     </menupopup>
 
     <popup id="contentAreaContextMenu">
-        <menuitem id="launch-mozimageLink" label="&mozimage.overlay.openwith;" oncommand="launchmozimage_click(true);"/>
+        <menuitem id="launch-mozimageLink" label="&mozimage.overlay.openwith;" oncommand="mozimage.run(true);"/>
     </popup>
 
     <broadcasterset id="mainBroadcasterSet">

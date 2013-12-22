@@ -6,12 +6,12 @@ include(jslib_dir);
 
 include("chrome://global/content/strres.js");
 
-function MozImagePrefs() {
+mozimage.Prefs = function () {
 	this.prefs = new Prefs();
 	this.load();
-}
+};
 
-MozImagePrefs.prototype = {
+mozimage.Prefs.prototype = {
 
 	load: function () {
 		this.homeDir = this.prefs.getChar("mozimage.home_directory");
@@ -276,7 +276,7 @@ MozImagePrefs.prototype = {
 		this.editorPath4 = aValue[3];
 	}
 
-} // END CLASS
+}; // END CLASS
 
 /*
  **
@@ -285,46 +285,5 @@ MozImagePrefs.prototype = {
  **
  */
 
-var prefs = new MozImagePrefs();
+var prefs = new mozimage.Prefs();
 //top.prefs = prefs;
-/*
- **
- ** Prefs window event handlers
- **
- */
-
-function prefs_load() {
-	prefs.load();
-}
-
-function prefs_close() {
-	try {
-		var panelFrame = document.getElementById("panelFrame");
-		if (panelFrame.contentWindow.prefs_close)
-			panelFrame.contentWindow.prefs_close();
-		prefs.save();
-	} catch (e) {
-		alert(e);
-	}
-}
-
-function switchPage(aButtonID) {
-	try {
-		var button = document.getElementById(aButtonID);
-		if (button) {
-			var panelFrame = document.getElementById("panelFrame");
-			var header = document.getElementById("header");
-			var newURL = button.getAttribute("url");
-			var newLabel = button.getAttribute("label");
-			if (panelFrame.contentWindow.prefs_close)
-				panelFrame.contentWindow.prefs_close();
-			panelFrame.setAttribute("src", newURL);
-			header.setAttribute("title", newLabel);
-			button.checked = true;
-			button.focus();
-		}
-	}
-	catch (e) {
-		alert(e);
-	}
-}   

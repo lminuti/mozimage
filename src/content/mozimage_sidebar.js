@@ -382,24 +382,6 @@ function selectItemByName(itemName) {
 	fileListBox.ensureIndexIsVisible(fileListBox.selectedIndex);
 }
 
-function buildOpenWithMenu() {
-
-	var editorsName = prefs.getEditorsName();
-	for (var i = 1; i <= 4; i++) {
-		var openwith = document.getElementById("openwith" + i + "-menu");
-		openwith.label = mozImageBundle.formatStringFromName("openwith", [editorsName[i - 1]], 1);
-		openwith.hidden = (editorsName[i - 1] == "");
-	}
-}
-
-function buildMacroMenu() {
-	var macroName = prefs.getMacroName();
-	for (var i = 0; i < 10; i++) {
-		var macromenu = document.getElementById("macro" + i + "-menu");
-		macromenu.label = macroName[i];
-		macromenu.hidden = (macroName[i] == "");
-	}
-}
 
 function pathToURI(aPath) {
 	const JS_URIFIX = new Components.Constructor("@mozilla.org/docshell/urifixup;1", "nsIURIFixup");
@@ -453,45 +435,6 @@ function saveBookmarks() {
 		file.write(anItem.value + '\n');
 	}
 	file.close();
-}
-
-function loadBookmarks() {
-	try {
-
-		var bookmarklistbox = document.getElementById("bookmark-listbox");
-		var dirUtil = new DirUtils();
-		var fileUtil = new FileUtils();
-		var fileName = fileUtil.append(dirUtil.getPrefsDir(), 'mozimage-bookmarks.txt');
-		var file = new File(fileName);
-
-		if (!file.exists()) {
-			file.create();
-			file.close();
-		}
-		else {
-			file.open("r");
-			var bookmarkName = "";
-			var bookmarkValue = "";
-			while (!file.EOF) {
-				bookmarkName = file.readline();
-				if (!file.EOF)
-					bookmarkValue = file.readline();
-
-				if (bookmarkName != '') {
-					var listItem = bookmarklistbox.appendItem(bookmarkName, '');
-					// add the attributes to show right icon
-					listItem.setAttribute("class", "listitem-iconic");
-					listItem.setAttribute("value", bookmarkValue);
-					//listItem.setAttribute("ondblclick", "bookmark_select(event);");
-					listItem.addEventListener("dblclick", bookmark_select, false);
-				}
-			}
-			file.close();
-		}
-
-	} catch (e) {
-		alert(e);
-	}
 }
 
 function bookmarkup_click() {
@@ -551,39 +494,12 @@ function getMainImage() {
  **
  */
 
-function window_load(event) {
-	try {
-		var fullpath = document.getElementById("fullpath-text");
-		var autoSizeButton = document.getElementById("autosize-button");
-		var aBrowser = document.getElementById("html-browser");
-		var startingUrl = "";
-
-		var sidebar = top.document.getElementById("sidebar");
-		if (sidebar) {
-			startingUrl = sidebar.getAttribute("mozimage_url");
-			sidebar.setAttribute("mozimage_url", "");
-		}
-
-		autoSizeButton.setAttribute("checked", prefs.getAutoSize());
-
-		buildOpenWithMenu();
-		buildMacroMenu();
-		loadBookmarks();
-
-		if (startingUrl != "" && fullpath.value != startingUrl)
-			fillListBox(startingUrl);
-		else if (fullpath.value == "")
-			fillListBox(prefs.getHomeDir());
-
-	} catch (e) {
-		alert(e);
-	}
-}
-
 function window_close(event) {
 	var aBrowser = document.getElementById("html-browser");
 	prefs.setSlideshow(false);
 	prefs.save();
+	jslibDebug("SideBar >> window_close_orig");
+
 }
 
 function about_click() {
@@ -1033,3 +949,111 @@ function explorer_click() {
 	}
 }
 
+mozimage.define('mozimage.SideBar', {
+
+	init : function (e) {
+		var me = this;
+		this.sidebar = document.getElementById("mozimage-window");
+		window.addEventListener('load', function (e) {
+			me.window_load.call(me, e);
+		});
+		window.addEventListener('unload', function (e) {
+			me.window_close.call(me, e);
+		});
+
+		this.window_load(e);
+	},
+
+	window_load : function (event) {
+		try {
+			var fullpath = document.getElementById("fullpath-text");
+			var autoSizeButton = document.getElementById("autosize-button");
+			var aBrowser = document.getElementById("html-browser");
+			var startingUrl = "";
+
+			var sidebar = top.document.getElementById("sidebar");
+			if (sidebar) {
+				startingUrl = sidebar.getAttribute("mozimage_url");
+				sidebar.setAttribute("mozimage_url", "");
+			}
+
+			autoSizeButton.setAttribute("checked", prefs.getAutoSize());
+
+			this.buildOpenWithMenu();
+			this.buildMacroMenu();
+			this.loadBookmarks();
+
+			if (startingUrl != "" && fullpath.value != startingUrl)
+				fillListBox(startingUrl);
+			else if (fullpath.value == "")
+				fillListBox(prefs.getHomeDir());
+
+		} catch (e) {
+			mozimage.showError(e);
+		}
+	},
+
+	window_close : function () {
+		jslibDebug("SideBar >> window_close");
+	},
+
+	buildOpenWithMenu: function () {
+		var editorsName = prefs.getEditorsName();
+		for (var i = 1; i <= 4; i++) {
+			var openwith = document.getElementById("openwith" + i + "-menu");
+			openwith.label = mozImageBundle.formatStringFromName("openwith", [editorsName[i - 1]], 1);
+			openwith.hidden = (editorsName[i - 1] == "");
+		}
+	},
+
+	buildMacroMenu : function() {
+		var macroName = prefs.getMacroName();
+		for (var i = 0; i < 10; i++) {
+			var macromenu = document.getElementById("macro" + i + "-menu");
+			macromenu.label = macroName[i];
+			macromenu.hidden = (macroName[i] == "");
+		}
+	},
+
+	loadBookmarks : function () {
+
+		var bookmarklistbox = document.getElementById("bookmark-listbox");
+		var dirUtil = new DirUtils();
+		var fileUtil = new FileUtils();
+		var fileName = fileUtil.append(dirUtil.getPrefsDir(), 'mozimage-bookmarks.txt');
+		var file = new File(fileName);
+
+		if (!file.exists()) {
+			file.create();
+			file.close();
+		}
+		else {
+			file.open("r");
+			var bookmarkName = "";
+			var bookmarkValue = "";
+			while (!file.EOF) {
+				bookmarkName = file.readline();
+				if (!file.EOF)
+					bookmarkValue = file.readline();
+
+				if (bookmarkName != '') {
+					var listItem = bookmarklistbox.appendItem(bookmarkName, '');
+					// add the attributes to show right icon
+					listItem.setAttribute("class", "listitem-iconic");
+					listItem.setAttribute("value", bookmarkValue);
+					//listItem.setAttribute("ondblclick", "bookmark_select(event);");
+					listItem.addEventListener("dblclick", bookmark_select, false);
+				}
+			}
+			file.close();
+		}
+	}
+
+
+});
+
+(function () {
+	window.addEventListener('load',function(e) {
+		new mozimage.SideBar();
+	});
+})();

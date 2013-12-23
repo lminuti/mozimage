@@ -31,9 +31,7 @@ mozimage.define = function (name, config) {
 };
 
 /*
- **
  ** Event handler for the overlay
- **
  */
 
 mozimage.run = function (getLink) {
@@ -58,4 +56,9 @@ mozimage.run = function (getLink) {
 	} catch (e) {
 		alert(e);
 	}
+};
+
+// For now it simple shows an alert
+mozimage.showError = function (e) {
+	alert(e);
 };

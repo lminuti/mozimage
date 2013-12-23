@@ -5,8 +5,6 @@
       id="mozimage-window"
       xmlns:html="http://www.w3.org/1999/xhtml"
       xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-      onload="window_load(event);"
-      onunload="window_close(event);"
       persist="screenX screenY width height sizemode">
     <script type="application/x-javascript" src="chrome://global/content/dialogOverlay.js"/>
     <script type="application/x-javascript" src="chrome://mozimage/content/jslib.js"/>

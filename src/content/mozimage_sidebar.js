@@ -5,16 +5,6 @@ include(jslib_file);
 include("chrome://mozimage/content/prefs/mozimage_prefs.js");
 include("chrome://global/content/strres.js");
 
-/*
- **
- ** Private functions
- **
- */
-
-var mozImageBundle = srGetStrBundle("chrome://mozimage/locale/mozimage.properties");
-var numOfLinks = 0;
-var emptyingList = false;
-
 mozimage.comparer = {
 
 	fileNameCompare : function (name1, name2) {
@@ -68,344 +58,13 @@ mozimage.comparer = {
 
 };
 
-function initializeSearch(url) {
-	var fullpath = document.getElementById("fullpath-text");
-	var aBrowser = document.getElementById("html-browser");
-
-	aBrowser.addEventListener("load", htmlSearch, true);
-
-	numOfLinks = 0;
-	fullpath.value = url;
-	aBrowser.setAttribute('src', url);
-}
-
-function htmlSearch() {
-	try {
-
-		var dirlistbox = document.getElementById("directory-listbox");
-		var filelistbox = document.getElementById("file-listbox");
-		var aBrowser = document.getElementById("html-browser");
-		var doc = aBrowser.contentDocument;
-		var fullpath = document.getElementById("fullpath-text");
-		var req = null;
-
-		if (doc.links.length > numOfLinks) {
-			emptyList();
-			numOfLinks = doc.links.length;
-			for (var i = 0; i < doc.links.length; i++) {
-				if (supportedLinkType(doc.links[i])) {
-					filelistbox.appendChild(getImageLinkItem(doc.links[i]));
-					// use an XMLHttpRequest object to pre-load the images
-					if (prefs.getEnableCache()) {
-						req = new XMLHttpRequest();
-						req.open('GET', doc.links[i].href, true);
-						req.setRequestHeader("Referer", fullpath.value);
-						req.send(null);
-					}
-				}
-				else if (doc.links[i].href.substr(0, 7) == "http://")
-					dirlistbox.appendChild(getDirectoryItem(doc.links[i]));
-			}
-		}
-	} catch (e) {
-		alert(e);
-	}
-}
-
-function directorySearch(adir) {
-	var dirnotfound = mozImageBundle.formatStringFromName("dirnotfound", [], 0);
-	var dirlistbox = document.getElementById("directory-listbox");
-	var filelistbox = document.getElementById("file-listbox");
-	var d = new Dir(adir);
-	var dirList = d.readDir();
-	if (dirList == null) {
-		alert(dirnotfound);
-		return;
-	}
-
-	var fullpath = document.getElementById("fullpath-text");
-
-	var dirs = new Array();
-	var files = new Array();
-	var i = 0;
-	emptyList();
-	fullpath.value = adir;
-
-	for (i = 0; i < dirList.length; i++)
-		dirList[i].isDir() ? dirs.push(dirList[i]) : files.push(dirList[i]);
-
-	dirs.sort(mozimage.comparer.fileNameCompare);
-	files.sort(mozimage.comparer.fileCompare);
-
-	dirList = new Array();
-
-	for (i = 0; i < dirs.length; i++) {
-		var listItem = dirlistbox.appendItem(dirs[i].leaf, '');
-		// add the attributes to show right icon
-		listItem.setAttribute("class", "listitem-iconic");
-		listItem.setAttribute("value", "directory");
-	}
-
-	for (i = 0; i < files.length; i++)
-		if (supportedType(files[i]))
-			filelistbox.appendChild(getFileItem(files[i].leaf));
-	if (prefs.getEnableCurrent())
-		prefs.setHomeDir(adir);
-}
-
-function getDirectoryItem(linkItem) {
-	var fullpath = document.getElementById("fullpath-text");
-	var listItem = document.createElement('listitem');
-	var listCell = document.createElement('listcell');
-	var fileLabel = document.createElement('label');
-	fileLabel.setAttribute('value', linkItem.href);
-	fileLabel.setAttribute('crop', 'center');
-	fileLabel.setAttribute('flex', '1');
-
-	listCell.appendChild(fileLabel);
-	listItem.appendChild(listCell);
-	listItem.setAttribute("class", "listitem-iconic");
-	listItem.setAttribute("value", "directory");
-	// For compatibility with directoy viewer
-	listItem.setAttribute("label", linkItem.href);
-	return(listItem);
-}
-
-function getAbsoluteURL(url, node) {
-	const XMLNS = "http://www.w3.org/XML/1998/namespace";
-
-	if (!url || !node)
-		return "";
-
-	var urlArr = new Array(url);
-	var doc = node.ownerDocument;
-
-	if (node.nodeType == Node.ATTRIBUTE_NODE)
-		node = node.ownerElement;
-
-	while (node && node.nodeType == Node.ELEMENT_NODE) {
-		if (node.getAttributeNS(XMLNS, "base") != "")
-			urlArr.unshift(node.getAttributeNS(XMLNS, "base"));
-
-		node = node.parentNode;
-	}
-
-	// Look for a <base>.
-	var baseTags = doc.getElementsByTagName("base");
-	if (baseTags && baseTags.length) {
-		urlArr.unshift(baseTags[baseTags.length - 1].getAttribute("href"));
-	}
-
-	// resolve everything from bottom up, starting with document location
-	var ioService = Components.classes["@mozilla.org/network/io-service;1"]
-		.getService(Components.interfaces.nsIIOService);
-	var URL = ioService.newURI(doc.location.href, null, null);
-	for (var i = 0; i < urlArr.length; i++) {
-		URL.spec = URL.resolve(urlArr[i]);
-	}
-
-	return URL.spec;
-}
-
-function getImageLinkItem(linkItem) {
-	var fullpath = document.getElementById("fullpath-text");
-	var listItem = document.createElement('listitem');
-	var listCell = document.createElement('listcell');
-	var fileLabel = document.createElement('label');
-
-	fileLabel.setAttribute('value', linkItem.href);
-	fileLabel.setAttribute('crop', 'center');
-	fileLabel.setAttribute('flex', '1');
-
-	if (prefs.getThumbSize() > 0) {
-		if (linkItem.firstChild.nodeName.toUpperCase() == 'IMG' || prefs.getForceHttpTumb()) {
-			var tumbURL = "";
-			var fileImage = document.createElement('image');
-			if (linkItem.firstChild.nodeName.toUpperCase() == 'IMG') {
-				var image = linkItem.firstChild;
-				tumbURL = getAbsoluteURL(image.src, image);
-			}
-			if (tumbURL == "")
-				tumbURL = linkItem.href;
-			fileImage.setAttribute('src', tumbURL);
-			fileImage.setAttribute('width', prefs.getThumbSize());
-			fileImage.setAttribute('height', prefs.getThumbSize());
-			listCell.appendChild(fileImage);
-		}
-	}
-	listCell.appendChild(fileLabel);
-	listItem.appendChild(listCell);
-	listItem.setAttribute('context', 'filelist-popup');
-	return(listItem);
-}
-
-function getFileItem(fileName) {
-	var fullpath = document.getElementById("fullpath-text");
-	var fileUtil = new FileUtils();
-	var fullFileName = pathToURI(fileUtil.append(fullpath.value, fileName));
-
-	var listItem = document.createElement('listitem');
-	var listCell = document.createElement('listcell');
-	var fileLabel = document.createElement('label');
-
-	fileLabel.setAttribute('value', fileName);
-
-	if (prefs.getThumbSize() > 0) {
-		var fileImage = document.createElement('image');
-		fileImage.setAttribute('src', fullFileName);
-		fileImage.setAttribute('width', prefs.getThumbSize());
-		fileImage.setAttribute('height', prefs.getThumbSize());
-		listCell.appendChild(fileImage);
-	}
-
-	listCell.appendChild(fileLabel);
-	listItem.appendChild(listCell);
-	listItem.setAttribute('context', 'filelist-popup');
-	return(listItem);
-}
-
-function supportedLinkType(linkItem) {
-	var result = false;
-	var extList = prefs.getExtList();
-	for (var i = 0; i < extList.length; i++) {
-		if (extList[i].toUpperCase() == linkItem.href.substr(-3).toUpperCase())
-			result = true;
-	}
-	return(result);
-}
-
-function supportedType(file) {
-	var result = false;
-	var extList = prefs.getExtList();
-	for (var i = 0; i < extList.length; i++) {
-		if (extList[i].toUpperCase() == file.ext.toUpperCase())
-			result = true;
-	}
-	return(result);
-}
-
-function emptyList() {
-	emptyingList = true;
-	var dirlistbox = document.getElementById("directory-listbox");
-	var filelistbox = document.getElementById("file-listbox");
-	var item;
-
-	var i = dirlistbox.getRowCount();
-	while (i > 0) {
-		i--;
-		item = dirlistbox.getItemAtIndex(i);
-		dirlistbox.removeChild(item);
-	}
-	i = filelistbox.getRowCount();
-	while (i > 0) {
-		i--;
-		item = filelistbox.getItemAtIndex(i);
-		filelistbox.removeChild(item);
-	}
-	emptyingList = false;
-}
-
-function selectItemByName(itemName) {
-	var fileListBox = document.getElementById("file-listbox");
-	var numOfRows = fileListBox.getRowCount();
-
-	for (var i = 0; i < numOfRows; i++) {
-		item = fileListBox.getItemAtIndex(i);
-		fileListBox.scrollToIndex(i);
-		if (item.lastChild.lastChild.value == itemName) {
-			fileListBox.selectItem(item);
-		}
-
-	}
-	fileListBox.ensureIndexIsVisible(fileListBox.selectedIndex);
-}
-
-
-function pathToURI(aPath) {
-	const JS_URIFIX = new Components.Constructor("@mozilla.org/docshell/urifixup;1", "nsIURIFixup");
-	var uriFixup = new JS_URIFIX();
-
-	var fixedURI = uriFixup.createFixupURI(aPath, 0);
-	return(fixedURI.spec);
-}
-
-function clearCache() {
-	var classID = Components.classes["@mozilla.org/network/cache-service;1"];
-	var cacheService = classID.getService(Components.interfaces.nsICacheService);
-	cacheService.evictEntries(Components.interfaces.nsICache.STORE_ON_DISK);
-	cacheService.evictEntries(Components.interfaces.nsICache.STORE_IN_MEMORY);
-}
-
-function getParams(commandLine, imagePath) {
-	var params = new Array();
-	var index = 0;
-	var quote = false;
-	var i = 0;
-	params[index] = "";
-	for (i = 0; i < commandLine.length; i++) {
-		if (commandLine[i] == "'")
-			quote = !quote;
-		else if (commandLine[i] == ' ' && !quote) {
-			index++;
-			params[index] = "";
-		}
-		else
-			params[index] = params[index] + commandLine[i];
-	}
-	for (i = 0; i < params.length; i++) {
-		if (params[i] == '%f')
-			params[i] = imagePath;
-	}
-	return(params);
-}
-
-function saveBookmarks() {
-	var bookmarklistbox = document.getElementById("bookmark-listbox");
-	var dirUtil = new DirUtils();
-	var fileUtil = new FileUtils();
-	var fileName = fileUtil.append(dirUtil.getPrefsDir(), 'mozimage-bookmarks.txt');
-	var file = new File(fileName);
-	var anItem = null;
-	file.open('w');
-	for (var i = 0; i < bookmarklistbox.getRowCount(); i++) {
-		anItem = bookmarklistbox.getItemAtIndex(i);
-		file.write(anItem.label + '\n');
-		file.write(anItem.value + '\n');
-	}
-	file.close();
-}
-
-function save(url, fileName) {
-	var ioservice = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
-	var uri = ioservice.newURI(url, null, null);
-	var persist = Components.classes["@mozilla.org/embedding/browser/nsWebBrowserPersist;1"].createInstance(Components.interfaces.nsIWebBrowserPersist);
-	var targetFile = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
-
-	targetFile.initWithPath(fileName);
-
-	if (!targetFile.exists()) {
-		targetFile.create(0x00, 0644);
-	}
-	persist.saveURI(uri, null, null, null, null, targetFile);
-}
-
-function baseNameFromUrl(url) {
-	var nsIURL = Components.interfaces.nsIURL;
-	var urlComp = Components.classes['@mozilla.org/network/standard-url;1'].createInstance(nsIURL);
-	urlComp.spec = url;
-	return(urlComp.fileName);
-}
-
-function getMainImage() {
-	return(top.getBrowser().contentDocument.images[0]);
-}
-
 /*
  **
  ** Event handler
  **
  */
 
+/*
 function exit_click() {
 	try {
 		var fullpath = document.getElementById("fullpath-text");
@@ -418,80 +77,30 @@ function exit_click() {
 	}
 	window.close();
 }
+*/
 
+/*
 function image_click() {
 	//var image = document.getElementById("main-image");
 	//var image = document.getElementById("file-listbox").selectedItem.lastChild.firstChild;
-	var image = getMainImage();
+	var image = this.getMainImage();
 	image.focus();
 }
+ */
 
-function save_click() {
-	var saveasStr = mozImageBundle.formatStringFromName("saveas", [], 0);
-	var fileUtil = new FileUtils();
-	//var mainImage = document.getElementById("file-listbox").selectedItem.lastChild.firstChild;
-	var mainimage = getMainImage();
-	//var mainImage = document.getElementById("main-image");
-	var nsIFilePicker = Components.interfaces.nsIFilePicker;
-	var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
 
-	fp.init(window, saveasStr, nsIFilePicker.modeSave);
-	fp.appendFilters(nsIFilePicker.filterImages);
-	fp.defaultString = baseNameFromUrl(mainImage.src);
-	var res = fp.show();
-	if (res == nsIFilePicker.returnOK) {
-		var destFile = fp.file;
-		try {
-			save(mainImage.src, destFile.path);
-		} catch (e) {
-			alert(e);
-		}
-	}
-}
-
-function saveall_click() {
-	var choosedirStr = mozImageBundle.formatStringFromName("choosedir", [], 0);
-	var fileUtil = new FileUtils();
-	var basePath = document.getElementById("fullpath-text");
-	var filelistbox = document.getElementById("file-listbox");
-	var item = null;
-	var fileName = "";
-	var destFile = "";
-
-	var nsIFilePicker = Components.interfaces.nsIFilePicker;
-	var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-
-	fp.init(window, choosedirStr, nsIFilePicker.modeGetFolder);
-	fp.appendFilters(nsIFilePicker.filterImages);
-
-	var res = fp.show();
-	if (res == nsIFilePicker.returnOK) {
-		var destDir = fp.file;
-		var uri = "";
-		var numOfImages = filelistbox.getRowCount();
-		try {
-			for (var i = 0; i < numOfImages; i++) {
-				item = filelistbox.getItemAtIndex(i);
-				fileName = item.lastChild.lastChild.value;
-				if (fileName.substr(0, 7) != "http://")
-					uri = pathToURI(fileUtil.append(basePath.value, fileName));
-				else
-					uri = fileName;
-
-				destFile = fileUtil.append(destDir.path, baseNameFromUrl(uri));
-				save(uri, destFile);
-			}
-		}
-		catch (e) {
-			alert(e);
-		}
-	}
-}
 
 mozimage.define('mozimage.SideBar', {
 
+	emptyingList : false,
+
+	numOfLinks : 0,
+
+	stringBundle : null,
+
 	init : function (e) {
 		var me = this;
+		this.stringBundle = srGetStrBundle("chrome://mozimage/locale/mozimage.properties");
 		this.sidebar = document.getElementById("mozimage-window");
 		this.fullpathText = document.getElementById("fullpath-text");
 		this.goButton = document.getElementById("go-button");
@@ -688,7 +297,7 @@ mozimage.define('mozimage.SideBar', {
 
 	explorer_click : function () {
 		try {
-			var choosedir = mozImageBundle.GetStringFromName("choosedir");
+			var choosedir = this.stringBundle.GetStringFromName("choosedir");
 			var nsIFilePicker = Components.interfaces.nsIFilePicker;
 			var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
 			fp.init(window, choosedir, nsIFilePicker.modeGetFolder);
@@ -706,7 +315,7 @@ mozimage.define('mozimage.SideBar', {
 
 	clear_click : function () {
 		try {
-			var image = getMainImage();
+			var image = this.getMainImage();
 			image.src = "";
 			image.width = 0;
 			image.height = 0;
@@ -791,7 +400,7 @@ mozimage.define('mozimage.SideBar', {
 
 	edit_click : function () {
 		try {
-			var chooseImageBefore = mozImageBundle.formatStringFromName("chooseimagebefore", [], 0);
+			var chooseImageBefore = this.stringBundle.formatStringFromName("chooseimagebefore", [], 0);
 			if (top.getBrowser().contentDocument.location.href
 				.toString().substring(0, 7) != "file://") {
 				alert(chooseImageBefore);
@@ -804,7 +413,7 @@ mozimage.define('mozimage.SideBar', {
 				return;
 			}
 
-			if (getMainImage() == null) {
+			if (this.getMainImage() == null) {
 				alert(chooseImageBefore);
 				return;
 			}
@@ -812,16 +421,16 @@ mozimage.define('mozimage.SideBar', {
 			var convertPath = prefs.getConvertPath();
 			var editWindow = window.openDialog(
 				'chrome://mozimage/content/edit/mozimage_edit.xul',
-				mozImageBundle.GetStringFromName("editTitle"),
+				this.stringBundle.GetStringFromName("editTitle"),
 				'chrome,centerscreen,modal',
 				//document.getElementById("main-image"),
 				//top.getBrowser().contentDocument.images[0],
 				//document.getElementById("file-listbox").selectedItem.lastChild.firstChild,
-				getMainImage(),
-				mozImageBundle.formatStringFromName("saveas", [], 0),
+				this.getMainImage(),
+				this.stringBundle.formatStringFromName("saveas", [], 0),
 				document.getElementById("file-listbox"),
 				document.getElementById("fullpath-text"),
-				mozImageBundle.formatStringFromName("commandnotfound", [], 0),
+				this.stringBundle.formatStringFromName("commandnotfound", [], 0),
 				convertPath,
 				document.getElementById("directory-listbox"),
 				top.getBrowser().contentDocument.location.href);
@@ -849,7 +458,7 @@ mozimage.define('mozimage.SideBar', {
 	options_click : function () {
 		try {
 			prefs.save();
-			window.openDialog('chrome://mozimage/content/prefs/mozimage_prefs.xul', mozImageBundle.GetStringFromName("optionsTitle"), 'chrome,centerscreen,dialog,modal', document.getElementById("fullpath-text"), mozImageBundle.GetStringFromName("choosedir"));
+			window.openDialog('chrome://mozimage/content/prefs/mozimage_prefs.xul', this.stringBundle.GetStringFromName("optionsTitle"), 'chrome,centerscreen,dialog,modal', document.getElementById("fullpath-text"), this.stringBundle.GetStringFromName("choosedir"));
 			prefs.load();
 			this.buildOpenWithMenu();
 			this.buildMacroMenu();
@@ -866,7 +475,7 @@ mozimage.define('mozimage.SideBar', {
 
 	directory_select : function (event) {
 		var me = this;
-		if (!emptyingList) {
+		if (!this.emptyingList) {
 			var selectedItem = event.target.selectedItem;
 			var basePath = document.getElementById("fullpath-text");
 			var path = selectedItem.getAttribute("label");
@@ -891,7 +500,7 @@ mozimage.define('mozimage.SideBar', {
 		var me = this;
 		var bookmarklistbox = document.getElementById("bookmark-listbox");
 		var fullpath = document.getElementById("fullpath-text");
-		var question = mozImageBundle.formatStringFromName("bookmarkadd", [], 0);
+		var question = this.stringBundle.formatStringFromName("bookmarkadd", [], 0);
 		var bookmarkName = prompt(question, fullpath.value);
 		if (bookmarkName != null) {
 			var listItem = bookmarklistbox.appendItem(bookmarkName, '');
@@ -902,19 +511,19 @@ mozimage.define('mozimage.SideBar', {
 				me.bookmark_select.call(me, e);
 			}, false);
 		}
-		saveBookmarks();
+		this.saveBookmarks();
 	},
 
 	deletebookmark_click : function () {
 
 		var bookmarklistbox = document.getElementById("bookmark-listbox");
 		var anItem = bookmarklistbox.currentItem;
-		var question = mozImageBundle.formatStringFromName("bookmarkdelete", [anItem.label], 1);
+		var question = this.stringBundle.formatStringFromName("bookmarkdelete", [anItem.label], 1);
 
 		if (confirm(question)) {
 			bookmarklistbox.removeChild(anItem);
 		}
-		saveBookmarks();
+		this.saveBookmarks();
 	},
 
 	bookmarkup_click : function () {
@@ -927,7 +536,7 @@ mozimage.define('mozimage.SideBar', {
 			bookmarklistbox.removeChild(item);
 			bookmarklistbox.insertBefore(item, prevItem);
 			bookmarklistbox.selectItem(item);
-			saveBookmarks();
+			this.saveBookmarks();
 		}
 	},
 
@@ -939,13 +548,13 @@ mozimage.define('mozimage.SideBar', {
 			bookmarklistbox.removeChild(item);
 			bookmarklistbox.insertBefore(item, nextItem);
 			bookmarklistbox.selectItem(item);
-			saveBookmarks();
+			this.saveBookmarks();
 		}
 	},
 
 	file_select : function (event) {
 		try {
-			if (!emptyingList) {
+			if (!this.emptyingList) {
 				var selectedItem = event.target.selectedItem;
 				var basePath = document.getElementById("fullpath-text");
 				var fileUtil = new FileUtils();
@@ -954,7 +563,7 @@ mozimage.define('mozimage.SideBar', {
 				var fileName = labelItem.value;
 
 				if (fileName.substr(0, 7) != "http://")
-					var uri = pathToURI(fileUtil.append(basePath.value, fileName));
+					var uri = this.pathToURI(fileUtil.append(basePath.value, fileName));
 				else
 					uri = fileName;
 
@@ -977,13 +586,114 @@ mozimage.define('mozimage.SideBar', {
 		}
 	},
 
+	htmlSearch : function () {
+		try {
+
+			var dirlistbox = document.getElementById("directory-listbox");
+			var filelistbox = document.getElementById("file-listbox");
+			var aBrowser = document.getElementById("html-browser");
+			var doc = aBrowser.contentDocument;
+			var fullpath = document.getElementById("fullpath-text");
+			var req = null;
+
+			if (doc.links.length > this.numOfLinks) {
+				this.emptyList();
+				this.numOfLinks = doc.links.length;
+				for (var i = 0; i < doc.links.length; i++) {
+					if (this.supportedLinkType(doc.links[i])) {
+						filelistbox.appendChild(this.getImageLinkItem(doc.links[i]));
+						// use an XMLHttpRequest object to pre-load the images
+						if (prefs.getEnableCache()) {
+							req = new XMLHttpRequest();
+							req.open('GET', doc.links[i].href, true);
+							req.setRequestHeader("Referer", fullpath.value);
+							req.send(null);
+						}
+					}
+					else if (doc.links[i].href.substr(0, 7) == "http://")
+						dirlistbox.appendChild(this.getDirectoryItem(doc.links[i]));
+				}
+			}
+		} catch (e) {
+			mozimage.showError(e);
+		}
+	},
+
+	/*
+	** link to the right click on the image: temporary disabled
+	save_click : function () {
+		var saveasStr = this.stringBundle.formatStringFromName("saveas", [], 0);
+		var fileUtil = new FileUtils();
+		//var mainImage = document.getElementById("file-listbox").selectedItem.lastChild.firstChild;
+		var mainimage = this.getMainImage();
+		//var mainImage = document.getElementById("main-image");
+		var nsIFilePicker = Components.interfaces.nsIFilePicker;
+		var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
+
+		fp.init(window, saveasStr, nsIFilePicker.modeSave);
+		fp.appendFilters(nsIFilePicker.filterImages);
+		fp.defaultString = this.baseNameFromUrl(mainImage.src);
+		var res = fp.show();
+		if (res == nsIFilePicker.returnOK) {
+			var destFile = fp.file;
+			try {
+				this.save(mainImage.src, destFile.path);
+			} catch (e) {
+				alert(e);
+			}
+		}
+	},
+	*/
+
+	/*
+	 ** link to the right click on the image: temporary disabled
+	saveall_click: function () {
+		var choosedirStr = this.stringBundle.formatStringFromName("choosedir", [], 0);
+		var fileUtil = new FileUtils();
+		var basePath = document.getElementById("fullpath-text");
+		var filelistbox = document.getElementById("file-listbox");
+		var item = null;
+		var fileName = "";
+		var destFile = "";
+
+		var nsIFilePicker = Components.interfaces.nsIFilePicker;
+		var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
+
+		fp.init(window, choosedirStr, nsIFilePicker.modeGetFolder);
+		fp.appendFilters(nsIFilePicker.filterImages);
+
+		var res = fp.show();
+		if (res == nsIFilePicker.returnOK) {
+			var destDir = fp.file;
+			var uri = "";
+			var numOfImages = filelistbox.getRowCount();
+			try {
+				for (var i = 0; i < numOfImages; i++) {
+					item = filelistbox.getItemAtIndex(i);
+					fileName = item.lastChild.lastChild.value;
+					if (fileName.substr(0, 7) != "http://")
+						uri = this.pathToURI(fileUtil.append(basePath.value, fileName));
+					else
+						uri = fileName;
+
+					destFile = fileUtil.append(destDir.path, this.baseNameFromUrl(uri));
+					this.save(uri, destFile);
+				}
+			}
+			catch (e) {
+				alert(e);
+			}
+		}
+	},
+	*/
+
 	//</editor-fold>
 
 	buildOpenWithMenu: function () {
 		var editorsName = prefs.getEditorsName();
 		for (var i = 1; i <= 4; i++) {
 			var openwith = document.getElementById("openwith" + i + "-menu");
-			openwith.label = mozImageBundle.formatStringFromName("openwith", [editorsName[i - 1]], 1);
+			openwith.label = this.stringBundle.formatStringFromName("openwith", [editorsName[i - 1]], 1);
 			openwith.hidden = (editorsName[i - 1] == "");
 		}
 	},
@@ -998,7 +708,6 @@ mozimage.define('mozimage.SideBar', {
 	},
 
 	loadBookmarks : function () {
-
 		var bookmarklistbox = document.getElementById("bookmark-listbox");
 		var dirUtil = new DirUtils();
 		var fileUtil = new FileUtils();
@@ -1023,7 +732,7 @@ mozimage.define('mozimage.SideBar', {
 					// add the attributes to show right icon
 					listItem.setAttribute("class", "listitem-iconic");
 					listItem.setAttribute("value", bookmarkValue);
-					listItem.addEventListener("dblclick", bookmark_select, false);
+					mozimage.addEventListener(listItem, 'dblclick', this.bookmark_select, this);
 				}
 			}
 			file.close();
@@ -1032,21 +741,21 @@ mozimage.define('mozimage.SideBar', {
 
 	fillListBox : function (aLocation) {
 		var info = document.getElementById("info-label");
-		var loadingStr = mozImageBundle.formatStringFromName("loading", [], 0);
-		var readyStr = mozImageBundle.formatStringFromName("ready", [], 0);
+		var loadingStr = this.stringBundle.formatStringFromName("loading", [], 0);
+		var readyStr = this.stringBundle.formatStringFromName("ready", [], 0);
 
 		info.value = loadingStr;
 
 		if (aLocation.substr(0, 7) == "http://")
-			initializeSearch(aLocation);
+			this.initializeSearch(aLocation);
 		else
-			directorySearch(aLocation);
+			this.directorySearch(aLocation);
 
 		info.value = readyStr;
 	},
 
 	openwithEditor : function (index) {
-		var chooseImageBefore = mozImageBundle.formatStringFromName("chooseimagebefore", [], 0);
+		var chooseImageBefore = this.stringBundle.formatStringFromName("chooseimagebefore", [], 0);
 		var filelistbox = document.getElementById("file-listbox");
 		var selectedItem = filelistbox.selectedItem;
 
@@ -1057,14 +766,14 @@ mozimage.define('mozimage.SideBar', {
 
 		var labelItem = selectedItem.lastChild.lastChild;
 		var fileName = labelItem.value;
-		var filenotfound = mozImageBundle.formatStringFromName("filenotfound", [], 0);
+		var filenotfound = this.stringBundle.formatStringFromName("filenotfound", [], 0);
 
 		var basePath = document.getElementById("fullpath-text");
 		var fileUtil = new FileUtils();
 		var editorsPath = prefs.getEditorsPath();
 		//var image = document.getElementById("main-image");
 		//var image = document.getElementById("file-listbox").selectedItem.lastChild.firstChild;
-		var image = getMainImage();
+		var image = this.getMainImage();
 
 		var imagePath = fileUtil.append(basePath.value, fileName);
 
@@ -1092,8 +801,8 @@ mozimage.define('mozimage.SideBar', {
 	},
 
 	runMacro : function (index) {
-		var chooseImageBefore = mozImageBundle.formatStringFromName("chooseimagebefore", [], 0);
-		var filenotfound = mozImageBundle.formatStringFromName("filenotfound", [], 0);
+		var chooseImageBefore = this.stringBundle.formatStringFromName("chooseimagebefore", [], 0);
+		var filenotfound = this.stringBundle.formatStringFromName("filenotfound", [], 0);
 		var filelistbox = document.getElementById("file-listbox");
 		var selectedItem = filelistbox.selectedItem;
 
@@ -1108,12 +817,12 @@ mozimage.define('mozimage.SideBar', {
 		var imagePath = fileUtil.append(basePath.value, fileName);
 
 		//var image = document.getElementById("file-listbox").selectedItem.lastChild.firstChild;
-		var image = getMainImage();
+		var image = this.getMainImage();
 		var imageURL = image.src;
 
 		var macroCode = prefs.getMacroCode();
 		var commandLine = macroCode[index];
-		var paramsList = getParams(commandLine, imagePath);
+		var paramsList = this.getParams(commandLine, imagePath);
 		var paramsOnly = new Array();
 		var command = paramsList[0];
 
@@ -1161,18 +870,318 @@ mozimage.define('mozimage.SideBar', {
 				.newURI(fullpath.value, null, null);
 		}
 		aBrowser.loadURI(imageURL, referrer, null);
-	}
+	},
+
+	initializeSearch : function (url) {
+		var fullpath = document.getElementById("fullpath-text");
+		var aBrowser = document.getElementById("html-browser");
+
+		mozimage.addEventListener(aBrowser, "load", this.htmlSearch, this);
+
+		this.numOfLinks = 0;
+		fullpath.value = url;
+		aBrowser.setAttribute('src', url);
+	},
+
+	directorySearch : function (adir) {
+		var dirnotfound = this.stringBundle.formatStringFromName("dirnotfound", [], 0);
+		var dirlistbox = document.getElementById("directory-listbox");
+		var filelistbox = document.getElementById("file-listbox");
+		var d = new Dir(adir);
+		var dirList = d.readDir();
+		if (dirList == null) {
+			alert(dirnotfound);
+			return;
+		}
+
+		var fullpath = document.getElementById("fullpath-text");
+
+		var dirs = new Array();
+		var files = new Array();
+		var i = 0;
+		this.emptyList();
+		fullpath.value = adir;
+
+		for (i = 0; i < dirList.length; i++)
+			dirList[i].isDir() ? dirs.push(dirList[i]) : files.push(dirList[i]);
+
+		dirs.sort(mozimage.comparer.fileNameCompare);
+		files.sort(mozimage.comparer.fileCompare);
+
+		dirList = new Array();
+
+		for (i = 0; i < dirs.length; i++) {
+			var listItem = dirlistbox.appendItem(dirs[i].leaf, '');
+			// add the attributes to show right icon
+			listItem.setAttribute("class", "listitem-iconic");
+			listItem.setAttribute("value", "directory");
+		}
+
+		for (i = 0; i < files.length; i++)
+			if (this.supportedType(files[i]))
+				filelistbox.appendChild(this.getFileItem(files[i].leaf));
+		if (prefs.getEnableCurrent())
+			prefs.setHomeDir(adir);
+	},
+
+	getDirectoryItem : function (linkItem) {
+		var fullpath = document.getElementById("fullpath-text");
+		var listItem = document.createElement('listitem');
+		var listCell = document.createElement('listcell');
+		var fileLabel = document.createElement('label');
+		fileLabel.setAttribute('value', linkItem.href);
+		fileLabel.setAttribute('crop', 'center');
+		fileLabel.setAttribute('flex', '1');
+
+		listCell.appendChild(fileLabel);
+		listItem.appendChild(listCell);
+		listItem.setAttribute("class", "listitem-iconic");
+		listItem.setAttribute("value", "directory");
+		// For compatibility with directoy viewer
+		listItem.setAttribute("label", linkItem.href);
+		return(listItem);
+	},
+
+	getAbsoluteURL : function (url, node) {
+		const XMLNS = "http://www.w3.org/XML/1998/namespace";
+
+		if (!url || !node)
+			return "";
+
+		var urlArr = new Array(url);
+		var doc = node.ownerDocument;
+
+		if (node.nodeType == Node.ATTRIBUTE_NODE)
+			node = node.ownerElement;
+
+		while (node && node.nodeType == Node.ELEMENT_NODE) {
+			if (node.getAttributeNS(XMLNS, "base") != "")
+				urlArr.unshift(node.getAttributeNS(XMLNS, "base"));
+
+			node = node.parentNode;
+		}
+
+		// Look for a <base>.
+		var baseTags = doc.getElementsByTagName("base");
+		if (baseTags && baseTags.length) {
+			urlArr.unshift(baseTags[baseTags.length - 1].getAttribute("href"));
+		}
+
+		// resolve everything from bottom up, starting with document location
+		var ioService = Components.classes["@mozilla.org/network/io-service;1"]
+			.getService(Components.interfaces.nsIIOService);
+		var URL = ioService.newURI(doc.location.href, null, null);
+		for (var i = 0; i < urlArr.length; i++) {
+			URL.spec = URL.resolve(urlArr[i]);
+		}
+
+		return URL.spec;
+	},
+
+	getImageLinkItem : function (linkItem) {
+		var fullpath = document.getElementById("fullpath-text");
+		var listItem = document.createElement('listitem');
+		var listCell = document.createElement('listcell');
+		var fileLabel = document.createElement('label');
+
+		fileLabel.setAttribute('value', linkItem.href);
+		fileLabel.setAttribute('crop', 'center');
+		fileLabel.setAttribute('flex', '1');
+
+		if (prefs.getThumbSize() > 0) {
+			if (linkItem.firstChild.nodeName.toUpperCase() == 'IMG' || prefs.getForceHttpTumb()) {
+				var tumbURL = "";
+				var fileImage = document.createElement('image');
+				if (linkItem.firstChild.nodeName.toUpperCase() == 'IMG') {
+					var image = linkItem.firstChild;
+					tumbURL = this.getAbsoluteURL(image.src, image);
+				}
+				if (tumbURL == "")
+					tumbURL = linkItem.href;
+				fileImage.setAttribute('src', tumbURL);
+				fileImage.setAttribute('width', prefs.getThumbSize());
+				fileImage.setAttribute('height', prefs.getThumbSize());
+				listCell.appendChild(fileImage);
+			}
+		}
+		listCell.appendChild(fileLabel);
+		listItem.appendChild(listCell);
+		listItem.setAttribute('context', 'filelist-popup');
+		return(listItem);
+	},
+
+	getFileItem : function (fileName) {
+		var fullpath = document.getElementById("fullpath-text");
+		var fileUtil = new FileUtils();
+		var fullFileName = this.pathToURI(fileUtil.append(fullpath.value, fileName));
+
+		var listItem = document.createElement('listitem');
+		var listCell = document.createElement('listcell');
+		var fileLabel = document.createElement('label');
+
+		fileLabel.setAttribute('value', fileName);
+
+		if (prefs.getThumbSize() > 0) {
+			var fileImage = document.createElement('image');
+			fileImage.setAttribute('src', fullFileName);
+			fileImage.setAttribute('width', prefs.getThumbSize());
+			fileImage.setAttribute('height', prefs.getThumbSize());
+			listCell.appendChild(fileImage);
+		}
+
+		listCell.appendChild(fileLabel);
+		listItem.appendChild(listCell);
+		listItem.setAttribute('context', 'filelist-popup');
+		return(listItem);
+	},
+
+	supportedLinkType : function (linkItem) {
+		var result = false;
+		var extList = prefs.getExtList();
+		for (var i = 0; i < extList.length; i++) {
+			if (extList[i].toUpperCase() == linkItem.href.substr(-3).toUpperCase())
+				result = true;
+		}
+		return(result);
+	},
+
+	supportedType : function (file) {
+		var result = false;
+		var extList = prefs.getExtList();
+		for (var i = 0; i < extList.length; i++) {
+			if (extList[i].toUpperCase() == file.ext.toUpperCase())
+				result = true;
+		}
+		return(result);
+	},
+
+	emptyList : function () {
+		this.emptyingList = true;
+		var dirlistbox = document.getElementById("directory-listbox");
+		var filelistbox = document.getElementById("file-listbox");
+		var item;
+
+		var i = dirlistbox.getRowCount();
+		while (i > 0) {
+			i--;
+			item = dirlistbox.getItemAtIndex(i);
+			dirlistbox.removeChild(item);
+		}
+		i = filelistbox.getRowCount();
+		while (i > 0) {
+			i--;
+			item = filelistbox.getItemAtIndex(i);
+			filelistbox.removeChild(item);
+		}
+		this.emptyingList = false;
+	},
 
 	/*
-	updateDescription : function () {
-		var image = getMainImage();
-		var info = document.getElementById("info-label");
-		var newImage = new Image();
-		newImage.setAttribute("id", "thepreviewimage");
-		newImage.src = image.src;
-		info.value = mozImageBundle.formatStringFromName("sizeInfo", [newImage.width, newImage.height], 2);
-	}
+	selectItemByName : function (itemName) {
+		var fileListBox = document.getElementById("file-listbox");
+		var numOfRows = fileListBox.getRowCount();
+
+		for (var i = 0; i < numOfRows; i++) {
+			item = fileListBox.getItemAtIndex(i);
+			fileListBox.scrollToIndex(i);
+			if (item.lastChild.lastChild.value == itemName) {
+				fileListBox.selectItem(item);
+			}
+
+		}
+		fileListBox.ensureIndexIsVisible(fileListBox.selectedIndex);
+	},
 	*/
+
+	pathToURI : function (aPath) {
+		const JS_URIFIX = new Components.Constructor("@mozilla.org/docshell/urifixup;1", "nsIURIFixup");
+		var uriFixup = new JS_URIFIX();
+
+		var fixedURI = uriFixup.createFixupURI(aPath, 0);
+		return(fixedURI.spec);
+	},
+
+	clearCache : function () {
+		var classID = Components.classes["@mozilla.org/network/cache-service;1"];
+		var cacheService = classID.getService(Components.interfaces.nsICacheService);
+		cacheService.evictEntries(Components.interfaces.nsICache.STORE_ON_DISK);
+		cacheService.evictEntries(Components.interfaces.nsICache.STORE_IN_MEMORY);
+	},
+
+	getParams : function (commandLine, imagePath) {
+		var params = new Array();
+		var index = 0;
+		var quote = false;
+		var i = 0;
+		params[index] = "";
+		for (i = 0; i < commandLine.length; i++) {
+			if (commandLine[i] == "'")
+				quote = !quote;
+			else if (commandLine[i] == ' ' && !quote) {
+				index++;
+				params[index] = "";
+			}
+			else
+				params[index] = params[index] + commandLine[i];
+		}
+		for (i = 0; i < params.length; i++) {
+			if (params[i] == '%f')
+				params[i] = imagePath;
+		}
+		return(params);
+	},
+
+	saveBookmarks : function () {
+		var bookmarklistbox = document.getElementById("bookmark-listbox");
+		var dirUtil = new DirUtils();
+		var fileUtil = new FileUtils();
+		var fileName = fileUtil.append(dirUtil.getPrefsDir(), 'mozimage-bookmarks.txt');
+		var file = new File(fileName);
+		var anItem = null;
+		file.open('w');
+		for (var i = 0; i < bookmarklistbox.getRowCount(); i++) {
+			anItem = bookmarklistbox.getItemAtIndex(i);
+			file.write(anItem.label + '\n');
+			file.write(anItem.value + '\n');
+		}
+		file.close();
+	},
+
+	save : function (url, fileName) {
+		var ioservice = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
+		var uri = ioservice.newURI(url, null, null);
+		var persist = Components.classes["@mozilla.org/embedding/browser/nsWebBrowserPersist;1"].createInstance(Components.interfaces.nsIWebBrowserPersist);
+		var targetFile = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
+
+		targetFile.initWithPath(fileName);
+
+		if (!targetFile.exists()) {
+			targetFile.create(0x00, 0644);
+		}
+		persist.saveURI(uri, null, null, null, null, targetFile);
+	},
+
+	baseNameFromUrl : function (url) {
+		var nsIURL = Components.interfaces.nsIURL;
+		var urlComp = Components.classes['@mozilla.org/network/standard-url;1'].createInstance(nsIURL);
+		urlComp.spec = url;
+		return(urlComp.fileName);
+	},
+
+	getMainImage : function () {
+		return(top.getBrowser().contentDocument.images[0]);
+	}
+
+/*
+updateDescription : function () {
+	var image = getMainImage();
+	var info = document.getElementById("info-label");
+	var newImage = new Image();
+	newImage.setAttribute("id", "thepreviewimage");
+	newImage.src = image.src;
+	info.value = this.stringBundle.formatStringFromName("sizeInfo", [newImage.width, newImage.height], 2);
+}
+*/
 
 
 });

@@ -17,50 +17,6 @@ var mozImageBundle = srGetStrBundle("chrome://mozimage/locale/mozimage.propertie
 var numOfLinks = 0;
 var emptyingList = false;
 
-function showFile(imageURL) {
-	try {
-
-		var fullpath = document.getElementById("fullpath-text");
-		var referrer = null;
-		var currentDocument = top.getBrowser().contentDocument;
-		var aBrowser = top.getBrowser();
-
-		if (fullpath.value.substr(0, 7) == "http://") {
-			referrer = Components.classes["@mozilla.org/network/io-service;1"]
-				.getService(Components.interfaces.nsIIOService)
-				.newURI(fullpath.value, null, null);
-		}
-
-		aBrowser.loadURI(imageURL, referrer, null);
-
-	} catch (e) {
-		alert(e);
-	}
-}
-
-function resize(ratio) {
-	var contentDocument = top.getBrowser().contentDocument;
-	if (contentDocument.images.length == 1) {
-		if (prefs.getAutoSize())
-			autosize_click();
-
-		var image = contentDocument.images[0];
-		imageWidth = image.width;
-		imageHeight = image.height;
-		image.width = imageWidth * ratio;
-		image.height = imageHeight * ratio;
-	}
-}
-
-function updateDescription() {
-	var image = getMainImage();
-	var info = document.getElementById("info-label");
-	var newImage = new Image();
-	newImage.setAttribute("id", "thepreviewimage");
-	newImage.src = image.src;
-	info.value = mozImageBundle.formatStringFromName("sizeInfo", [newImage.width, newImage.height], 2);
-}
-
 function fileNameCompare(name1, name2) {
 
 	if (name1.leaf.toLowerCase() < name2.leaf.toLowerCase())
@@ -108,21 +64,6 @@ function fileCompare(name1, name2) {
 			return descending * fileNameCompare(name1, name2);
 	}
 	return 0;
-}
-
-function fillListBox(aLocation) {
-	var info = document.getElementById("info-label");
-	var loadingStr = mozImageBundle.formatStringFromName("loading", [], 0);
-	var readyStr = mozImageBundle.formatStringFromName("ready", [], 0);
-
-	info.value = loadingStr;
-
-	if (aLocation.substr(0, 7) == "http://")
-		initializeSearch(aLocation);
-	else
-		directorySearch(aLocation);
-
-	info.value = readyStr;
 }
 
 function initializeSearch(url) {
@@ -360,13 +301,6 @@ function emptyList() {
 	emptyingList = false;
 }
 
-function doSlideShow() {
-	if (prefs.getSlideshow()) {
-		next_click();
-		setTimeout(doSlideShow, prefs.getDelay());
-	}
-}
-
 function selectItemByName(itemName) {
 	var fileListBox = document.getElementById("file-listbox");
 	var numOfRows = fileListBox.getRowCount();
@@ -437,32 +371,6 @@ function saveBookmarks() {
 	file.close();
 }
 
-function bookmarkup_click() {
-	var bookmarklistbox = document.getElementById("bookmark-listbox");
-	var item = bookmarklistbox.selectedItem;
-
-	// firstChild does't return a ListItem
-	if (item != bookmarklistbox.getItemAtIndex(0)) {
-		prevItem = item.previousSibling;
-		bookmarklistbox.removeChild(item);
-		bookmarklistbox.insertBefore(item, prevItem);
-		bookmarklistbox.selectItem(item);
-		saveBookmarks();
-	}
-}
-
-function bookmarkdown_click() {
-	var bookmarklistbox = document.getElementById("bookmark-listbox");
-	var item = bookmarklistbox.selectedItem;
-	if (item != bookmarklistbox.lastChild) {
-		nextItem = item.nextSibling.nextSibling;
-		bookmarklistbox.removeChild(item);
-		bookmarklistbox.insertBefore(item, nextItem);
-		bookmarklistbox.selectItem(item);
-		saveBookmarks();
-	}
-}
-
 function save(url, fileName) {
 	var ioservice = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
 	var uri = ioservice.newURI(url, null, null);
@@ -494,24 +402,6 @@ function getMainImage() {
  **
  */
 
-function about_click() {
-	window.openDialog('chrome://mozimage/content/mozimage_about.xul', 'about', 'chrome,centerscreen,dialog,modal');
-}
-
-function options_click() {
-	try {
-		prefs.save();
-		window.openDialog('chrome://mozimage/content/prefs/mozimage_prefs.xul', mozImageBundle.GetStringFromName("optionsTitle"), 'chrome,centerscreen,dialog,modal', document.getElementById("fullpath-text"), mozImageBundle.GetStringFromName("choosedir"));
-		prefs.load();
-		buildOpenWithMenu();
-		buildMacroMenu();
-		var fullpath = document.getElementById("fullpath-text");
-		fillListBox(fullpath.value);
-	} catch (e) {
-		alert(e);
-	}
-}
-
 function exit_click() {
 	try {
 		var fullpath = document.getElementById("fullpath-text");
@@ -525,226 +415,11 @@ function exit_click() {
 	window.close();
 }
 
-function edit_click() {
-	try {
-		var chooseImageBefore = mozImageBundle.formatStringFromName("chooseimagebefore", [], 0);
-		if (top.getBrowser().contentDocument.location.href
-			.toString().substring(0, 7) != "file://") {
-			alert(chooseImageBefore);
-			return;
-		}
-
-		if (top.getBrowser().contentDocument.images[0].src
-			.toString().substring(0, 7) != "file://") {
-			alert(chooseImageBefore);
-			return;
-		}
-
-		if (getMainImage() == null) {
-			alert(chooseImageBefore);
-			return;
-		}
-
-		var convertPath = prefs.getConvertPath();
-		var editWindow = window.openDialog(
-			'chrome://mozimage/content/edit/mozimage_edit.xul',
-			mozImageBundle.GetStringFromName("editTitle"),
-			'chrome,centerscreen,modal',
-			//document.getElementById("main-image"),
-			//top.getBrowser().contentDocument.images[0],
-			//document.getElementById("file-listbox").selectedItem.lastChild.firstChild,
-			getMainImage(),
-			mozImageBundle.formatStringFromName("saveas", [], 0),
-			document.getElementById("file-listbox"),
-			document.getElementById("fullpath-text"),
-			mozImageBundle.formatStringFromName("commandnotfound", [], 0),
-			convertPath,
-			document.getElementById("directory-listbox"),
-			top.getBrowser().contentDocument.location.href);
-
-	} catch (e) {
-		alert(e);
-	}
-}
-
-function slideshow_click() {
-	try {
-		var slideshowButton = document.getElementById("slideshow-button");
-		var slideshow = !prefs.getSlideshow();
-
-		prefs.setSlideshow(slideshow);
-		slideshowButton.setAttribute('checked', slideshow);
-
-		doSlideShow();
-
-	} catch (e) {
-		alert(e);
-	}
-}
-
 function image_click() {
 	//var image = document.getElementById("main-image");
 	//var image = document.getElementById("file-listbox").selectedItem.lastChild.firstChild;
 	var image = getMainImage();
 	image.focus();
-}
-
-function directory_select(event) {
-	if (!emptyingList) {
-		var selectedItem = event.target.selectedItem;
-		var basePath = document.getElementById("fullpath-text");
-		var path = selectedItem.getAttribute("label");
-		var fileUtil = new FileUtils();
-		var url = "";
-
-		if (path.substr(0, 7) == "http://")
-			url = path;
-		else
-			url = fileUtil.append(basePath.value, path);
-		// the fillListBox is delayed because probably during its execution it deletes
-		// all directory-listbox elements. So, when the code return to this event
-		// handler the listboxitem that fire the event don't exists no more and mozilla
-		// returns an error.
-		setTimeout("fillListBox('" + url.replace(/\\/g, "\\\\") + "')", 10);
-	}
-}
-
-function bookmark_select(event) {
-	try {
-		var mainTabbox = document.getElementById("main_tabbox");
-		mainTabbox.selectedIndex = 0;
-		var selectedItem = event.target;
-		var path = selectedItem.getAttribute("value");
-		fillListBox(path);
-	} catch (e) {
-		alert(e);
-	}
-
-}
-
-function addbookmark_click() {
-	var bookmarklistbox = document.getElementById("bookmark-listbox");
-	var fullpath = document.getElementById("fullpath-text");
-	var question = mozImageBundle.formatStringFromName("bookmarkadd", [], 0);
-	var bookmarkName = prompt(question, fullpath.value);
-	if (bookmarkName != null) {
-		var listItem = bookmarklistbox.appendItem(bookmarkName, '');
-		// add the attributes to show right icon
-		listItem.setAttribute("class", "listitem-iconic");
-		listItem.setAttribute("value", fullpath.value);
-		listItem.addEventListener("dblclick", bookmark_select, false);
-	}
-	saveBookmarks();
-}
-
-function deletebookmark_click() {
-
-	var bookmarklistbox = document.getElementById("bookmark-listbox");
-	var anItem = bookmarklistbox.currentItem;
-	var question = mozImageBundle.formatStringFromName("bookmarkdelete", [anItem.label], 1);
-
-	if (confirm(question)) {
-		bookmarklistbox.removeChild(anItem);
-	}
-	saveBookmarks();
-}
-
-function file_select(event) {
-	if (!emptyingList) {
-		var selectedItem = event.target.selectedItem;
-		var basePath = document.getElementById("fullpath-text");
-		var fileUtil = new FileUtils();
-
-		var labelItem = selectedItem.lastChild.lastChild;
-		var fileName = labelItem.value;
-
-		if (fileName.substr(0, 7) != "http://")
-			var uri = pathToURI(fileUtil.append(basePath.value, fileName));
-		else
-			uri = fileName;
-
-		showFile(uri);
-	}
-}
-
-function openwith_click(index) {
-	var chooseImageBefore = mozImageBundle.formatStringFromName("chooseimagebefore", [], 0);
-	var filelistbox = document.getElementById("file-listbox");
-	var selectedItem = filelistbox.selectedItem;
-
-	if (selectedItem == null) {
-		alert(chooseImageBefore);
-		return;
-	}
-
-	var labelItem = selectedItem.lastChild.lastChild;
-	var fileName = labelItem.value;
-	var filenotfound = mozImageBundle.formatStringFromName("filenotfound", [], 0);
-
-	var basePath = document.getElementById("fullpath-text");
-	var fileUtil = new FileUtils();
-	var editorsPath = prefs.getEditorsPath();
-	//var image = document.getElementById("main-image");
-	//var image = document.getElementById("file-listbox").selectedItem.lastChild.firstChild;
-	var image = getMainImage();
-
-	var imagePath = fileUtil.append(basePath.value, fileName);
-
-	try {
-		var rv = fileUtil.spawn(editorsPath[index - 1], [imagePath]);
-		if (rv == null)
-			alert(filenotfound);
-	} catch (e) {
-		alert(e);
-	}
-}
-
-function macro_click(index) {
-	var chooseImageBefore = mozImageBundle.formatStringFromName("chooseimagebefore", [], 0);
-	var filenotfound = mozImageBundle.formatStringFromName("filenotfound", [], 0);
-	var filelistbox = document.getElementById("file-listbox");
-	var selectedItem = filelistbox.selectedItem;
-
-	if (selectedItem == null) {
-		alert(chooseImageBefore);
-		return;
-	}
-	var labelItem = selectedItem.lastChild.lastChild;
-	var fileName = labelItem.value;
-	var basePath = document.getElementById("fullpath-text");
-	var fileUtil = new FileUtils();
-	var imagePath = fileUtil.append(basePath.value, fileName);
-
-	//var image = document.getElementById("file-listbox").selectedItem.lastChild.firstChild;
-	var image = getMainImage();
-	var imageURL = image.src;
-
-	var macroCode = prefs.getMacroCode();
-	var commandLine = macroCode[index];
-	var paramsList = getParams(commandLine, imagePath);
-	var paramsOnly = new Array();
-	var command = paramsList[0];
-
-	for (var i = 1; i < paramsList.length; i++)
-		paramsOnly[i - 1] = paramsList[i];
-
-	try {
-		var rv = fileUtil.execute(command, paramsOnly);
-		if (rv == null)
-			alert(filenotfound);
-	} catch (e) {
-		alert(e);
-	}
-	var thumbItem = selectedItem.lastChild.firstChild;
-	if (thumbItem.nodeName == "image")
-		thumbItem.src = "";
-
-	image.src = "";
-	clearCache();
-	image.src = imageURL;
-
-	if (thumbItem.nodeName == "image")
-		thumbItem.src = imageURL;
 }
 
 function save_click() {
@@ -838,6 +513,49 @@ mozimage.define('mozimage.SideBar', {
 		mozimage.addEventListener('clear-menu', 'command', this.clear_click, this);
 		mozimage.addEventListener('refresh-menu', 'command', this.refresh_click, this);
 
+		mozimage.addEventListener('openwith1-menu', 'command', this.openwith1_click, this);
+		mozimage.addEventListener('openwith2-menu', 'command', this.openwith2_click, this);
+		mozimage.addEventListener('openwith3-menu', 'command', this.openwith3_click, this);
+		mozimage.addEventListener('openwith4-menu', 'command', this.openwith4_click, this);
+
+		mozimage.addEventListener('macro0-menu', 'command', this.macro0_click, this);
+		mozimage.addEventListener('macro1-menu', 'command', this.macro1_click, this);
+		mozimage.addEventListener('macro2-menu', 'command', this.macro2_click, this);
+		mozimage.addEventListener('macro3-menu', 'command', this.macro3_click, this);
+		mozimage.addEventListener('macro4-menu', 'command', this.macro4_click, this);
+		mozimage.addEventListener('macro5-menu', 'command', this.macro5_click, this);
+		mozimage.addEventListener('macro6-menu', 'command', this.macro6_click, this);
+		mozimage.addEventListener('macro7-menu', 'command', this.macro7_click, this);
+		mozimage.addEventListener('macro8-menu', 'command', this.macro8_click, this);
+		mozimage.addEventListener('macro9-menu', 'command', this.macro9_click, this);
+
+		mozimage.addEventListener('edit-button', 'command', this.edit_click, this);
+		mozimage.addEventListener('slideshow-button', 'command', this.slideshow_click, this);
+		mozimage.addEventListener('options-menu', 'command', this.options_click, this);
+		mozimage.addEventListener('about-menu', 'command', this.about_click, this);
+
+		// TODO: keyset doesn't work without the oncommand attrubite
+		mozimage.addEventListener('prior-key', 'command', this.prior_click, this);
+		mozimage.addEventListener('next-key', 'command', this.next_click, this);
+		mozimage.addEventListener('clear-key', 'command', this.clear_click, this);
+		mozimage.addEventListener('zoomin-key', 'command', this.zoomin_click, this);
+		mozimage.addEventListener('zoomout-key', 'command', this.zoomout_click, this);
+		mozimage.addEventListener('autosize-key', 'command', this.autosize_click, this);
+		mozimage.addEventListener('slideshow-key', 'command', this.slideshow_click, this);
+		mozimage.addEventListener('openwith1-key', 'command', this.openwith1_click, this);
+		mozimage.addEventListener('openwith2-key', 'command', this.openwith2_click, this);
+		mozimage.addEventListener('openwith3-key', 'command', this.openwith3_click, this);
+		mozimage.addEventListener('openwith4-key', 'command', this.openwith4_click, this);
+
+		mozimage.addEventListener('directory-listbox', 'select', this.directory_select, this);
+
+		mozimage.addEventListener('addbookmark-button', 'command', this.addbookmark_click, this);
+		mozimage.addEventListener('deletebookmark-button', 'command', this.deletebookmark_click, this);
+		mozimage.addEventListener('bookmarkup-button', 'command', this.bookmarkup_click, this);
+		mozimage.addEventListener('bookmarkdown-button', 'command', this.bookmarkdown_click, this);
+
+		mozimage.addEventListener('file-listbox', 'select', this.file_select, this);
+
 		this.window_load(e);
 	},
 
@@ -924,7 +642,7 @@ mozimage.define('mozimage.SideBar', {
 				var aPath = fullpath.value;
 				var file = new File(aPath);
 				var aParent = file.parent.path;
-				fillListBox(aParent);
+				this.fillListBox(aParent);
 			}
 		} catch (e) {
 			// ????
@@ -950,7 +668,7 @@ mozimage.define('mozimage.SideBar', {
 
 	zoomout_click: function () {
 		try {
-			resize(1 / prefs.getZoom());
+			this.resize(1 / prefs.getZoom());
 		} catch (e) {
 			mozimage.showError(e);
 		}
@@ -958,7 +676,7 @@ mozimage.define('mozimage.SideBar', {
 
 	zoomin_click : function () {
 		try {
-			resize(prefs.getZoom());
+			this.resize(prefs.getZoom());
 		} catch (e) {
 			mozimage.showError(e);
 		}
@@ -990,9 +708,9 @@ mozimage.define('mozimage.SideBar', {
 			image.height = 0;
 			// and stop slide show
 			if (prefs.getSlideshow())
-				slideshow_click();
+				this.slideshow_click();
 		} catch (e) {
-			alert(e);
+			mozimage.showError(e);
 		}
 	},
 
@@ -1004,14 +722,258 @@ mozimage.define('mozimage.SideBar', {
 				var aPath = fullpath.value;
 				//var file = new File(aPath);
 				//var aParent = file.parent.path;
-				fillListBox(aPath);
+				this.fillListBox(aPath);
 			}
 		} catch (e) {
-			alert(e);
+			mozimage.showError(e);
 		}
 	},
 
-//</editor-fold>
+	openwith1_click: function () {
+		this.openwithEditor(1);
+	},
+
+	openwith2_click: function () {
+		this.openwithEditor(2);
+	},
+
+	openwith3_click: function () {
+		this.openwithEditor(3);
+	},
+
+	openwith4_click: function () {
+		this.openwithEditor(4);
+	},
+
+	macro0_click : function () {
+		this.runMacro(0)
+	},
+
+	macro1_click : function () {
+		this.runMacro(1)
+	},
+
+	macro2_click : function () {
+		this.runMacro(2)
+	},
+
+	macro3_click : function () {
+		this.runMacro(3)
+	},
+
+	macro4_click : function () {
+		this.runMacro(4)
+	},
+
+	macro5_click : function () {
+		this.runMacro(5)
+	},
+
+	macro6_click : function () {
+		this.runMacro(6)
+	},
+
+	macro7_click : function () {
+		this.runMacro(7)
+	},
+
+	macro8_click : function () {
+		this.runMacro(8)
+	},
+
+	macro9_click : function () {
+		this.runMacro(9)
+	},
+
+	edit_click : function () {
+		try {
+			var chooseImageBefore = mozImageBundle.formatStringFromName("chooseimagebefore", [], 0);
+			if (top.getBrowser().contentDocument.location.href
+				.toString().substring(0, 7) != "file://") {
+				alert(chooseImageBefore);
+				return;
+			}
+
+			if (top.getBrowser().contentDocument.images[0].src
+				.toString().substring(0, 7) != "file://") {
+				alert(chooseImageBefore);
+				return;
+			}
+
+			if (getMainImage() == null) {
+				alert(chooseImageBefore);
+				return;
+			}
+
+			var convertPath = prefs.getConvertPath();
+			var editWindow = window.openDialog(
+				'chrome://mozimage/content/edit/mozimage_edit.xul',
+				mozImageBundle.GetStringFromName("editTitle"),
+				'chrome,centerscreen,modal',
+				//document.getElementById("main-image"),
+				//top.getBrowser().contentDocument.images[0],
+				//document.getElementById("file-listbox").selectedItem.lastChild.firstChild,
+				getMainImage(),
+				mozImageBundle.formatStringFromName("saveas", [], 0),
+				document.getElementById("file-listbox"),
+				document.getElementById("fullpath-text"),
+				mozImageBundle.formatStringFromName("commandnotfound", [], 0),
+				convertPath,
+				document.getElementById("directory-listbox"),
+				top.getBrowser().contentDocument.location.href);
+
+		} catch (e) {
+			mozimage.showError(e);
+		}
+	},
+
+	slideshow_click : function () {
+		try {
+			var slideshowButton = document.getElementById("slideshow-button");
+			var slideshow = !prefs.getSlideshow();
+
+			prefs.setSlideshow(slideshow);
+			slideshowButton.setAttribute('checked', slideshow);
+
+			this.doSlideShow();
+
+		} catch (e) {
+			mozimage.showError(e);
+		}
+	},
+
+	options_click : function () {
+		try {
+			prefs.save();
+			window.openDialog('chrome://mozimage/content/prefs/mozimage_prefs.xul', mozImageBundle.GetStringFromName("optionsTitle"), 'chrome,centerscreen,dialog,modal', document.getElementById("fullpath-text"), mozImageBundle.GetStringFromName("choosedir"));
+			prefs.load();
+			this.buildOpenWithMenu();
+			this.buildMacroMenu();
+			var fullpath = document.getElementById("fullpath-text");
+			this.fillListBox(fullpath.value);
+		} catch (e) {
+			mozimage.showError(e);
+		}
+	},
+
+	about_click : function () {
+		window.openDialog('chrome://mozimage/content/mozimage_about.xul', 'about', 'chrome,centerscreen,dialog,modal');
+	},
+
+	directory_select : function (event) {
+		var me = this;
+		if (!emptyingList) {
+			var selectedItem = event.target.selectedItem;
+			var basePath = document.getElementById("fullpath-text");
+			var path = selectedItem.getAttribute("label");
+			var fileUtil = new FileUtils();
+			var url = "";
+
+			if (path.substr(0, 7) == "http://")
+				url = path;
+			else
+				url = fileUtil.append(basePath.value, path);
+			// the fillListBox is delayed because probably during its execution it deletes
+			// all directory-listbox elements. So, when the code return to this event
+			// handler the listboxitem that fire the event don't exists no more and mozilla
+			// returns an error.
+			setTimeout(function () {
+				me.fillListBox.call(me, url.replace(/\\/g, "\\"));
+			}, 10);
+		}
+	},
+
+	addbookmark_click : function () {
+		var me = this;
+		var bookmarklistbox = document.getElementById("bookmark-listbox");
+		var fullpath = document.getElementById("fullpath-text");
+		var question = mozImageBundle.formatStringFromName("bookmarkadd", [], 0);
+		var bookmarkName = prompt(question, fullpath.value);
+		if (bookmarkName != null) {
+			var listItem = bookmarklistbox.appendItem(bookmarkName, '');
+			// add the attributes to show right icon
+			listItem.setAttribute("class", "listitem-iconic");
+			listItem.setAttribute("value", fullpath.value);
+			listItem.addEventListener("dblclick", function (e) {
+				me.bookmark_select.call(me, e);
+			}, false);
+		}
+		saveBookmarks();
+	},
+
+	deletebookmark_click : function () {
+
+		var bookmarklistbox = document.getElementById("bookmark-listbox");
+		var anItem = bookmarklistbox.currentItem;
+		var question = mozImageBundle.formatStringFromName("bookmarkdelete", [anItem.label], 1);
+
+		if (confirm(question)) {
+			bookmarklistbox.removeChild(anItem);
+		}
+		saveBookmarks();
+	},
+
+	bookmarkup_click : function () {
+		var bookmarklistbox = document.getElementById("bookmark-listbox");
+		var item = bookmarklistbox.selectedItem;
+
+		// firstChild does't return a ListItem
+		if (item != bookmarklistbox.getItemAtIndex(0)) {
+			var prevItem = item.previousSibling;
+			bookmarklistbox.removeChild(item);
+			bookmarklistbox.insertBefore(item, prevItem);
+			bookmarklistbox.selectItem(item);
+			saveBookmarks();
+		}
+	},
+
+	bookmarkdown_click : function () {
+		var bookmarklistbox = document.getElementById("bookmark-listbox");
+		var item = bookmarklistbox.selectedItem;
+		if (item != bookmarklistbox.lastChild) {
+			var nextItem = item.nextSibling.nextSibling;
+			bookmarklistbox.removeChild(item);
+			bookmarklistbox.insertBefore(item, nextItem);
+			bookmarklistbox.selectItem(item);
+			saveBookmarks();
+		}
+	},
+
+	file_select : function (event) {
+		try {
+			if (!emptyingList) {
+				var selectedItem = event.target.selectedItem;
+				var basePath = document.getElementById("fullpath-text");
+				var fileUtil = new FileUtils();
+
+				var labelItem = selectedItem.lastChild.lastChild;
+				var fileName = labelItem.value;
+
+				if (fileName.substr(0, 7) != "http://")
+					var uri = pathToURI(fileUtil.append(basePath.value, fileName));
+				else
+					uri = fileName;
+
+				this.showFile(uri);
+			}
+		} catch (e) {
+			mozimage.showError(e);
+		}
+	},
+
+	bookmark_select : function (event) {
+		try {
+			var mainTabbox = document.getElementById("main_tabbox");
+			mainTabbox.selectedIndex = 0;
+			var selectedItem = event.target;
+			var path = selectedItem.getAttribute("value");
+			this.fillListBox(path);
+		} catch (e) {
+			mozimage.showError(e);
+		}
+	},
+
+	//</editor-fold>
 
 	buildOpenWithMenu: function () {
 		var editorsName = prefs.getEditorsName();
@@ -1077,8 +1039,136 @@ mozimage.define('mozimage.SideBar', {
 			directorySearch(aLocation);
 
 		info.value = readyStr;
-	}
+	},
 
+	openwithEditor : function (index) {
+		var chooseImageBefore = mozImageBundle.formatStringFromName("chooseimagebefore", [], 0);
+		var filelistbox = document.getElementById("file-listbox");
+		var selectedItem = filelistbox.selectedItem;
+
+		if (selectedItem == null) {
+			alert(chooseImageBefore);
+			return;
+		}
+
+		var labelItem = selectedItem.lastChild.lastChild;
+		var fileName = labelItem.value;
+		var filenotfound = mozImageBundle.formatStringFromName("filenotfound", [], 0);
+
+		var basePath = document.getElementById("fullpath-text");
+		var fileUtil = new FileUtils();
+		var editorsPath = prefs.getEditorsPath();
+		//var image = document.getElementById("main-image");
+		//var image = document.getElementById("file-listbox").selectedItem.lastChild.firstChild;
+		var image = getMainImage();
+
+		var imagePath = fileUtil.append(basePath.value, fileName);
+
+		try {
+			var rv = fileUtil.spawn(editorsPath[index - 1], [imagePath]);
+			if (rv == null)
+				alert(filenotfound);
+		} catch (e) {
+			mozimage.showError(e);
+		}
+	},
+
+	resize : function (ratio) {
+		var contentDocument = top.getBrowser().contentDocument;
+		if (contentDocument.images.length == 1) {
+			if (prefs.getAutoSize())
+				this.autosize_click();
+
+			var image = contentDocument.images[0];
+			var imageWidth = image.width;
+			var imageHeight = image.height;
+			image.width = imageWidth * ratio;
+			image.height = imageHeight * ratio;
+		}
+	},
+
+	runMacro : function (index) {
+		var chooseImageBefore = mozImageBundle.formatStringFromName("chooseimagebefore", [], 0);
+		var filenotfound = mozImageBundle.formatStringFromName("filenotfound", [], 0);
+		var filelistbox = document.getElementById("file-listbox");
+		var selectedItem = filelistbox.selectedItem;
+
+		if (selectedItem == null) {
+			alert(chooseImageBefore);
+			return;
+		}
+		var labelItem = selectedItem.lastChild.lastChild;
+		var fileName = labelItem.value;
+		var basePath = document.getElementById("fullpath-text");
+		var fileUtil = new FileUtils();
+		var imagePath = fileUtil.append(basePath.value, fileName);
+
+		//var image = document.getElementById("file-listbox").selectedItem.lastChild.firstChild;
+		var image = getMainImage();
+		var imageURL = image.src;
+
+		var macroCode = prefs.getMacroCode();
+		var commandLine = macroCode[index];
+		var paramsList = getParams(commandLine, imagePath);
+		var paramsOnly = new Array();
+		var command = paramsList[0];
+
+		for (var i = 1; i < paramsList.length; i++)
+			paramsOnly[i - 1] = paramsList[i];
+
+		try {
+			var rv = fileUtil.execute(command, paramsOnly);
+			if (rv == null)
+				alert(filenotfound);
+		} catch (e) {
+			mozimage.showError(e);
+		}
+		var thumbItem = selectedItem.lastChild.firstChild;
+		if (thumbItem.nodeName == "image")
+			thumbItem.src = "";
+
+		image.src = "";
+		this.clearCache();
+		image.src = imageURL;
+
+		if (thumbItem.nodeName == "image")
+			thumbItem.src = imageURL;
+	},
+
+	doSlideShow : function () {
+		var me = this;
+		if (prefs.getSlideshow()) {
+			this.next_click();
+			setTimeout(function () {
+				me.doSlideShow.call(me)
+			}, prefs.getDelay());
+		}
+	},
+
+	showFile : function (imageURL) {
+		var fullpath = document.getElementById("fullpath-text");
+		var referrer = null;
+		var currentDocument = top.getBrowser().contentDocument;
+		var aBrowser = top.getBrowser();
+
+		if (fullpath.value.substr(0, 7) == "http://") {
+			referrer = Components.classes["@mozilla.org/network/io-service;1"]
+				.getService(Components.interfaces.nsIIOService)
+				.newURI(fullpath.value, null, null);
+		}
+		aBrowser.loadURI(imageURL, referrer, null);
+	},
+
+	/*
+	updateDescription : function () {
+		var image = getMainImage();
+		var info = document.getElementById("info-label");
+		var newImage = new Image();
+		newImage.setAttribute("id", "thepreviewimage");
+		newImage.src = image.src;
+		info.value = mozImageBundle.formatStringFromName("sizeInfo", [newImage.width, newImage.height], 2);
+	}
+	*/
 
 
 });

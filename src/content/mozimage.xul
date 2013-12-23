@@ -47,41 +47,36 @@
 
                     <menu id="tools-menu" accesskey="&mozimage.menu.tools.ak;" label="&mozimage.menu.tools;">
                         <menupopup id="tools-popup">
-                            <menuitem id="openwith1-menu" label="openwith1" onclick="openwith_click(1);"
-                                      key="openwith1-key"/>
-                            <menuitem id="openwith2-menu" label="openwith2" onclick="openwith_click(2);"
-                                      key="openwith2-key"/>
-                            <menuitem id="openwith3-menu" label="openwith3" onclick="openwith_click(3);"
-                                      key="openwith3-key"/>
-                            <menuitem id="openwith4-menu" label="openwith4" onclick="openwith_click(4);"
-                                      key="openwith4-key"/>
+                            <menuitem id="openwith1-menu" label="openwith1" key="openwith1-key"/>
+                            <menuitem id="openwith2-menu" label="openwith2" key="openwith2-key"/>
+                            <menuitem id="openwith3-menu" label="openwith3" key="openwith3-key"/>
+                            <menuitem id="openwith4-menu" label="openwith4" key="openwith4-key"/>
                         </menupopup>
                     </menu>
 
                     <menu id="macro-menu" accesskey="m" label="&mozimage.menu.macro;">
                         <menupopup id="macro-popup">
-                            <menuitem id="macro0-menu" label="Macro1" onclick="macro_click(0);"/>
-                            <menuitem id="macro1-menu" label="Macro2" onclick="macro_click(1);"/>
-                            <menuitem id="macro2-menu" label="Macro2" onclick="macro_click(2);"/>
-                            <menuitem id="macro3-menu" label="Macro2" onclick="macro_click(3);"/>
-                            <menuitem id="macro4-menu" label="Macro2" onclick="macro_click(4);"/>
-                            <menuitem id="macro5-menu" label="Macro2" onclick="macro_click(5);"/>
-                            <menuitem id="macro6-menu" label="Macro2" onclick="macro_click(6);"/>
-                            <menuitem id="macro7-menu" label="Macro2" onclick="macro_click(7);"/>
-                            <menuitem id="macro8-menu" label="Macro2" onclick="macro_click(8);"/>
-                            <menuitem id="macro9-menu" label="Macro2" onclick="macro_click(9);"/>
+                            <menuitem id="macro0-menu" label="Macro1"/>
+                            <menuitem id="macro1-menu" label="Macro2"/>
+                            <menuitem id="macro2-menu" label="Macro2"/>
+                            <menuitem id="macro3-menu" label="Macro2"/>
+                            <menuitem id="macro4-menu" label="Macro2"/>
+                            <menuitem id="macro5-menu" label="Macro2"/>
+                            <menuitem id="macro6-menu" label="Macro2"/>
+                            <menuitem id="macro7-menu" label="Macro2"/>
+                            <menuitem id="macro8-menu" label="Macro2"/>
+                            <menuitem id="macro9-menu" label="Macro2"/>
                         </menupopup>
                     </menu>
 
-                    <menuitem id="edit-button" label="&mozimage.menu.edit;" onclick="edit_click();"
+                    <menuitem id="edit-button" label="&mozimage.menu.edit;"
                               class="menuitem-iconic" image="chrome://mozimage/skin/options.png"/>
                     <menuitem id="slideshow-button" type="checkbox" label="&mozimage.menu.slideshow;"
-                              onclick="slideshow_click();" class="menuitem-iconic"
+                              class="menuitem-iconic"
                               image="chrome://mozimage/skin/slideshow.png"/>
-                    <menuitem id="options-menu" accesskey="&mozimage.menu.options.ak;" label="&mozimage.menu.options;"
-                              onclick="options_click();"/>
+                    <menuitem id="options-menu" accesskey="&mozimage.menu.options.ak;" label="&mozimage.menu.options;"/>
                     <menuitem id="about-menu" label="&mozimage.menu.about;" accesskey="&mozimage.menu.about.ak;"
-                              class="menuitem-iconic" onclick="about_click();"/>
+                              class="menuitem-iconic" />
 
                 </menupopup>
 
@@ -91,19 +86,20 @@
     </toolbox>
 
     <keyset>
-        <key id="prior-key" key="&mozimage.commandkey.prior;" oncommand="prior_click();"/>
-        <key id="next-key" key="&mozimage.commandkey.next;" oncommand="next_click();"/>
-        <key id="clear-key" key="&mozimage.commandkey.clear;" oncommand="clear_click();"/>
-        <key id="zoomin-key" key="&mozimage.commandkey.zoomin;" oncommand="zoomin_click();"/>
-        <key id="zoomout-key" key="&mozimage.commandkey.zoomout;" oncommand="zoomout_click();"/>
-        <key id="autosize-key" key="&mozimage.commandkey.autosize;" oncommand="autosize_click();"/>
-        <key id="slideshow-key" key="&mozimage.commandkey.slideshow;" oncommand="slideshow_click();"/>
-        <key id="openwith1-key" key="&mozimage.commandkey.openwith1;" oncommand="openwith_click(1);"/>
-        <key id="openwith2-key" key="&mozimage.commandkey.openwith2;" oncommand="openwith_click(2);"/>
-        <key id="openwith3-key" key="&mozimage.commandkey.openwith3;" oncommand="openwith_click(3);"/>
-        <key id="openwith4-key" key="&mozimage.commandkey.openwith4;" oncommand="openwith_click(4);"/>
+        <key id="prior-key" key="&mozimage.commandkey.prior;"/>
+        <key id="next-key" key="&mozimage.commandkey.next;"/>
+        <key id="clear-key" key="&mozimage.commandkey.clear;"/>
+        <key id="zoomin-key" key="&mozimage.commandkey.zoomin;"/>
+        <key id="zoomout-key" key="&mozimage.commandkey.zoomout;"/>
+        <key id="autosize-key" key="&mozimage.commandkey.autosize;"/>
+        <key id="slideshow-key" key="&mozimage.commandkey.slideshow;"/>
+        <key id="openwith1-key" key="&mozimage.commandkey.openwith1;"/>
+        <key id="openwith2-key" key="&mozimage.commandkey.openwith2;"/>
+        <key id="openwith3-key" key="&mozimage.commandkey.openwith3;"/>
+        <key id="openwith4-key" key="&mozimage.commandkey.openwith4;"/>
     </keyset>
 
+    <!--
     <popupset>
         <popup id="image-popup">
             <menuitem label="&mozimage.menu.saveas;" oncommand="save_click();"/>
@@ -127,6 +123,7 @@
                       image="chrome://mozimage/skin/next.png"/>
         </popup>
     </popupset>
+    -->
 
     <hbox flex="1">
 
@@ -140,7 +137,7 @@
                 <tabpanels flex="1">
                     <tabpanel id="directories-tab">
 
-                        <listbox id="directory-listbox" onselect="directory_select(event);" flex="1">
+                        <listbox id="directory-listbox" flex="1">
                             <listcols>
                                 <listcol flex="1"/>
                             </listcols>
@@ -165,17 +162,13 @@
                             <toolbox>
                                 <toolbar id="bookmark-toolbar" grippyhidden="true">
                                     <toolbarbutton id="addbookmark-button" tooltiptext="&mozimage.bookmarkbar.add;"
-                                                   oncommand="addbookmark_click();"
                                                    image="chrome://mozimage/skin/bookmark_add.png"/>
                                     <toolbarbutton id="deletebookmark-button" tooltiptext="&mozimage.bookmarkbar.del;"
-                                                   oncommand="deletebookmark_click();"
                                                    image="chrome://mozimage/skin/bookmark_delete.png"/>
                                     <toolbarbutton id="bookmarkup-button" tooltiptext="&mozimage.bookmarkbar.moveup;"
-                                                   oncommand="bookmarkup_click();"
                                                    image="chrome://mozimage/skin/bookmark_up.png"/>
                                     <toolbarbutton id="bookmarkdown-button"
                                                    tooltiptext="&mozimage.bookmarkbar.movedown;"
-                                                   oncommand="bookmarkdown_click();"
                                                    image="chrome://mozimage/skin/bookmark_bottom.png"/>
                                 </toolbar>
                             </toolbox>
@@ -194,7 +187,7 @@
 
             <splitter/>
 
-            <listbox id="file-listbox" onselect="file_select(event);" flex="1">
+            <listbox id="file-listbox" flex="1">
                 <listcols>
                     <listcol flex="1"/>
                 </listcols>

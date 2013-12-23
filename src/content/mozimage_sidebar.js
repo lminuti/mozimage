@@ -494,14 +494,6 @@ function getMainImage() {
  **
  */
 
-function window_close(event) {
-	var aBrowser = document.getElementById("html-browser");
-	prefs.setSlideshow(false);
-	prefs.save();
-	jslibDebug("SideBar >> window_close_orig");
-
-}
-
 function about_click() {
 	window.openDialog('chrome://mozimage/content/mozimage_about.xul', 'about', 'chrome,centerscreen,dialog,modal');
 }
@@ -531,39 +523,6 @@ function exit_click() {
 		alert(e);
 	}
 	window.close();
-}
-
-function autosize_click() {
-	try {
-		var autoSizeButton = document.getElementById("autosize-button");
-		var mustAutosize = !prefs.getAutoSize();
-
-		prefs.setAutoSize(mustAutosize);
-		autoSizeButton.setAttribute('checked', mustAutosize);
-
-		prefs.save();
-
-		top.getBrowser().reload();
-
-	} catch (e) {
-		alert(e);
-	}
-}
-
-function zoomout_click() {
-	try {
-		resize(1 / prefs.getZoom());
-	} catch (e) {
-		alert(e);
-	}
-}
-
-function zoomin_click() {
-	try {
-		resize(prefs.getZoom());
-	} catch (e) {
-		alert(e);
-	}
 }
 
 function edit_click() {
@@ -628,80 +587,6 @@ function image_click() {
 	//var image = document.getElementById("file-listbox").selectedItem.lastChild.firstChild;
 	var image = getMainImage();
 	image.focus();
-}
-
-function clear_click() {
-	try {
-		var image = getMainImage();
-		image.src = "";
-		image.width = 0;
-		image.height = 0;
-		// and stop slide show
-		if (prefs.getSlideshow())
-			slideshow_click();
-	} catch (e) {
-		alert(e);
-	}
-}
-
-function prior_click() {
-	var fileListBox = document.getElementById("file-listbox");
-	var selectedIndex = fileListBox.selectedIndex;
-	if (selectedIndex >= 1)
-		fileListBox.selectedIndex = selectedIndex - 1;
-	else
-		fileListBox.selectedIndex = fileListBox.getRowCount() - 1;
-	fileListBox.ensureIndexIsVisible(fileListBox.selectedIndex);
-}
-
-function next_click() {
-	var fileListBox = document.getElementById("file-listbox");
-	var selectedIndex = fileListBox.selectedIndex;
-	if (selectedIndex >= -1 && selectedIndex < fileListBox.getRowCount() - 1)
-		fileListBox.selectedIndex = selectedIndex + 1;
-	else
-		fileListBox.selectedIndex = 0;
-	fileListBox.ensureIndexIsVisible(fileListBox.selectedIndex);
-}
-
-function refresh_click() {
-	try {
-		var fullpath = document.getElementById("fullpath-text");
-		var fileUtil = new FileUtils();
-		if (fullpath.value) {
-			var aPath = fullpath.value;
-			//var file = new File(aPath);
-			//var aParent = file.parent.path;
-			fillListBox(aPath);
-		}
-	} catch (e) {
-		alert(e);
-	}
-}
-
-function up_click() {
-	try {
-		var mainTabbox = document.getElementById("main_tabbox");
-		mainTabbox.selectedIndex = 0;
-		var fullpath = document.getElementById("fullpath-text");
-		var fileUtil = new FileUtils();
-		if (fullpath.value) {
-			var aPath = fullpath.value;
-			var file = new File(aPath);
-			var aParent = file.parent.path;
-			fillListBox(aParent);
-		}
-	} catch (e) {
-	}
-}
-
-function go_click(event) {
-	try {
-		var fullpath = document.getElementById("fullpath-text");
-		fillListBox(fullpath.value);
-	} catch (e) {
-		alert(e);
-	}
 }
 
 function directory_select(event) {
@@ -862,13 +747,6 @@ function macro_click(index) {
 		thumbItem.src = imageURL;
 }
 
-function fullpath_keypress(e) {
-	if (e.keyCode == 13) {
-		var fullpath = document.getElementById("fullpath-text");
-		fillListBox(fullpath.value);
-	}
-}
-
 function save_click() {
 	var saveasStr = mozImageBundle.formatStringFromName("saveas", [], 0);
 	var fileUtil = new FileUtils();
@@ -931,39 +809,39 @@ function saveall_click() {
 	}
 }
 
-function explorer_click() {
-	try {
-		var choosedir = mozImageBundle.GetStringFromName("choosedir");
-		var nsIFilePicker = Components.interfaces.nsIFilePicker;
-		var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-		fp.init(window, choosedir, nsIFilePicker.modeGetFolder);
-		var res = fp.show();
-		if (res == nsIFilePicker.returnOK) {
-			var thepath = fp.file;
-			document.getElementById('fullpath-text').value = thepath.path;
-			fillListBox(thepath.path);
-		}
-	}
-	catch (e) {
-		alert(e);
-	}
-}
-
 mozimage.define('mozimage.SideBar', {
 
 	init : function (e) {
 		var me = this;
 		this.sidebar = document.getElementById("mozimage-window");
-		window.addEventListener('load', function (e) {
-			me.window_load.call(me, e);
-		});
-		window.addEventListener('unload', function (e) {
-			me.window_close.call(me, e);
-		});
+		this.fullpathText = document.getElementById("fullpath-text");
+		this.goButton = document.getElementById("go-button");
+		this.priorButton = document.getElementById("prior-button");
+		this.nextButton = document.getElementById("next-button");
+		this.upButton = document.getElementById("up-button");
+
+		this.autosizeButton = document.getElementById("autosize-button");
+		this.zoominButton = document.getElementById("zoomin-button");
+		this.zoomoutButton = document.getElementById("zoomout-button");
+
+		mozimage.addEventListener(window, 'unload', this.window_close, this);
+		mozimage.addEventListener(this.fullpathText, 'keypress', this.fullpath_keypress, this);
+		mozimage.addEventListener(this.goButton, 'command', this.go_click, this);
+		mozimage.addEventListener(this.priorButton, 'command', this.prior_click, this);
+		mozimage.addEventListener(this.nextButton, 'command', this.next_click, this);
+		mozimage.addEventListener(this.upButton, 'command', this.up_click, this);
+		mozimage.addEventListener(this.autosizeButton, 'command', this.autosize_click, this);
+		mozimage.addEventListener(this.zoominButton, 'command', this.zoomin_click, this);
+		mozimage.addEventListener(this.zoomoutButton, 'command', this.zoomout_click, this);
+
+		mozimage.addEventListener('explorer-menu', 'command', this.explorer_click, this);
+		mozimage.addEventListener('clear-menu', 'command', this.clear_click, this);
+		mozimage.addEventListener('refresh-menu', 'command', this.refresh_click, this);
 
 		this.window_load(e);
 	},
 
+	//<editor-fold desc="Event handlers">
 	window_load : function (event) {
 		try {
 			var fullpath = document.getElementById("fullpath-text");
@@ -984,9 +862,9 @@ mozimage.define('mozimage.SideBar', {
 			this.loadBookmarks();
 
 			if (startingUrl != "" && fullpath.value != startingUrl)
-				fillListBox(startingUrl);
+				this.fillListBox(startingUrl);
 			else if (fullpath.value == "")
-				fillListBox(prefs.getHomeDir());
+				this.fillListBox(prefs.getHomeDir());
 
 		} catch (e) {
 			mozimage.showError(e);
@@ -994,8 +872,146 @@ mozimage.define('mozimage.SideBar', {
 	},
 
 	window_close : function () {
-		jslibDebug("SideBar >> window_close");
+		var aBrowser = document.getElementById("html-browser");
+		prefs.setSlideshow(false);
+		prefs.save();
 	},
+
+	fullpath_keypress : function (event) {
+		jslibDebug("fullpath_keypress >> " + event.keyCode);
+		if (event.keyCode == 13) {
+			var fullpath = document.getElementById("fullpath-text");
+			this.fillListBox(fullpath.value);
+		}
+	},
+
+	go_click : function (event) {
+		try {
+			var fullpath = document.getElementById("fullpath-text");
+			this.fillListBox(fullpath.value);
+		} catch (e) {
+			mozimage.showError(e);
+		}
+	},
+
+	prior_click : function () {
+		var fileListBox = document.getElementById("file-listbox");
+		var selectedIndex = fileListBox.selectedIndex;
+		if (selectedIndex >= 1)
+			fileListBox.selectedIndex = selectedIndex - 1;
+		else
+			fileListBox.selectedIndex = fileListBox.getRowCount() - 1;
+		fileListBox.ensureIndexIsVisible(fileListBox.selectedIndex);
+	},
+
+	next_click : function () {
+		var fileListBox = document.getElementById("file-listbox");
+		var selectedIndex = fileListBox.selectedIndex;
+		if (selectedIndex >= -1 && selectedIndex < fileListBox.getRowCount() - 1)
+			fileListBox.selectedIndex = selectedIndex + 1;
+		else
+			fileListBox.selectedIndex = 0;
+		fileListBox.ensureIndexIsVisible(fileListBox.selectedIndex);
+	},
+
+	up_click : function () {
+		try {
+			var mainTabbox = document.getElementById("main_tabbox");
+			mainTabbox.selectedIndex = 0;
+			var fullpath = document.getElementById("fullpath-text");
+			var fileUtil = new FileUtils();
+			if (fullpath.value) {
+				var aPath = fullpath.value;
+				var file = new File(aPath);
+				var aParent = file.parent.path;
+				fillListBox(aParent);
+			}
+		} catch (e) {
+			// ????
+		}
+	},
+
+	autosize_click : function () {
+		try {
+			var autoSizeButton = document.getElementById("autosize-button");
+			var mustAutosize = !prefs.getAutoSize();
+
+			prefs.setAutoSize(mustAutosize);
+			autoSizeButton.setAttribute('checked', mustAutosize);
+
+			prefs.save();
+
+			top.getBrowser().reload();
+
+		} catch (e) {
+			mozimage.showError(e);
+		}
+	},
+
+	zoomout_click: function () {
+		try {
+			resize(1 / prefs.getZoom());
+		} catch (e) {
+			mozimage.showError(e);
+		}
+	},
+
+	zoomin_click : function () {
+		try {
+			resize(prefs.getZoom());
+		} catch (e) {
+			mozimage.showError(e);
+		}
+	},
+
+	explorer_click : function () {
+		try {
+			var choosedir = mozImageBundle.GetStringFromName("choosedir");
+			var nsIFilePicker = Components.interfaces.nsIFilePicker;
+			var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
+			fp.init(window, choosedir, nsIFilePicker.modeGetFolder);
+			var res = fp.show();
+			if (res == nsIFilePicker.returnOK) {
+				var thepath = fp.file;
+				this.fullpathText.value = thepath.path;
+				this.fillListBox(thepath.path);
+			}
+		}
+		catch (e) {
+			mozimage.showError(e);
+		}
+	},
+
+	clear_click : function () {
+		try {
+			var image = getMainImage();
+			image.src = "";
+			image.width = 0;
+			image.height = 0;
+			// and stop slide show
+			if (prefs.getSlideshow())
+				slideshow_click();
+		} catch (e) {
+			alert(e);
+		}
+	},
+
+	refresh_click : function () {
+		try {
+			var fullpath = document.getElementById("fullpath-text");
+			var fileUtil = new FileUtils();
+			if (fullpath.value) {
+				var aPath = fullpath.value;
+				//var file = new File(aPath);
+				//var aParent = file.parent.path;
+				fillListBox(aPath);
+			}
+		} catch (e) {
+			alert(e);
+		}
+	},
+
+//</editor-fold>
 
 	buildOpenWithMenu: function () {
 		var editorsName = prefs.getEditorsName();
@@ -1041,13 +1057,28 @@ mozimage.define('mozimage.SideBar', {
 					// add the attributes to show right icon
 					listItem.setAttribute("class", "listitem-iconic");
 					listItem.setAttribute("value", bookmarkValue);
-					//listItem.setAttribute("ondblclick", "bookmark_select(event);");
 					listItem.addEventListener("dblclick", bookmark_select, false);
 				}
 			}
 			file.close();
 		}
+	},
+
+	fillListBox : function (aLocation) {
+		var info = document.getElementById("info-label");
+		var loadingStr = mozImageBundle.formatStringFromName("loading", [], 0);
+		var readyStr = mozImageBundle.formatStringFromName("ready", [], 0);
+
+		info.value = loadingStr;
+
+		if (aLocation.substr(0, 7) == "http://")
+			initializeSearch(aLocation);
+		else
+			directorySearch(aLocation);
+
+		info.value = readyStr;
 	}
+
 
 
 });

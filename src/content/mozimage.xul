@@ -15,39 +15,35 @@
 
         <toolbar id="main-toolbar">
             <toolbaritem flex="1">
-                <textbox id="fullpath-text" flex="1" onkeypress="fullpath_keypress(event);"/>
+                <textbox id="fullpath-text" flex="1" />
             </toolbaritem>
-            <toolbarbutton id="go-button" tooltiptext="&mozimage.menu.go;" oncommand="go_click();"
-                           image="chrome://mozimage/skin/go.png"/>
+            <toolbarbutton id="go-button" tooltiptext="&mozimage.menu.go;" image="chrome://mozimage/skin/go.png"/>
         </toolbar>
 
         <toolbar id="nav-toolbar">
-            <toolbarbutton id="prior-button" tooltiptext="&mozimage.menu.prior;" oncommand="prior_click();"
-                           image="chrome://mozimage/skin/prior.png"/>
-            <toolbarbutton id="next-button" tooltiptext="&mozimage.menu.next;" oncommand="next_click();"
-                           image="chrome://mozimage/skin/next.png"/>
+            <toolbarbutton id="prior-button" tooltiptext="&mozimage.menu.prior;" image="chrome://mozimage/skin/prior.png"/>
+            <toolbarbutton id="next-button" tooltiptext="&mozimage.menu.next;" image="chrome://mozimage/skin/next.png"/>
             <toolbarseparator/>
-            <toolbarbutton id="up-button" tooltiptext="&mozimage.menu.parent;" oncommand="up_click();"
-                           image="chrome://mozimage/skin/up.png"/>
+            <toolbarbutton id="up-button" tooltiptext="&mozimage.menu.parent;" image="chrome://mozimage/skin/up.png"/>
             <toolbarseparator/>
             <toolbarbutton id="autosize-button" type="checkbox" autoCheck="false" tooltiptext="&mozimage.menu.autosize;"
-                           oncommand="autosize_click();" image="chrome://mozimage/skin/autosize.png"/>
+                           image="chrome://mozimage/skin/autosize.png"/>
             <toolbarbutton id="zoomin-button" autoCheck="false" tooltiptext="&mozimage.menu.zoomin;"
-                           oncommand="zoomin_click();" image="chrome://mozimage/skin/zoomin.png"/>
+                           image="chrome://mozimage/skin/zoomin.png"/>
             <toolbarbutton id="zoomout-button" autoCheck="false" tooltiptext="&mozimage.menu.zoomout;"
-                           oncommand="zoomout_click();" image="chrome://mozimage/skin/zoomout.png"/>
+                           image="chrome://mozimage/skin/zoomout.png"/>
             <toolbarseparator/>
             <toolbarbutton id="all-button" type="menu" label="&mozimage.menu.other;">
 
                 <menupopup id="all-popup">
 
                     <menuitem id="explorer-menu" label="&mozimage.menu.explorer;" class="menuitem-iconic"
-                              onclick="explorer_click();" image="chrome://mozimage/skin/browse.png"/>
+                              image="chrome://mozimage/skin/browse.png"/>
                     <menuitem id="clear-menu" accesskey="&mozimage.menu.clear.ak;" label="&mozimage.menu.clear;"
-                              class="menuitem-iconic" onclick="clear_click();" key="clear-key"
+                              class="menuitem-iconic" key="clear-key"
                               image="chrome://mozimage/skin/clear.png"/>
                     <menuitem id="refresh-menu" label="&mozimage.menu.refresh;" class="menuitem-iconic"
-                              onclick="refresh_click();" image="chrome://mozimage/skin/refresh.png"/>
+                              image="chrome://mozimage/skin/refresh.png"/>
 
                     <menu id="tools-menu" accesskey="&mozimage.menu.tools.ak;" label="&mozimage.menu.tools;">
                         <menupopup id="tools-popup">

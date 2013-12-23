@@ -62,3 +62,12 @@ mozimage.run = function (getLink) {
 mozimage.showError = function (e) {
 	alert(e);
 };
+
+mozimage.addEventListener = function (target, event, handler, scope) {
+	if (typeof target == "string") {
+		target = document.getElementById(target);
+	}
+	target.addEventListener(event, function (e) {
+		handler.call(scope, e);
+	});
+};

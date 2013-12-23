@@ -5,8 +5,6 @@ include(jslib_file);
 include("chrome://mozimage/content/prefs/mozimage_prefs.js");
 include("chrome://global/content/strres.js");
 
-const XMLNS = "http://www.w3.org/XML/1998/namespace";
-
 /*
  **
  ** Private functions
@@ -17,54 +15,58 @@ var mozImageBundle = srGetStrBundle("chrome://mozimage/locale/mozimage.propertie
 var numOfLinks = 0;
 var emptyingList = false;
 
-function fileNameCompare(name1, name2) {
+mozimage.comparer = {
 
-	if (name1.leaf.toLowerCase() < name2.leaf.toLowerCase())
-		return -1;
-	if (name1.leaf.toLowerCase() > name2.leaf.toLowerCase())
-		return 1;
-	return 0;
-}
+	fileNameCompare : function (name1, name2) {
 
-function fileNameNumCompare(name1, name2) {
-	// work with filenames such as: pic1.jpg, pic2.jpg, ..., pic9.jpg, pic10.jpg etc.
-	var filenameRe = /^(\D*)(\d*)(.*)$/;
-	var fn1 = name1.leaf.toLowerCase();
-	var fn2 = name2.leaf.toLowerCase();
-	while (fn1 != "" || fn2 != "") {
-		var filenameComponents1 = filenameRe.exec(fn1);
-		var filenameComponents2 = filenameRe.exec(fn2);
-		if (filenameComponents1[1] < filenameComponents2[1]) return -1;
-		if (filenameComponents1[1] > filenameComponents2[1]) return 1;
-		var rv = filenameComponents1[2] - filenameComponents2[2];
-		if (rv != 0) return rv;
-		fn1 = filenameComponents1[3];
-		fn2 = filenameComponents2[3];
+		if (name1.leaf.toLowerCase() < name2.leaf.toLowerCase())
+			return -1;
+		if (name1.leaf.toLowerCase() > name2.leaf.toLowerCase())
+			return 1;
+		return 0;
+	},
+
+	fileNameNumCompare : function (name1, name2) {
+		// work with filenames such as: pic1.jpg, pic2.jpg, ..., pic9.jpg, pic10.jpg etc.
+		var filenameRe = /^(\D*)(\d*)(.*)$/;
+		var fn1 = name1.leaf.toLowerCase();
+		var fn2 = name2.leaf.toLowerCase();
+		while (fn1 != "" || fn2 != "") {
+			var filenameComponents1 = filenameRe.exec(fn1);
+			var filenameComponents2 = filenameRe.exec(fn2);
+			if (filenameComponents1[1] < filenameComponents2[1]) return -1;
+			if (filenameComponents1[1] > filenameComponents2[1]) return 1;
+			var rv = filenameComponents1[2] - filenameComponents2[2];
+			if (rv != 0) return rv;
+			fn1 = filenameComponents1[3];
+			fn2 = filenameComponents2[3];
+		}
+		return 0;
+	},
+
+	fileCompare : function (name1, name2) {
+		var method = prefs.getOrderBy();
+		var descending = (prefs.getDescending() ? -1 : 1);
+		switch (method) {
+			case "name" :
+				return descending * mozimage.comparer.fileNameCompare(name1, name2);
+				break;
+			case "nume" :
+				return descending * mozimage.comparer.fileNameNumCompare(name1, name2);
+				break;
+			case "date" :
+				return descending * (name1.dateModified.getTime() - name2.dateModified.getTime());
+				break;
+			case "size" :
+				return descending * (name1.size - name2.size);
+				break;
+			default :
+				return descending * mozimage.comparer.fileNameCompare(name1, name2);
+		}
+		return 0;
 	}
-	return 0;
-}
 
-function fileCompare(name1, name2) {
-	var method = prefs.getOrderBy();
-	var descending = (prefs.getDescending() ? -1 : 1);
-	switch (method) {
-		case "name" :
-			return descending * fileNameCompare(name1, name2);
-			break;
-		case "nume" :
-			return descending * fileNameNumCompare(name1, name2);
-			break;
-		case "date" :
-			return descending * (name1.dateModified.getTime() - name2.dateModified.getTime());
-			break;
-		case "size" :
-			return descending * (name1.size - name2.size);
-			break;
-		default :
-			return descending * fileNameCompare(name1, name2);
-	}
-	return 0;
-}
+};
 
 function initializeSearch(url) {
 	var fullpath = document.getElementById("fullpath-text");
@@ -132,8 +134,8 @@ function directorySearch(adir) {
 	for (i = 0; i < dirList.length; i++)
 		dirList[i].isDir() ? dirs.push(dirList[i]) : files.push(dirList[i]);
 
-	dirs.sort(fileNameCompare);
-	files.sort(fileCompare);
+	dirs.sort(mozimage.comparer.fileNameCompare);
+	files.sort(mozimage.comparer.fileCompare);
 
 	dirList = new Array();
 
@@ -170,6 +172,8 @@ function getDirectoryItem(linkItem) {
 }
 
 function getAbsoluteURL(url, node) {
+	const XMLNS = "http://www.w3.org/XML/1998/namespace";
+
 	if (!url || !node)
 		return "";
 
@@ -1157,7 +1161,7 @@ mozimage.define('mozimage.SideBar', {
 				.newURI(fullpath.value, null, null);
 		}
 		aBrowser.loadURI(imageURL, referrer, null);
-	},
+	}
 
 	/*
 	updateDescription : function () {

@@ -20,13 +20,15 @@ mozimage.define('mozimage.PrefsDialog', {
 	},
 
 	prefs_close : function () {
+		var me = this;
 		try {
 			var panelFrame = document.getElementById("panelFrame");
-			if (panelFrame.contentWindow.prefs_close)
-				panelFrame.contentWindow.prefs_close();
-			prefs.save();
+			// I must wait that the page save its own state
+			panelFrame.addEventListener('pagehide', function () {
+				prefs.save();
+			});
 		} catch (e) {
-			alert(e);
+			mozimage.showError(e);
 		}
 	},
 
@@ -47,7 +49,7 @@ mozimage.define('mozimage.PrefsDialog', {
 			}
 		}
 		catch (e) {
-			alert(e);
+			mozimage.showError(e);
 		}
 	}
 });

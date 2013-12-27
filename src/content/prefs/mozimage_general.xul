@@ -2,12 +2,12 @@
 <?xml-stylesheet href="chrome://mozimage/skin" type="text/css"?>
 <!DOCTYPE page SYSTEM "chrome://mozimage/locale/mozimage.dtd">
 <page xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-      onload="prefs_load(event);"
-      onclose="prefs_close(event);">
+      id="mozimage-prefs-general">
 
     <script type="application/x-javascript" src="chrome://global/content/dialogOverlay.js"/>
     <script type="application/x-javascript" src="chrome://global/content/strres.js"/>
     <script type="application/x-javascript" src="chrome://mozimage/content/jslib.js"/>
+    <script type="application/x-javascript" src="chrome://mozimage/content/mozimage.js"/>
     <script type="application/x-javascript" src="chrome://mozimage/content/prefs/mozimage_general.js"/>
 
     <groupbox>
@@ -20,12 +20,11 @@
         </hbox>
 
         <hbox>
-            <button id="folder-button" oncommand="getFolder();" label="&mozimage.prefs.browse;"/>
-            <button id="current-button" oncommand="setCurrent();" label="&mozimage.prefs.current;"/>
+            <button id="folder-button" label="&mozimage.prefs.browse;"/>
+            <button id="current-button" label="&mozimage.prefs.current;"/>
         </hbox>
 
-        <checkbox id="enablecurrent-check" checked="false" label="&mozimage.prefs.enablecurrent;"
-                  onclick="toggleEnableCurrent()"/>
+        <checkbox id="enablecurrent-check" checked="false" label="&mozimage.prefs.enablecurrent;"/>
 
     </groupbox>
 
@@ -76,15 +75,13 @@
 
         <hbox>
 
-            <checkbox id="descending-check" checked="false" label="&mozimage.prefs.descending;" onclick="toggleDes()"/>
+            <checkbox id="descending-check" checked="false" label="&mozimage.prefs.descending;"/>
 
-            <checkbox id="forcehttptumb-check" checked="false" label="&mozimage.prefs.forcehttptumb;"
-                      onclick="toggleForceHTTPTumb()"/>
+            <checkbox id="forcehttptumb-check" checked="false" label="&mozimage.prefs.forcehttptumb;"/>
 
         </hbox>
 
-        <checkbox id="enablecache-check" checked="true" label="&mozimage.prefs.enablecache;"
-                  onclick="toggleEnableCache()"/>
+        <checkbox id="enablecache-check" checked="true" label="&mozimage.prefs.enablecache;"/>
 
     </groupbox>
 
@@ -93,11 +90,11 @@
         <caption label="&mozimage.prefs.filter;"/>
 
         <hbox>
-            <checkbox id="jpg-check" checked="false" label="jpg" onclick="toggleExt('jpg')"/>
-            <checkbox id="jpeg-check" checked="false" label="jpeg" onclick="toggleExt('jpeg')"/>
-            <checkbox id="gif-check" checked="false" label="gif" onclick="toggleExt('gif')"/>
-            <checkbox id="bmp-check" checked="false" label="bmp" onclick="toggleExt('bmp')"/>
-            <checkbox id="png-check" checked="false" label="png" onclick="toggleExt('png')"/>
+            <checkbox id="jpg-check" checked="false" label="jpg"/>
+            <checkbox id="jpeg-check" checked="false" label="jpeg"/>
+            <checkbox id="gif-check" checked="false" label="gif"/>
+            <checkbox id="bmp-check" checked="false" label="bmp"/>
+            <checkbox id="png-check" checked="false" label="png"/>
         </hbox>
 
     </groupbox>

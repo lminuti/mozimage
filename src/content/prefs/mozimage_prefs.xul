@@ -29,7 +29,7 @@
 
         <vbox flex="1">
             <dialogheader id="header" title="&mozimage.prefs.general;"/>
-            <iframe id="panelFrame" name="panelFrame" style="width: 0px" flex="1"/>
+            <iframe id="panelFrame" name="panelFrame" type="chrome" style="width: 0px" flex="1"/>
         </vbox>
     </hbox>
 

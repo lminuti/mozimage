@@ -12,21 +12,21 @@
     <groupbox align="center" orient="horizontal">
         <vbox>
             <text value="mozImage" style="font-weight: bold; font-size: x-large;"/>
-            <text value="version 1.4.9"/>
+            <text value="version 2.0 alpha"/>
             <separator class="thin"/>
             <text value="&mozimage.about.created;" style="font-weight: bold;"/>
             <text value="Lithian" class="url"
-                  onclick="window.open('http://mozimage.mozdev.org/credits.html'); window.close();"/>
+                  onclick="window.open('https://code.google.com/p/mozimage/wiki/credits'); window.close();"/>
             <separator class="thin"/>
             <text value="&mozimage.about.homepage;" style="font-weight: bold;"/>
-            <text value="http://mozimage.mozdev.org/"
+            <text value="https://code.google.com/p/mozimage/"
                   class="url"
-                  onclick="window.open('http://mozimage.mozdev.org/'); window.close();"/>
+                  onclick="window.open('https://code.google.com/p/mozimage/'); window.close();"/>
             <separator class="thin"/>
             <text value="&mozimage.about.releasenotes;" style="font-weight: bold;"/>
-            <text value="http://mozimage.mozdev.org/releases.html"
+            <text value="https://code.google.com/p/mozimage/wiki/ReleaseNotes"
                   class="url"
-                  onclick="window.open('http://mozimage.mozdev.org/releases.html'); window.close();"/>
+                  onclick="window.open('https://code.google.com/p/mozimage/wiki/ReleaseNotes'); window.close();"/>
             <separator class="thin"/>
             <text value="&mozimage.about.powered;" style="font-weight: bold;"/>
             <text value="http://jslib.mozdev.org/"

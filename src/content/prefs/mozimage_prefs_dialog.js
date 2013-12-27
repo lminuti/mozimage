@@ -8,14 +8,11 @@ mozimage.define('mozimage.PrefsDialog', {
 		this.prefsCategories = document.getElementById("prefsCategories");
 
 		// Link the event handlers
-		this.dialog.addEventListener('dialogaccept', function (e) {
-			// Change the scope so that is possible to use *this*
-			// properly inside the event handler
-			me.prefs_close.call(me, e);
-		});
-		this.prefsCategories.addEventListener('command', function (e) {
-			me.switchPage.call(me, e.target.id)
-		});
+		mozimage.addEventListener(this.dialog, 'dialogaccept', this.prefs_close, this);
+		mozimage.addEventListener(this.prefsCategories, 'command', function (event) {
+			this.switchPage(event.target.id);
+		} , this);
+
 	},
 
 	prefs_load : function () {

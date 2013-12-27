@@ -85,20 +85,6 @@
 
     </toolbox>
 
-    <keyset>
-        <key id="prior-key" key="&mozimage.commandkey.prior;"/>
-        <key id="next-key" key="&mozimage.commandkey.next;"/>
-        <key id="clear-key" key="&mozimage.commandkey.clear;"/>
-        <key id="zoomin-key" key="&mozimage.commandkey.zoomin;"/>
-        <key id="zoomout-key" key="&mozimage.commandkey.zoomout;"/>
-        <key id="autosize-key" key="&mozimage.commandkey.autosize;"/>
-        <key id="slideshow-key" key="&mozimage.commandkey.slideshow;"/>
-        <key id="openwith1-key" key="&mozimage.commandkey.openwith1;"/>
-        <key id="openwith2-key" key="&mozimage.commandkey.openwith2;"/>
-        <key id="openwith3-key" key="&mozimage.commandkey.openwith3;"/>
-        <key id="openwith4-key" key="&mozimage.commandkey.openwith4;"/>
-    </keyset>
-
     <!--
     <popupset>
         <popup id="image-popup">

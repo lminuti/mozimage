@@ -147,19 +147,6 @@ mozimage.define('mozimage.SideBar', {
 		mozimage.addEventListener('options-menu', 'command', this.options_click, this);
 		mozimage.addEventListener('about-menu', 'command', this.about_click, this);
 
-		// TODO: keyset doesn't work without the oncommand attrubite
-		mozimage.addEventListener('prior-key', 'command', this.prior_click, this);
-		mozimage.addEventListener('next-key', 'command', this.next_click, this);
-		mozimage.addEventListener('clear-key', 'command', this.clear_click, this);
-		mozimage.addEventListener('zoomin-key', 'command', this.zoomin_click, this);
-		mozimage.addEventListener('zoomout-key', 'command', this.zoomout_click, this);
-		mozimage.addEventListener('autosize-key', 'command', this.autosize_click, this);
-		mozimage.addEventListener('slideshow-key', 'command', this.slideshow_click, this);
-		mozimage.addEventListener('openwith1-key', 'command', this.openwith1_click, this);
-		mozimage.addEventListener('openwith2-key', 'command', this.openwith2_click, this);
-		mozimage.addEventListener('openwith3-key', 'command', this.openwith3_click, this);
-		mozimage.addEventListener('openwith4-key', 'command', this.openwith4_click, this);
-
 		mozimage.addEventListener('directory-listbox', 'select', this.directory_select, this);
 
 		mozimage.addEventListener('addbookmark-button', 'command', this.addbookmark_click, this);
@@ -168,6 +155,8 @@ mozimage.define('mozimage.SideBar', {
 		mozimage.addEventListener('bookmarkdown-button', 'command', this.bookmarkdown_click, this);
 
 		mozimage.addEventListener('file-listbox', 'select', this.file_select, this);
+
+		mozimage.addEventListener(window, 'keypress', this.window_keypress, this);
 
 		this.window_load(e);
 	},
@@ -209,10 +198,46 @@ mozimage.define('mozimage.SideBar', {
 	},
 
 	fullpath_keypress : function (event) {
-		jslibDebug("fullpath_keypress >> " + event.keyCode);
 		if (event.keyCode == 13) {
 			var fullpath = document.getElementById("fullpath-text");
 			this.fillListBox(fullpath.value);
+		}
+		event.stopPropagation();
+	},
+
+	window_keypress : function (event) {
+		var c = String.fromCharCode(event.charCode);
+		switch(c) {
+			case "c":
+				this.clear_click();
+				break;
+			case "b":
+				this.prior_click();
+				break;
+			case "n":
+				this.next_click();
+				break;
+			case "i":
+				this.zoomin_click();
+				break;
+			case "o":
+				this.zoomout_click();
+				break;
+			case "s":
+				this.slideshow_click();
+				break;
+			case "1":
+				this.openwith1_click();
+				break;
+			case "2":
+				this.openwith2_click();
+				break;
+			case "3":
+				this.openwith3_click();
+				break;
+			case "4":
+				this.openwith4_click();
+				break;
 		}
 	},
 

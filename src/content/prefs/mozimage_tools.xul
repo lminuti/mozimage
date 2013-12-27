@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet href="chrome://mozimage/skin" type="text/css"?>
 <!DOCTYPE page SYSTEM "chrome://mozimage/locale/mozimage.dtd">
-<page xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-      onload="prefs_load(event);"
-      onclose="prefs_close(event);">
+<page xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
     <script type="application/x-javascript" src="chrome://global/content/dialogOverlay.js"/>
     <script type="application/x-javascript" src="chrome://global/content/strres.js"/>
@@ -15,7 +13,7 @@
     <groupbox>
         <caption label="&mozimage.prefs.convertpath;"/>
         <hbox>
-            <button id="open-filerconvert-button" oncommand="openFilerConvert();" label="&mozimage.prefs.browse;"/>
+            <button id="open-filerconvert-button" label="&mozimage.prefs.browse;"/>
             <textbox id="convertpath-text" flex="1"/>
         </hbox>
     </groupbox>

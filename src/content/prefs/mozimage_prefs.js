@@ -285,5 +285,5 @@ mozimage.Prefs.prototype = {
  **
  */
 
-var prefs = new mozimage.Prefs();
+mozimage.prefs = new mozimage.Prefs();
 //top.prefs = prefs;

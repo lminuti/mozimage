@@ -13,10 +13,16 @@ mozimage.define('mozimage.PrefsDialog', {
 			this.switchPage(event.target.id);
 		} , this);
 
+		this.prefs_load();
 	},
 
 	prefs_load : function () {
-		prefs.load();
+		mozimage.prefs.load();
+
+		var prefsCategories = document.getElementById("prefsCategories");
+		var button = prefsCategories.childNodes[0];
+		document.getElementById("panelFrame").setAttribute("src", button.getAttribute("url"));
+		button.checked = true;
 	},
 
 	prefs_close : function () {
@@ -25,7 +31,7 @@ mozimage.define('mozimage.PrefsDialog', {
 			var panelFrame = document.getElementById("panelFrame");
 			// I must wait that the page save its own state
 			panelFrame.addEventListener('pagehide', function () {
-				prefs.save();
+				mozimage.prefs.save();
 			});
 		} catch (e) {
 			mozimage.showError(e);
@@ -56,6 +62,7 @@ mozimage.define('mozimage.PrefsDialog', {
 
 (function () {
 	window.addEventListener('load',function(evento) {
+		mozimage.prefs = window.arguments[0].prefs;
 		new mozimage.PrefsDialog();
 	});
 })();

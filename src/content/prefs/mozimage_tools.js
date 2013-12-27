@@ -1,7 +1,5 @@
 mozimage.define('mozimage.PrefsTools', {
 
-	prefs : top.prefs,
-
 	mozImageBundle : null,
 
 	init : function () {
@@ -14,14 +12,14 @@ mozimage.define('mozimage.PrefsTools', {
 	},
 
 	prefs_load : function () {
-		var editorsName = this.prefs.getEditorsName();
-		var editorsPath = this.prefs.getEditorsPath();
-		var macroName = this.prefs.getMacroName();
-		var macroCode = this.prefs.getMacroCode();
+		var editorsName = mozimage.prefs.getEditorsName();
+		var editorsPath = mozimage.prefs.getEditorsPath();
+		var macroName = mozimage.prefs.getMacroName();
+		var macroCode = mozimage.prefs.getMacroCode();
 		var edit, i;
 
 		var convertPath = document.getElementById("convertpath-text");
-		if (convertPath) convertPath.value = this.prefs.getConvertPath();
+		if (convertPath) convertPath.value = mozimage.prefs.getConvertPath();
 
 		for (i = 1; i <= 4; i++) {
 			edit = document.getElementById("editorname" + i + "-text");
@@ -59,11 +57,11 @@ mozimage.define('mozimage.PrefsTools', {
 				edit = document.getElementById("macrocode" + i + "-text");
 				macroCode[i] = edit.value;
 			}
-			this.prefs.setConvertPath(convertPath);
-			this.prefs.setEditorsName(editorsName);
-			this.prefs.setEditorsPath(editorsPath);
-			this.prefs.setMacroName(macroName);
-			this.prefs.setMacroCode(macroCode);
+			mozimage.prefs.setConvertPath(convertPath);
+			mozimage.prefs.setEditorsName(editorsName);
+			mozimage.prefs.setEditorsPath(editorsPath);
+			mozimage.prefs.setMacroName(macroName);
+			mozimage.prefs.setMacroCode(macroCode);
 		} catch (e) {
 			mozimage.showError(e);
 		}
@@ -79,7 +77,7 @@ mozimage.define('mozimage.PrefsTools', {
 			var res = fp.show();
 			if (res == nsIFilePicker.returnOK) {
 				var thepath = fp.file;
-				//this.prefs.setHomeDir(thefile.path);
+				//mozimage.prefs.setHomeDir(thefile.path);
 				if (navigator.platform == "Win32")
 					document.getElementById('convertpath-text').value = "'" + thepath.path + "'";
 				else
@@ -94,6 +92,7 @@ mozimage.define('mozimage.PrefsTools', {
 
 (function () {
 	window.addEventListener('load',function() {
+		mozimage.prefs = top.mozimage.prefs;
 		new mozimage.PrefsTools();
 	});
 })();

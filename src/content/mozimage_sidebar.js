@@ -35,8 +35,8 @@ mozimage.comparer = {
 	},
 
 	fileCompare : function (name1, name2) {
-		var method = prefs.getOrderBy();
-		var descending = (prefs.getDescending() ? -1 : 1);
+		var method = mozimage.prefs.getOrderBy();
+		var descending = (mozimage.prefs.getDescending() ? -1 : 1);
 		switch (method) {
 			case "name" :
 				return descending * mozimage.comparer.fileNameCompare(name1, name2);
@@ -68,9 +68,9 @@ mozimage.comparer = {
 function exit_click() {
 	try {
 		var fullpath = document.getElementById("fullpath-text");
-		if (prefs.getEnableCurrent()) {
-			prefs.setHomeDir(fullpath.value);
-			prefs.save();
+		if (mozimage.prefs.getEnableCurrent()) {
+			mozimage.prefs.setHomeDir(fullpath.value);
+			mozimage.prefs.save();
 		}
 	} catch (e) {
 		alert(e);
@@ -175,7 +175,7 @@ mozimage.define('mozimage.SideBar', {
 				sidebar.setAttribute("mozimage_url", "");
 			}
 
-			autoSizeButton.setAttribute("checked", prefs.getAutoSize());
+			autoSizeButton.setAttribute("checked", mozimage.prefs.getAutoSize());
 
 			this.buildOpenWithMenu();
 			this.buildMacroMenu();
@@ -184,7 +184,7 @@ mozimage.define('mozimage.SideBar', {
 			if (startingUrl != "" && fullpath.value != startingUrl)
 				this.fillListBox(startingUrl);
 			else if (fullpath.value == "")
-				this.fillListBox(prefs.getHomeDir());
+				this.fillListBox(mozimage.prefs.getHomeDir());
 
 		} catch (e) {
 			mozimage.showError(e);
@@ -193,8 +193,8 @@ mozimage.define('mozimage.SideBar', {
 
 	window_close : function () {
 		var aBrowser = document.getElementById("html-browser");
-		prefs.setSlideshow(false);
-		prefs.save();
+		mozimage.prefs.setSlideshow(false);
+		mozimage.prefs.save();
 	},
 
 	fullpath_keypress : function (event) {
@@ -290,12 +290,12 @@ mozimage.define('mozimage.SideBar', {
 	autosize_click : function () {
 		try {
 			var autoSizeButton = document.getElementById("autosize-button");
-			var mustAutosize = !prefs.getAutoSize();
+			var mustAutosize = !mozimage.prefs.getAutoSize();
 
-			prefs.setAutoSize(mustAutosize);
+			mozimage.prefs.setAutoSize(mustAutosize);
 			autoSizeButton.setAttribute('checked', mustAutosize);
 
-			prefs.save();
+			mozimage.prefs.save();
 
 			top.getBrowser().reload();
 
@@ -306,7 +306,7 @@ mozimage.define('mozimage.SideBar', {
 
 	zoomout_click: function () {
 		try {
-			this.resize(1 / prefs.getZoom());
+			this.resize(1 / mozimage.prefs.getZoom());
 		} catch (e) {
 			mozimage.showError(e);
 		}
@@ -314,7 +314,7 @@ mozimage.define('mozimage.SideBar', {
 
 	zoomin_click : function () {
 		try {
-			this.resize(prefs.getZoom());
+			this.resize(mozimage.prefs.getZoom());
 		} catch (e) {
 			mozimage.showError(e);
 		}
@@ -345,7 +345,7 @@ mozimage.define('mozimage.SideBar', {
 			image.width = 0;
 			image.height = 0;
 			// and stop slide show
-			if (prefs.getSlideshow())
+			if (mozimage.prefs.getSlideshow())
 				this.slideshow_click();
 		} catch (e) {
 			mozimage.showError(e);
@@ -445,7 +445,7 @@ mozimage.define('mozimage.SideBar', {
 				return;
 			}
 
-			var convertPath = prefs.getConvertPath();
+			var convertPath = mozimage.prefs.getConvertPath();
 			var editWindow = window.openDialog(
 				'chrome://mozimage/content/edit/mozimage_edit.xul',
 				this.stringBundle.GetStringFromName("editTitle"),
@@ -470,9 +470,9 @@ mozimage.define('mozimage.SideBar', {
 	slideshow_click : function () {
 		try {
 			var slideshowButton = document.getElementById("slideshow-button");
-			var slideshow = !prefs.getSlideshow();
+			var slideshow = !mozimage.prefs.getSlideshow();
 
-			prefs.setSlideshow(slideshow);
+			mozimage.prefs.setSlideshow(slideshow);
 			slideshowButton.setAttribute('checked', slideshow);
 
 			this.doSlideShow();
@@ -484,9 +484,16 @@ mozimage.define('mozimage.SideBar', {
 
 	options_click : function () {
 		try {
-			prefs.save();
-			window.openDialog('chrome://mozimage/content/prefs/mozimage_prefs.xul', this.stringBundle.GetStringFromName("optionsTitle"), 'chrome,centerscreen,dialog,modal', document.getElementById("fullpath-text"), this.stringBundle.GetStringFromName("choosedir"));
-			prefs.load();
+			mozimage.prefs.save();
+			window.openDialog(
+				'chrome://mozimage/content/prefs/mozimage_prefs.xul',
+				this.stringBundle.GetStringFromName("optionsTitle"),
+				'chrome,centerscreen,dialog,modal',
+				mozimage
+//				document.getElementById("fullpath-text"),
+//				this.stringBundle.GetStringFromName("choosedir")
+			);
+			mozimage.prefs.load();
 			this.buildOpenWithMenu();
 			this.buildMacroMenu();
 			var fullpath = document.getElementById("fullpath-text");
@@ -630,7 +637,7 @@ mozimage.define('mozimage.SideBar', {
 					if (this.supportedLinkType(doc.links[i])) {
 						filelistbox.appendChild(this.getImageLinkItem(doc.links[i]));
 						// use an XMLHttpRequest object to pre-load the images
-						if (prefs.getEnableCache()) {
+						if (mozimage.prefs.getEnableCache()) {
 							req = new XMLHttpRequest();
 							req.open('GET', doc.links[i].href, true);
 							req.setRequestHeader("Referer", fullpath.value);
@@ -717,7 +724,7 @@ mozimage.define('mozimage.SideBar', {
 	//</editor-fold>
 
 	buildOpenWithMenu: function () {
-		var editorsName = prefs.getEditorsName();
+		var editorsName = mozimage.prefs.getEditorsName();
 		for (var i = 1; i <= 4; i++) {
 			var openwith = document.getElementById("openwith" + i + "-menu");
 			openwith.label = this.stringBundle.formatStringFromName("openwith", [editorsName[i - 1]], 1);
@@ -726,7 +733,7 @@ mozimage.define('mozimage.SideBar', {
 	},
 
 	buildMacroMenu : function() {
-		var macroName = prefs.getMacroName();
+		var macroName = mozimage.prefs.getMacroName();
 		for (var i = 0; i < 10; i++) {
 			var macromenu = document.getElementById("macro" + i + "-menu");
 			macromenu.label = macroName[i];
@@ -797,7 +804,7 @@ mozimage.define('mozimage.SideBar', {
 
 		var basePath = document.getElementById("fullpath-text");
 		var fileUtil = new FileUtils();
-		var editorsPath = prefs.getEditorsPath();
+		var editorsPath = mozimage.prefs.getEditorsPath();
 		//var image = document.getElementById("main-image");
 		//var image = document.getElementById("file-listbox").selectedItem.lastChild.firstChild;
 		var image = this.getMainImage();
@@ -816,7 +823,7 @@ mozimage.define('mozimage.SideBar', {
 	resize : function (ratio) {
 		var contentDocument = top.getBrowser().contentDocument;
 		if (contentDocument.images.length == 1) {
-			if (prefs.getAutoSize())
+			if (mozimage.prefs.getAutoSize())
 				this.autosize_click();
 
 			var image = contentDocument.images[0];
@@ -847,7 +854,7 @@ mozimage.define('mozimage.SideBar', {
 		var image = this.getMainImage();
 		var imageURL = image.src;
 
-		var macroCode = prefs.getMacroCode();
+		var macroCode = mozimage.prefs.getMacroCode();
 		var commandLine = macroCode[index];
 		var paramsList = this.getParams(commandLine, imagePath);
 		var paramsOnly = new Array();
@@ -877,11 +884,11 @@ mozimage.define('mozimage.SideBar', {
 
 	doSlideShow : function () {
 		var me = this;
-		if (prefs.getSlideshow()) {
+		if (mozimage.prefs.getSlideshow()) {
 			this.next_click();
 			setTimeout(function () {
 				me.doSlideShow.call(me)
-			}, prefs.getDelay());
+			}, mozimage.prefs.getDelay());
 		}
 	},
 
@@ -947,8 +954,8 @@ mozimage.define('mozimage.SideBar', {
 		for (i = 0; i < files.length; i++)
 			if (this.supportedType(files[i]))
 				filelistbox.appendChild(this.getFileItem(files[i].leaf));
-		if (prefs.getEnableCurrent())
-			prefs.setHomeDir(adir);
+		if (mozimage.prefs.getEnableCurrent())
+			mozimage.prefs.setHomeDir(adir);
 	},
 
 	getDirectoryItem : function (linkItem) {
@@ -1015,8 +1022,8 @@ mozimage.define('mozimage.SideBar', {
 		fileLabel.setAttribute('crop', 'center');
 		fileLabel.setAttribute('flex', '1');
 
-		if (prefs.getThumbSize() > 0) {
-			if (linkItem.firstChild.nodeName.toUpperCase() == 'IMG' || prefs.getForceHttpTumb()) {
+		if (mozimage.prefs.getThumbSize() > 0) {
+			if (linkItem.firstChild.nodeName.toUpperCase() == 'IMG' || mozimage.prefs.getForceHttpTumb()) {
 				var tumbURL = "";
 				var fileImage = document.createElement('image');
 				if (linkItem.firstChild.nodeName.toUpperCase() == 'IMG') {
@@ -1026,8 +1033,8 @@ mozimage.define('mozimage.SideBar', {
 				if (tumbURL == "")
 					tumbURL = linkItem.href;
 				fileImage.setAttribute('src', tumbURL);
-				fileImage.setAttribute('width', prefs.getThumbSize());
-				fileImage.setAttribute('height', prefs.getThumbSize());
+				fileImage.setAttribute('width', mozimage.prefs.getThumbSize());
+				fileImage.setAttribute('height', mozimage.prefs.getThumbSize());
 				listCell.appendChild(fileImage);
 			}
 		}
@@ -1048,11 +1055,11 @@ mozimage.define('mozimage.SideBar', {
 
 		fileLabel.setAttribute('value', fileName);
 
-		if (prefs.getThumbSize() > 0) {
+		if (mozimage.prefs.getThumbSize() > 0) {
 			var fileImage = document.createElement('image');
 			fileImage.setAttribute('src', fullFileName);
-			fileImage.setAttribute('width', prefs.getThumbSize());
-			fileImage.setAttribute('height', prefs.getThumbSize());
+			fileImage.setAttribute('width', mozimage.prefs.getThumbSize());
+			fileImage.setAttribute('height', mozimage.prefs.getThumbSize());
 			listCell.appendChild(fileImage);
 		}
 
@@ -1064,7 +1071,7 @@ mozimage.define('mozimage.SideBar', {
 
 	supportedLinkType : function (linkItem) {
 		var result = false;
-		var extList = prefs.getExtList();
+		var extList = mozimage.prefs.getExtList();
 		for (var i = 0; i < extList.length; i++) {
 			if (extList[i].toUpperCase() == linkItem.href.substr(-3).toUpperCase())
 				result = true;
@@ -1074,7 +1081,7 @@ mozimage.define('mozimage.SideBar', {
 
 	supportedType : function (file) {
 		var result = false;
-		var extList = prefs.getExtList();
+		var extList = mozimage.prefs.getExtList();
 		for (var i = 0; i < extList.length; i++) {
 			if (extList[i].toUpperCase() == file.ext.toUpperCase())
 				result = true;

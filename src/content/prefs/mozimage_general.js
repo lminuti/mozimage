@@ -1,7 +1,5 @@
 mozimage.define('mozimage.PrefsGeneral', {
 
-	prefs : top.prefs,
-
 	mozImageBundle : null,
 
 	init : function () {
@@ -49,7 +47,7 @@ mozimage.define('mozimage.PrefsGeneral', {
 
 		var enableCurrentChk = document.getElementById("enablecurrent-check");
 		try {
-			if (this.prefs.getEnableCurrent()) {
+			if (mozimage.prefs.getEnableCurrent()) {
 				homedir.setAttribute("disabled", "true");
 				folderButton.setAttribute("disabled", "true");
 				currentButton.setAttribute("disabled", "true");
@@ -58,16 +56,16 @@ mozimage.define('mozimage.PrefsGeneral', {
 			alert(e);
 		}
 
-		var extList = this.prefs.getExtList();
-		homedir.value = this.prefs.getHomeDir();
-		delay.value = this.prefs.getDelay() / 1000;
-		zoom.value = this.prefs.getZoom();
-		thumbSize.value = this.prefs.getThumbSize();
-		orderBy.value = this.prefs.getOrderBy();
-		desChk.checked = this.prefs.getDescending();
-		forceHttpTumbChk.checked = this.prefs.getForceHttpTumb();
-		enableCacheChk.checked = this.prefs.getEnableCache();
-		enableCurrentChk.checked = this.prefs.getEnableCurrent();
+		var extList = mozimage.prefs.getExtList();
+		homedir.value = mozimage.prefs.getHomeDir();
+		delay.value = mozimage.prefs.getDelay() / 1000;
+		zoom.value = mozimage.prefs.getZoom();
+		thumbSize.value = mozimage.prefs.getThumbSize();
+		orderBy.value = mozimage.prefs.getOrderBy();
+		desChk.checked = mozimage.prefs.getDescending();
+		forceHttpTumbChk.checked = mozimage.prefs.getForceHttpTumb();
+		enableCacheChk.checked = mozimage.prefs.getEnableCache();
+		enableCurrentChk.checked = mozimage.prefs.getEnableCurrent();
 
 		for (var i = 0; i < extList.length; i++) {
 			var checkbox = document.getElementById(extList[i] + "-check");
@@ -76,7 +74,6 @@ mozimage.define('mozimage.PrefsGeneral', {
 	},
 
 	prefs_close : function () {
-		jslibDebug('save gen page');
 		try {
 			var homedir = document.getElementById("homedir-text");
 			var delay = document.getElementById("delay-text");
@@ -84,24 +81,24 @@ mozimage.define('mozimage.PrefsGeneral', {
 			var thumbMenu = document.getElementById("thumb-menu");
 			var orderByMenu = document.getElementById("orderby-menu");
 
-			this.prefs.setHomeDir(homedir.value);
-			this.prefs.setDelay(delay.value * 1000);
-			this.prefs.setZoom(zoom.value);
-			this.prefs.setThumbSize(thumbMenu.value);
-			this.prefs.setOrderBy(orderByMenu.value);
+			mozimage.prefs.setHomeDir(homedir.value);
+			mozimage.prefs.setDelay(delay.value * 1000);
+			mozimage.prefs.setZoom(zoom.value);
+			mozimage.prefs.setThumbSize(thumbMenu.value);
+			mozimage.prefs.setOrderBy(orderByMenu.value);
 		} catch (e) {
 			mozimage.showError(e);
 		}
 	},
 
 	toggleForceHTTPTumb : function () {
-		this.prefs.setForceHttpTumb(!this.prefs.getForceHttpTumb());
+		mozimage.prefs.setForceHttpTumb(!mozimage.prefs.getForceHttpTumb());
 	},
 
 	toggleEnableCurrent : function () {
 		try {
-			this.prefs.setEnableCurrent(!this.prefs.getEnableCurrent());
-			if (this.prefs.getEnableCurrent()) {
+			mozimage.prefs.setEnableCurrent(!mozimage.prefs.getEnableCurrent());
+			if (mozimage.prefs.getEnableCurrent()) {
 				document.getElementById("homedir-text").setAttribute("disabled", "true");
 				document.getElementById("folder-button").setAttribute("disabled", "true");
 				document.getElementById("current-button").setAttribute("disabled", "true");
@@ -117,11 +114,11 @@ mozimage.define('mozimage.PrefsGeneral', {
 	},
 
 	toggleDes : function () {
-		this.prefs.setDescending(!this.prefs.getDescending());
+		mozimage.prefs.setDescending(!mozimage.prefs.getDescending());
 	},
 
 	toggleEnableCache : function () {
-		this.prefs.setEnableCache(!this.prefs.getEnableCache());
+		mozimage.prefs.setEnableCache(!mozimage.prefs.getEnableCache());
 	},
 
 	getFolder : function () {
@@ -155,20 +152,21 @@ mozimage.define('mozimage.PrefsGeneral', {
 
 	toggleExt : function (aExt) {
 		var index = -1;
-		for (var i = 0; i < this.prefs.extList.length; i++) {
-			if (this.prefs.extList[i] == aExt)
+		for (var i = 0; i < mozimage.prefs.extList.length; i++) {
+			if (mozimage.prefs.extList[i] == aExt)
 				index = i;
 		}
 		if (index != -1)
-			this.prefs.extList.splice(index, 1);
+			mozimage.prefs.extList.splice(index, 1);
 		else
-			this.prefs.extList.push(aExt);
+			mozimage.prefs.extList.push(aExt);
 	}
 
 });
 
 (function () {
 	window.addEventListener('load',function() {
+		mozimage.prefs = top.mozimage.prefs;
 		new mozimage.PrefsGeneral();
 	});
 })();

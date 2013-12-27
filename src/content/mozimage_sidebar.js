@@ -425,6 +425,8 @@ mozimage.define('mozimage.SideBar', {
 
 	edit_click : function () {
 		try {
+			throw Error('Not yet supported');
+			/*
 			var chooseImageBefore = this.stringBundle.formatStringFromName("chooseimagebefore", [], 0);
 			if (top.getBrowser().contentDocument.location.href
 				.toString().substring(0, 7) != "file://") {
@@ -459,7 +461,7 @@ mozimage.define('mozimage.SideBar', {
 				convertPath,
 				document.getElementById("directory-listbox"),
 				top.getBrowser().contentDocument.location.href);
-
+			*/
 		} catch (e) {
 			mozimage.showError(e);
 		}

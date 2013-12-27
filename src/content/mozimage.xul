@@ -69,7 +69,7 @@
                         </menupopup>
                     </menu>
 
-                    <menuitem id="edit-button" label="&mozimage.menu.edit;"
+                    <menuitem id="edit-button" label="&mozimage.menu.edit;" hidden="true"
                               class="menuitem-iconic" image="chrome://mozimage/skin/options.png"/>
                     <menuitem id="slideshow-button" type="checkbox" label="&mozimage.menu.slideshow;"
                               class="menuitem-iconic"

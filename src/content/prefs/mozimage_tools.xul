@@ -10,7 +10,7 @@
     <script type="application/x-javascript" src="chrome://mozimage/content/prefs/mozimage_tools.js"/>
 
 
-    <groupbox>
+    <groupbox hidden="true">
         <caption label="&mozimage.prefs.convertpath;"/>
         <hbox>
             <button id="open-filerconvert-button" label="&mozimage.prefs.browse;"/>

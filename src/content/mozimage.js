@@ -58,7 +58,7 @@ if (!mozimage.loaded) {
 					sidebar.setAttribute('mozimage_url', imageUrl);
 			}
 		} catch (e) {
-			alert(e);
+			mozimage.showError(e);
 		}
 	};
 

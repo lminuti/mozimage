@@ -1,5 +1,5 @@
-overlay	  chrome://browser/content/browser.xul           chrome://mozimage/content/mozimageOverlay_FB.xul
-overlay	  chrome://global/content/customizeToolbar.xul   chrome://mozimage/content/mozimageOverlay_FB.xul
+overlay	  chrome://browser/content/browser.xul           chrome://mozimage/content/mozimageOverlay.xul
+overlay	  chrome://global/content/customizeToolbar.xul   chrome://mozimage/content/mozimageOverlay.xul
 
 content   mozimage                 jar:chrome/mozimage.jar!/content/
 

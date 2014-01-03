@@ -8,12 +8,15 @@
     <!-- Front End MetaData -->
     
     <em:name>mozImage</em:name>
-    <em:version>1.4.9</em:version>
+    <em:version>2.0</em:version>
     <em:id>{2485990f-d3b0-4e57-bd0f-5abdffa70773}</em:id>
+    <em:type>2</em:type>
     <em:description>Allow you to browse image on your local machine.</em:description>
+    <em:unpack>true</em:unpack>
     <em:creator>Lithian</em:creator>
     <em:contributor>My Hoang</em:contributor>
-    <em:homepageURL>http://mozimage.mozdev.org</em:homepageURL>
+    <em:contributor>Michal Kotelba</em:contributor>
+    <em:homepageURL>https://code.google.com/p/mozimage/</em:homepageURL>
 <!--    <em:updateURL>http://mozimage.mozdev.org/update.rdf</em:updateURL>-->
     <em:iconURL>chrome://mozimage/skin/mozimage-icon.png</em:iconURL>
     
@@ -29,26 +32,7 @@
         <em:maxVersion>26.*</em:maxVersion>
       </Description>
     </em:targetApplication>
-    
-    <!-- Packages, Skins and Locales that this extension registers -->
-    <em:file>
-      <Description about="urn:mozilla:extension:file:mozimage.jar">
-        <em:package>content/</em:package>
-        <em:locale>locale/en-US/</em:locale>
-        <em:locale>locale/it-IT/</em:locale>
-        <em:locale>locale/es-ES/</em:locale>
-        <em:locale>locale/fr-FR/</em:locale>
-        <em:locale>locale/cs-CZ/</em:locale>
-        <em:locale>locale/ja-JP/</em:locale>
-        <em:locale>locale/ca-AD/</em:locale>
-        <em:locale>locale/sv-SE/</em:locale>
-        <em:locale>locale/zh-TW/</em:locale>
-        <em:locale>locale/de-DE/</em:locale>
-        <em:locale>locale/sk-SK/</em:locale>
-        <em:skin>skin/</em:skin>
-      </Description>
-    </em:file>
-    
+
     <!-- Front End Integration Hooks (used by Extension Manager)-->
     
     <em:optionsURL>chrome://mozimage/content/prefs/mozimage_prefs.xul</em:optionsURL>

@@ -1,4 +1,4 @@
-include(jslib_dirutils);
+//include(jslib_dirutils);
 include(jslib_prefs);
 include(jslib_fileutils);
 include(jslib_file);
@@ -75,8 +75,8 @@ mozimage.Prefs.prototype = {
 			this.zoom = 1.5;
 
 		if (this.homeDir == "") {
-			var dirUtils = new DirUtils();
-			this.homeDir = dirUtils.getCurProcDir();
+			var dirUtils = new mozimage.utils.SpecialDir();
+			this.homeDir = dirUtils.getHomeDir();
 		}
 	},
 

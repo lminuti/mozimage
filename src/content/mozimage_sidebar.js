@@ -1,5 +1,4 @@
 include(jslib_dir);
-include(jslib_dirutils);
 include(jslib_fileutils);
 include(jslib_file);
 include("chrome://mozimage/content/prefs/mozimage_prefs.js");
@@ -159,6 +158,14 @@ mozimage.define('mozimage.SideBar', {
 		mozimage.addEventListener(window, 'keypress', this.window_keypress, this);
 
 		this.window_load(e);
+
+		var dir = new mozimage.utils.SpecialDir();
+		console.log(dir.getAppDefaultDir());
+		console.log(dir.getAppDefaultPrefDir());
+		console.log(dir.getBookmarks());
+		console.log(dir.getDesktopDir());
+		console.log(dir.getHomeDir());
+		console.log(dir.getMozHomeDir());
 	},
 
 	//<editor-fold desc="Event handlers">
@@ -743,7 +750,7 @@ mozimage.define('mozimage.SideBar', {
 
 	loadBookmarks : function () {
 		var bookmarklistbox = document.getElementById("bookmark-listbox");
-		var dirUtil = new DirUtils();
+		var dirUtil = new mozimage.utils.SpecialDir();
 		var fileUtil = new FileUtils();
 		var fileName = fileUtil.append(dirUtil.getPrefsDir(), 'mozimage-bookmarks.txt');
 		var file = new File(fileName);
@@ -1167,7 +1174,7 @@ mozimage.define('mozimage.SideBar', {
 
 	saveBookmarks : function () {
 		var bookmarklistbox = document.getElementById("bookmark-listbox");
-		var dirUtil = new DirUtils();
+		var dirUtil = new mozimage.utils.SpecialDir()();
 		var fileUtil = new FileUtils();
 		var fileName = fileUtil.append(dirUtil.getPrefsDir(), 'mozimage-bookmarks.txt');
 		var file = new File(fileName);

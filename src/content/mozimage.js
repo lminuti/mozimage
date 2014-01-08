@@ -4,6 +4,15 @@ if (!mozimage.loaded) {
 
 	mozimage.loaded = true;
 
+	mozimage.apply = function (object, config) {
+		var i;
+		for (i in config) {
+			if (config.hasOwnProperty(i)) {
+				object[i] = config[i];
+			}
+		}
+	};
+
 	// Basic function to declare a pseoudo class
 	// throught a configuration. Every function
 	// and variable of the configuration will be
@@ -28,7 +37,11 @@ if (!mozimage.loaded) {
 				this.init.apply(this, arguments);
 			}
 		};
-		ctor.prototype = config;
+		if (config.extend) {
+			ctor.prototype = config.extend.prototype;
+		}
+
+		mozimage.apply(ctor.prototype, config);
 		parent[parts[parts.length - 1]] = ctor;
 
 		return ctor;
@@ -62,12 +75,23 @@ if (!mozimage.loaded) {
 		}
 	};
 
+	/**
+	 * At the moment shows an alert and does a console log
+	 * @param e the object to show
+	 */
 	// For now it simple shows an alert
 	mozimage.showError = function (e) {
 		console.error(e.toString());
 		alert(e);
 	};
 
+	/**
+	 * Add an event listener to the target object
+	 * @param target name o reference to the chrome element
+	 * @param event name of the event handler
+	 * @param handler function to call
+	 * @param scope scope of the handler
+	 */
 	mozimage.addEventListener = function (target, event, handler, scope) {
 		var el;
 		if (typeof target == "string") {
@@ -91,13 +115,34 @@ if (!mozimage.loaded) {
 				break;
 
 			case "string":
-				rv = Components.classes[aURL].getService(jsC.interfaces[aInterface]);
+				rv = Components.classes[aURL].getService(Components.interfaces[aInterface]);
 				break;
 
 			default:
 				rv = Components.classes[aURL].getService();
 				break;
 		}
+		return rv;
 	};
 
 }
+
+mozimage.typeIsObj = function(aType) {
+	return (aType && typeof(aType) == "object");
+};
+
+mozimage.typeIsFunc = function(aType) {
+	return (aType && typeof(aType) == "function");
+};
+
+mozimage.typeIsStr = function(aType) {
+	return (aType && typeof(aType) == "string");
+};
+
+mozimage.typeIsNum = function(aType) {
+	return (aType && typeof(aType) == "number");
+};
+
+mozimage.typeIsUndef = function(aType) {
+	return (aType && typeof(aType) == "undefined");
+};

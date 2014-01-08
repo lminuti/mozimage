@@ -159,13 +159,6 @@ mozimage.define('mozimage.SideBar', {
 
 		this.window_load(e);
 
-		var dir = new mozimage.utils.SpecialDir();
-		console.log(dir.getAppDefaultDir());
-		console.log(dir.getAppDefaultPrefDir());
-		console.log(dir.getBookmarks());
-		console.log(dir.getDesktopDir());
-		console.log(dir.getHomeDir());
-		console.log(dir.getMozHomeDir());
 	},
 
 	//<editor-fold desc="Event handlers">

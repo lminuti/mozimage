@@ -162,7 +162,7 @@ mozimage.define('mozimage.utils.SpecialDir', {
 
 		var rv;
 		try {
-			rv = jslibGetService(JS_DIRUTILS_FILE_DIR_CID, JS_DIRUTILS_I_PROPS)
+			rv = mozimage.getService(JS_DIRUTILS_FILE_DIR_CID, JS_DIRUTILS_I_PROPS)
 				.get(aAppID, JS_DIRUTILS_NSIFILE);
 			if (this.useObj) {
 				if (rv.isFile()) {

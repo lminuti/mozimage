@@ -82,4 +82,22 @@ if (!mozimage.loaded) {
 		});
 	};
 
+	mozimage.getService = function(aURL, aInterface) {
+		var rv;
+		// determine how 'aInterface' is passed and handle accordingly
+		switch (typeof(aInterface)) {
+			case "object":
+				rv = Components.classes[aURL].getService(aInterface);
+				break;
+
+			case "string":
+				rv = Components.classes[aURL].getService(jsC.interfaces[aInterface]);
+				break;
+
+			default:
+				rv = Components.classes[aURL].getService();
+				break;
+		}
+	};
+
 }

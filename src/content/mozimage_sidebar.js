@@ -2,7 +2,6 @@ include(jslib_dir);
 include(jslib_fileutils);
 include(jslib_file);
 include("chrome://mozimage/content/prefs/mozimage_prefs.js");
-include("chrome://global/content/strres.js");
 
 mozimage.comparer = {
 
@@ -99,7 +98,7 @@ mozimage.ui.SideBar = mozimage.define({
 
 	init : function (e) {
 		var me = this;
-		this.stringBundle = srGetStrBundle("chrome://mozimage/locale/mozimage.properties");
+		this.stringBundle = mozimage.getStrBundle("chrome://mozimage/locale/mozimage.properties");
 		this.sidebar = document.getElementById("mozimage-window");
 		this.fullpathText = document.getElementById("fullpath-text");
 		this.goButton = document.getElementById("go-button");

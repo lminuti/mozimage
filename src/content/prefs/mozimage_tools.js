@@ -5,7 +5,7 @@ mozimage.ui.PrefsTools = mozimage.define({
 	mozImageBundle : null,
 
 	init : function () {
-		this.mozImageBundle = srGetStrBundle("chrome://mozimage/locale/mozimage.properties");
+		this.mozImageBundle = mozimage.getStrBundle("chrome://mozimage/locale/mozimage.properties");
 		mozimage.addEventListener(window, 'pagehide', this.prefs_close, this);
 
 		mozimage.addEventListener('open-filerconvert-button', 'command', this.openFilerConvert, this);

@@ -4,6 +4,8 @@ var mozimage = {
 
 	NS_OK : Components.results.NS_OK,
 
+	strBundleService : null,
+
 	/**
 	 * Create the given namespace using a dotten notation
 	 * Ex. 'app.ui.forms'
@@ -129,6 +131,26 @@ var mozimage = {
 		}
 
 		return rv;
+	},
+
+	getStrBundle : function(path)
+	{
+		var strBundle = null;
+
+		if (!mozimage.strBundleService) {
+			try {
+				mozimage.strBundleService = mozimage.getService("@mozilla.org/intl/stringbundle;1", "nsIStringBundleService");
+			} catch (ex) {
+				dump("\n--** strBundleService failed: " + ex + "\n");
+				return null;
+			}
+		}
+
+		strBundle = mozimage.strBundleService.createBundle(path);
+		if (!strBundle) {
+			dump("\n--** strBundle createInstance failed **--\n");
+		}
+		return strBundle;
 	},
 
 	logError : function (msg) {

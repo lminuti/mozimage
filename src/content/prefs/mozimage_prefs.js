@@ -1,10 +1,4 @@
-//include(jslib_dirutils);
 include(jslib_prefs);
-include(jslib_fileutils);
-include(jslib_file);
-include(jslib_dir);
-
-include("chrome://global/content/strres.js");
 
 mozimage.Prefs = function () {
 	this.prefs = new Prefs();

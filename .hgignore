@@ -2,3 +2,5 @@ syntax: glob
 .idea
 src/build
 *.lnk
+*.xpi
+*.jar

@@ -1,4 +1,6 @@
-mozimage.define('mozimage.PrefsGeneral', {
+mozimage.ns("mozimage.ui");
+
+mozimage.ui.PrefsGeneral = mozimage.define({
 
 	mozImageBundle : null,
 
@@ -167,6 +169,6 @@ mozimage.define('mozimage.PrefsGeneral', {
 (function () {
 	window.addEventListener('load',function() {
 		mozimage.prefs = top.mozimage.prefs;
-		new mozimage.PrefsGeneral();
+		new mozimage.ui.PrefsGeneral();
 	});
 })();

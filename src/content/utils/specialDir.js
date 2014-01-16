@@ -1,4 +1,6 @@
-mozimage.define('mozimage.utils.SpecialDir', {
+mozimage.ns("mozimage.utils");
+
+mozimage.utils.SpecialDir = mozimage.define({
 
 	/**
 	 * /root/.mozilla/Default User/k1m30xaf.slt

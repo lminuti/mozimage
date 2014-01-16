@@ -87,9 +87,9 @@ function image_click() {
 }
  */
 
+mozimage.ns("mozimage.ui");
 
-
-mozimage.define('mozimage.SideBar', {
+mozimage.ui.SideBar = mozimage.define({
 
 	emptyingList : false,
 
@@ -921,7 +921,7 @@ mozimage.define('mozimage.SideBar', {
 		var dirnotfound = this.stringBundle.formatStringFromName("dirnotfound", [], 0);
 		var dirlistbox = document.getElementById("directory-listbox");
 		var filelistbox = document.getElementById("file-listbox");
-		var d = new Dir(adir);
+		var d = new mozimage.utils.Dir(adir);
 		var dirList = d.readDir();
 		if (dirList == null) {
 			alert(dirnotfound);
@@ -1222,6 +1222,6 @@ updateDescription : function () {
 
 (function () {
 	window.addEventListener('load',function(e) {
-		new mozimage.SideBar();
+		new mozimage.ui.SideBar();
 	});
 })();

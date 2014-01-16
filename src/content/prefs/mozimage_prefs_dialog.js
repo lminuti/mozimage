@@ -1,4 +1,6 @@
-mozimage.define('mozimage.PrefsDialog', {
+mozimage.ns("mozimage.ui");
+
+mozimage.ui.PrefsDialog = mozimage.define({
 
 	init : function () {
 		// Reference of the current object to use inside the callbacks
@@ -63,6 +65,6 @@ mozimage.define('mozimage.PrefsDialog', {
 (function () {
 	window.addEventListener('load',function(evento) {
 		mozimage.prefs = window.arguments[0].prefs;
-		new mozimage.PrefsDialog();
+		new mozimage.ui.PrefsDialog();
 	});
 })();

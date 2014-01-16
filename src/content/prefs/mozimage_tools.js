@@ -1,4 +1,6 @@
-mozimage.define('mozimage.PrefsTools', {
+mozimage.ns("mozimage.ui");
+
+mozimage.ui.PrefsTools = mozimage.define({
 
 	mozImageBundle : null,
 
@@ -93,6 +95,6 @@ mozimage.define('mozimage.PrefsTools', {
 (function () {
 	window.addEventListener('load',function() {
 		mozimage.prefs = top.mozimage.prefs;
-		new mozimage.PrefsTools();
+		new mozimage.ui.PrefsTools();
 	});
 })();

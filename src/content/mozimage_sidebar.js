@@ -1,7 +1,5 @@
-include(jslib_dir);
 include(jslib_fileutils);
 include(jslib_file);
-include("chrome://mozimage/content/prefs/mozimage_prefs.js");
 
 mozimage.comparer = {
 

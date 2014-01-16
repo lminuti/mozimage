@@ -12,6 +12,7 @@
     <script type="application/x-javascript" src="chrome://mozimage/content/utils/filesystem.js"/>
     <script type="application/x-javascript" src="chrome://mozimage/content/utils/dir.js"/>
     <script type="application/x-javascript" src="chrome://mozimage/content/utils/specialDir.js"/>
+    <script type="application/x-javascript" src="chrome://mozimage/content/prefs/mozimage_prefs.js"/>
     <script type="application/x-javascript" src="chrome://mozimage/content/mozimage_sidebar.js"/>
 
     <toolbox>

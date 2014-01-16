@@ -111,7 +111,7 @@ mozimage.utils.Dir = mozimage.define({
 					listings.push(new File(file.path));
 
 				if (file.isDirectory())
-					listings.push(new Dir(file.path));
+					listings.push(new mozimage.utils.Dir(file.path));
 			}
 
 			rv = listings;
@@ -126,7 +126,7 @@ mozimage.utils.Dir = mozimage.define({
 		if (!this.checkInst())
 			return mozimage.logError("NS_ERROR_NOT_INITIALIZED");
 
-		return new Dir(this.mPath);
+		return new mozimage.utils.Dir(this.mPath);
 	},
 
 	contains : function (aFileObj) {

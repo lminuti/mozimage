@@ -2,6 +2,7 @@ var mozimage = {
 
 	VOID : void(null),
 
+	// Ex JSLIB_OK
 	NS_OK : Components.results.NS_OK,
 
 	strBundleService : null,

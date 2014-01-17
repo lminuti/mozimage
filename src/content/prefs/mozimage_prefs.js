@@ -1,11 +1,11 @@
-include(jslib_prefs);
+mozimage.include("chrome://mozimage/content/utils/prefs.js");
 
-mozimage.Prefs = function () {
-	this.prefs = new Prefs();
-	this.load();
-};
+mozimage.Prefs = mozimage.define({
 
-mozimage.Prefs.prototype = {
+	init : function () {
+		this.prefs = new mozimage.utils.Prefs();
+		this.load();
+	},
 
 	load: function () {
 		this.homeDir = this.prefs.getChar("mozimage.home_directory");
@@ -270,7 +270,7 @@ mozimage.Prefs.prototype = {
 		this.editorPath4 = aValue[3];
 	}
 
-}; // END CLASS
+}); // END CLASS
 
 /*
  **

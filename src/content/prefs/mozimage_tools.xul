@@ -4,8 +4,6 @@
 <page xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
     <script type="application/x-javascript" src="chrome://global/content/dialogOverlay.js"/>
-    <script type="application/x-javascript" src="chrome://global/content/strres.js"/>
-    <script type="application/x-javascript" src="chrome://mozimage/content/jslib.js"/>
     <script type="application/x-javascript" src="chrome://mozimage/content/mozimage.js"/>
     <script type="application/x-javascript" src="chrome://mozimage/content/prefs/mozimage_tools.js"/>
 

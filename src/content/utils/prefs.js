@@ -10,10 +10,10 @@ mozimage.utils.Prefs = mozimage.define({
 
 	init : function () {
 		// create instance of prefs xpcom object
-		//this.prefInst = jslibCreateInstance(JS_PREFS_CID, JS_PREFS_I_PREF);
+		//this.prefInst = mozimage.createInstance(JS_PREFS_CID, JS_PREFS_I_PREF);
 		this.prefServiceInst = mozimage.createInstance(this.JS_PREFS_CID, this.JS_PREFS_I_PREF);
 		this.prefInst = this.prefServiceInst.getBranch("");
-		/////this.prefInst = jslibQI(this.prefInst, "nsIPrefBranch");
+		/////this.prefInst = mozimage.qIntf(this.prefInst, "nsIPrefBranch");
 
 		// support nsIPref method names
 		this.addMethods();

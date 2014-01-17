@@ -4,7 +4,6 @@
 <!DOCTYPE window SYSTEM "chrome://mozimage/locale/mozimage.dtd">
 
 <overlay id="mozimageOverlay_FB" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-    <script type="application/x-javascript" src="chrome://mozimage/content/jslib.js"/>
     <script type="application/x-javascript" src="chrome://mozimage/content/mozimage.js"/>
 
     <menupopup id="viewSidebarMenu">

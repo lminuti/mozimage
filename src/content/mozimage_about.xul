@@ -27,11 +27,13 @@
             <text value="https://code.google.com/p/mozimage/wiki/ReleaseNotes"
                   class="url"
                   onclick="window.open('https://code.google.com/p/mozimage/wiki/ReleaseNotes'); window.close();"/>
+            <!--
             <separator class="thin"/>
             <text value="&mozimage.about.powered;" style="font-weight: bold;"/>
             <text value="http://jslib.mozdev.org/"
                   class="url"
                   onclick="window.open('http://jslib.mozdev.org/'); window.close();"/>
+            -->
         </vbox>
         <spring flex="1"/>
         <image src="logo.png"/>

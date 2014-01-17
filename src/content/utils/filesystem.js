@@ -225,7 +225,7 @@ mozimage.utils.FileSystem = mozimage.define({
 		if (!this.validatePermissions(aPermission))
 			return mozimage.logError("NS_ERROR_INVALID_ARG");
 
-		var rv = JS_LIB_OK;
+		var rv = mozimage.NS_OK;
 		try {
 			this.mFileInst.permissions = aPermission;
 		} catch (e) {
@@ -562,7 +562,7 @@ mozimage.utils.FileSystem = mozimage.define({
 		if (!this.exists())
 			return mozimage.logError("NS_ERROR_FILE_NOT_FOUND");
 
-		var rv = JS_LIB_OK;
+		var rv = mozimage.NS_OK;
 		try {
 			this.mFileInst.normalize();
 		} catch (e) {

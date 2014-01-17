@@ -52,7 +52,7 @@ mozimage.utils.Dir = mozimage.define({
 
 		if (!checkedPerms) checkedPerms = this.JS_DIR_DEFAULT_PERMS;
 
-		var rv = JS_LIB_OK;
+		var rv = mozimage.NS_OK;
 		try {
 			this.mFileInst.create(this.JS_DIR_DIRECTORY, checkedPerms);
 		} catch (e) {
@@ -67,7 +67,7 @@ mozimage.utils.Dir = mozimage.define({
 			return mozimage.logError("NS_ERROR_NOT_INITIALIZED");
 
 		var checkedPerms;
-		if (jslibTypeIsNumber(aPermissions)) {
+		if (mozimage.typeIsNum(aPermissions)) {
 			checkedPerms = this.validatePermissions(aPermissions);
 
 			if (!checkedPerms)
@@ -84,7 +84,7 @@ mozimage.utils.Dir = mozimage.define({
 
 		if (!checkedPerms) checkedPerms = this.JS_DIR_DEFAULT_PERMS;
 
-		var rv = JS_LIB_OK;
+		var rv = mozimage.NS_OK;
 		try {
 			this.mFileInst.createUnique(this.JS_DIR_DIRECTORY, checkedPerms);
 		} catch (e) {
@@ -98,7 +98,7 @@ mozimage.utils.Dir = mozimage.define({
 		if (!this.exists())
 			return mozimage.logError("NS_ERROR_FILE_TARGET_DOES_NOT_EXIST");
 
-		var rv = JS_LIB_OK;
+		var rv = mozimage.NS_OK;
 		try {
 			if (!this.isDir())
 				return mozimage.logError("NS_ERROR_FILE_NOT_DIRECTORY");
@@ -108,7 +108,7 @@ mozimage.utils.Dir = mozimage.define({
 			var file;
 
 			while (files.hasMoreElements()) {
-				file = files.getNext().QueryInterface(jslibI.nsILocalFile);
+				file = files.getNext().QueryInterface(Components.interfaces.nsILocalFile);
 				if (file.isFile())
 					listings.push(new mozimage.utils.File(file.path));
 
@@ -164,7 +164,7 @@ mozimage.utils.Dir = mozimage.define({
 		if (!this.mPath)
 			return mozimage.logError("NS_ERROR_INVALID_ARG");
 
-		var rv = JS_LIB_OK;
+		var rv = mozimage.NS_OK;
 		try {
 			if (!this.exists())
 				return mozimage.logError("NS_ERROR_FILE_TARGET_DOES_NOT_EXIST");

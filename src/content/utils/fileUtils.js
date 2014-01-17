@@ -1,5 +1,4 @@
 mozimage.include("chrome://mozimage/content/utils/dir.js");
-//mozimage.include(jslib_file);
 
 mozimage.ns("mozimage.utils");
 
@@ -142,7 +141,7 @@ mozimage.utils.FileUtils = mozimage.define({
 
 		// XXX commenting out this check as it fails on OSX
 		// if (!fileInst.isExecutable())
-		// return jslibErrorMsg("NS_ERROR_INVALID_ARG");
+		// return mozimage.logError("NS_ERROR_INVALID_ARG");
 
 		if (fileInst.isDirectory())
 			throw Error("NS_ERROR_FILE_IS_DIRECTORY");

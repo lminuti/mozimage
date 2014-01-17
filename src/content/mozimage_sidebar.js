@@ -930,7 +930,6 @@ mozimage.ui.SideBar = mozimage.define({
 		this.emptyList();
 		fullpath.value = adir;
 
-		debugger;
 		for (i = 0; i < dirList.length; i++)
 			dirList[i].isDir() ? dirs.push(dirList[i]) : files.push(dirList[i]);
 

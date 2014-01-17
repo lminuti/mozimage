@@ -157,7 +157,7 @@ mozimage.utils.SpecialDir = mozimage.define({
 	getPath: function (aAppID) {
 		const JS_DIRUTILS_FILE_DIR_CID = "@mozilla.org/file/directory_service;1";
 		const JS_DIRUTILS_I_PROPS = "nsIProperties";
-		const JS_DIRUTILS_NSIFILE = jslibI.nsIFile;
+		const JS_DIRUTILS_NSIFILE = Components.interfaces.nsIFile;
 
 		if (!aAppID)
 			mozimage.showError("NS_ERROR_INVALID_ARG");
@@ -168,17 +168,17 @@ mozimage.utils.SpecialDir = mozimage.define({
 				.get(aAppID, JS_DIRUTILS_NSIFILE);
 			if (this.useObj) {
 				if (rv.isFile()) {
-					include(jslib_file);
-					rv = new File(rv.path);
+					mozimage.include("chrome://mozimage/content/utils/file.js");
+					rv = new mozimage.utils.File(rv.path);
 				} else if (rv.isDirectory()) {
-					include(jslib_dir);
-					rv = new Dir(rv.path);
+					mozimage.include("chrome://mozimage/content/utils/dir.js");
+					rv = new mozimage.utils.Dir(rv.path);
 				}
 			} else {
 				rv = rv.path;
 			}
 		} catch (e) {
-			rv = jslibError(e);
+			rv = mozimage.logError(e);
 		}
 
 		return rv;

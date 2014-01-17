@@ -207,7 +207,7 @@ mozimage.utils.File = mozimage.define({
 				} catch (e) {
 					return mozimage.logError(e);
 				}
-				rv = JS_LIB_OK;
+				rv = mozimage.NS_OK;
 				break;
 			}
 
@@ -233,7 +233,7 @@ mozimage.utils.File = mozimage.define({
 						this.mInputStream = new this.JS_FILE_InputStream();
 						this.mInputStream.init(this.mFileChannel.open());
 					}
-					rv = JS_LIB_OK;
+					rv = mozimage.NS_OK;
 				} catch (e) {
 					rv = mozimage.logError(e);
 				}
@@ -418,7 +418,7 @@ mozimage.utils.File = mozimage.define({
 	 *     f.open("w");                                              *
 	 *     f.write();                                                *
 	 *                                                               *
-	 *   outputs: JS_LIB_OK upon success                             *
+	 *   outputs: NS_OK upon success                             *
 	 ****************************************************************/
 
 	write : function (aBuffer) {
@@ -432,7 +432,7 @@ mozimage.utils.File = mozimage.define({
 
 		if (!aBuffer) aBuffer = "";
 
-		var rv = JS_LIB_OK;
+		var rv = mozimage.NS_OK;
 		try {
 			if (this.mIsBinary && aBuffer.constructor == Array)
 				this.mOutStream.writeByteArray(aBuffer, aBuffer.length);
@@ -460,7 +460,7 @@ mozimage.utils.File = mozimage.define({
 	 *     fopen();                                                  *
 	 *     f.close();                                                *
 	 *                                                               *
-	 *   outputs: JS_LIB_OK upon success                             *
+	 *   outputs: NS_OK upon success                             *
 	 ****************************************************************/
 
 	copy : function (aDest, aForce) {
@@ -473,7 +473,7 @@ mozimage.utils.File = mozimage.define({
 		if (!this.exists())
 			throw Error("NS_ERROR_FILE_NOT_FOUND");
 
-		var rv = JS_LIB_OK;
+		var rv = mozimage.NS_OK;
 		try {
 			var dest = new JS_FS_File_Path(aDest);
 			var copyName, dir = null;
@@ -551,7 +551,7 @@ mozimage.utils.File = mozimage.define({
 			this.mURI = null;
 		}
 
-		return JS_LIB_OK;
+		return mozimage.NS_OK;
 	},
 
 	/**
@@ -567,7 +567,7 @@ mozimage.utils.File = mozimage.define({
 		if (this.exists())
 			throw Error("NS_ERROR_FILE_ALREADY_EXISTS");
 
-		var rv = JS_LIB_OK;
+		var rv = mozimage.NS_OK;
 		try {
 			this.mFileInst.create(this.JS_FILE_FILE_TYPE, this.JS_FILE_DEFAULT_PERMS);
 		} catch (e) {
@@ -584,7 +584,7 @@ mozimage.utils.File = mozimage.define({
 		if (!this.checkInst())
 			throw Error("NS_ERROR_NOT_INITIALIZED");
 
-		var rv = JS_LIB_OK;
+		var rv = mozimage.NS_OK;
 		try {
 			this.mFileInst.createUnique(this.JS_FILE_FILE_TYPE, this.JS_FILE_DEFAULT_PERMS);
 		} catch (e) {
@@ -619,7 +619,7 @@ mozimage.utils.File = mozimage.define({
 
 		this.close();
 
-		var rv = JS_LIB_OK;
+		var rv = mozimage.NS_OK;
 		try {
 			this.mFileInst.remove(false);
 		} catch (e) {

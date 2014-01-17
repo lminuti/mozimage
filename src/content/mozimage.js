@@ -158,41 +158,6 @@ var mozimage = {
 			this.includedFiles.push(aScriptPath);
 		}
 
-		/*
-		var start = aScriptPath.lastIndexOf('/') + 1;
-		var end = aScriptPath.lastIndexOf('.');
-		var slice = aScriptPath.length - end;
-		var loadID = aScriptPath.substring(start, (aScriptPath.length - slice));
-
-		if (typeof(this['JS_' + loadID.toUpperCase() + '_LOADED']) == "boolean")
-			return JS_LIB_OK;
-
-		var rv;
-		try {
-			if (jslibNeedsPrivs()) {
-				console.warn('enablePrivilege');
-				netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
-			}
-
-			if (!checkXPCShell())
-				jslibGetService("@mozilla.org/moz/jssubscript-loader;1",
-					"mozIJSSubScriptLoader").loadSubScript(aScriptPath);
-			else
-				xpcShellLoad(aScriptPath);
-
-			rv = jslibRes.NS_OK;
-			if (JS_LIB_VERBOSE) dump("include: " + aScriptPath + "\n");
-		} catch (e) {
-			const msg = aScriptPath + " is not a valid path or is already loaded\n";
-			if (JS_LIB_DEBUG) {
-				dump(e + "\n");
-				dump("include: " + msg + "\n");
-			}
-			rv = -jslibRes.NS_ERROR_INVALID_ARG;
-		}
-
-		return rv;
-		*/
 	},
 
 	getStrBundle : function(path)

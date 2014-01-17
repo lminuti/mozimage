@@ -1,8 +1,8 @@
 mozimage.include("chrome://mozimage/content/utils/dir.js");
 mozimage.include("chrome://mozimage/content/utils/specialDir.js");
+mozimage.include("chrome://mozimage/content/utils/fileUtils.js");
 mozimage.include("chrome://mozimage/content/prefs/mozimage_prefs.js");
 
-mozimage.include(jslib_fileutils);
 mozimage.include(jslib_file);
 
 mozimage.comparer = {
@@ -276,7 +276,6 @@ mozimage.ui.SideBar = mozimage.define({
 			var mainTabbox = document.getElementById("main_tabbox");
 			mainTabbox.selectedIndex = 0;
 			var fullpath = document.getElementById("fullpath-text");
-			var fileUtil = new FileUtils();
 			if (fullpath.value) {
 				var aPath = fullpath.value;
 				var file = new File(aPath);
@@ -356,7 +355,6 @@ mozimage.ui.SideBar = mozimage.define({
 	refresh_click : function () {
 		try {
 			var fullpath = document.getElementById("fullpath-text");
-			var fileUtil = new FileUtils();
 			if (fullpath.value) {
 				var aPath = fullpath.value;
 				//var file = new File(aPath);
@@ -514,7 +512,7 @@ mozimage.ui.SideBar = mozimage.define({
 			var selectedItem = event.target.selectedItem;
 			var basePath = document.getElementById("fullpath-text");
 			var path = selectedItem.getAttribute("label");
-			var fileUtil = new FileUtils();
+			var fileUtil = new mozimage.utils.FileUtils();
 			var url = "";
 
 			if (path.substr(0, 7) == "http://")
@@ -592,7 +590,7 @@ mozimage.ui.SideBar = mozimage.define({
 			if (!this.emptyingList) {
 				var selectedItem = event.target.selectedItem;
 				var basePath = document.getElementById("fullpath-text");
-				var fileUtil = new FileUtils();
+				var fileUtil = new mozimage.utils.FileUtils();
 
 				var labelItem = selectedItem.lastChild.lastChild;
 				var fileName = labelItem.value;
@@ -658,7 +656,7 @@ mozimage.ui.SideBar = mozimage.define({
 	** link to the right click on the image: temporary disabled
 	save_click : function () {
 		var saveasStr = this.stringBundle.formatStringFromName("saveas", [], 0);
-		var fileUtil = new FileUtils();
+		var fileUtil = new mozimage.utils.FileUtils();
 		//var mainImage = document.getElementById("file-listbox").selectedItem.lastChild.firstChild;
 		var mainimage = this.getMainImage();
 		//var mainImage = document.getElementById("main-image");
@@ -684,7 +682,7 @@ mozimage.ui.SideBar = mozimage.define({
 	 ** link to the right click on the image: temporary disabled
 	saveall_click: function () {
 		var choosedirStr = this.stringBundle.formatStringFromName("choosedir", [], 0);
-		var fileUtil = new FileUtils();
+		var fileUtil = new mozimage.utils.FileUtils();
 		var basePath = document.getElementById("fullpath-text");
 		var filelistbox = document.getElementById("file-listbox");
 		var item = null;
@@ -745,7 +743,7 @@ mozimage.ui.SideBar = mozimage.define({
 	loadBookmarks : function () {
 		var bookmarklistbox = document.getElementById("bookmark-listbox");
 		var dirUtil = new mozimage.utils.SpecialDir();
-		var fileUtil = new FileUtils();
+		var fileUtil = new mozimage.utils.FileUtils();
 		var fileName = fileUtil.append(dirUtil.getPrefsDir(), 'mozimage-bookmarks.txt');
 		var file = new File(fileName);
 
@@ -804,7 +802,7 @@ mozimage.ui.SideBar = mozimage.define({
 		var filenotfound = this.stringBundle.formatStringFromName("filenotfound", [], 0);
 
 		var basePath = document.getElementById("fullpath-text");
-		var fileUtil = new FileUtils();
+		var fileUtil = new mozimage.utils.FileUtils();
 		var editorsPath = mozimage.prefs.getEditorsPath();
 		//var image = document.getElementById("main-image");
 		//var image = document.getElementById("file-listbox").selectedItem.lastChild.firstChild;
@@ -813,9 +811,7 @@ mozimage.ui.SideBar = mozimage.define({
 		var imagePath = fileUtil.append(basePath.value, fileName);
 
 		try {
-			var rv = fileUtil.spawn(editorsPath[index - 1], [imagePath]);
-			if (rv == null)
-				alert(filenotfound);
+			fileUtil.run(editorsPath[index - 1], [imagePath]);
 		} catch (e) {
 			mozimage.showError(e);
 		}
@@ -848,7 +844,7 @@ mozimage.ui.SideBar = mozimage.define({
 		var labelItem = selectedItem.lastChild.lastChild;
 		var fileName = labelItem.value;
 		var basePath = document.getElementById("fullpath-text");
-		var fileUtil = new FileUtils();
+		var fileUtil = new mozimage.utils.FileUtils();
 		var imagePath = fileUtil.append(basePath.value, fileName);
 
 		//var image = document.getElementById("file-listbox").selectedItem.lastChild.firstChild;
@@ -865,9 +861,7 @@ mozimage.ui.SideBar = mozimage.define({
 			paramsOnly[i - 1] = paramsList[i];
 
 		try {
-			var rv = fileUtil.execute(command, paramsOnly);
-			if (rv == null)
-				alert(filenotfound);
+			fileUtil.run(command, paramsOnly);
 		} catch (e) {
 			mozimage.showError(e);
 		}
@@ -1047,7 +1041,7 @@ mozimage.ui.SideBar = mozimage.define({
 
 	getFileItem : function (fileName) {
 		var fullpath = document.getElementById("fullpath-text");
-		var fileUtil = new FileUtils();
+		var fileUtil = new mozimage.utils.FileUtils();
 		var fullFileName = this.pathToURI(fileUtil.append(fullpath.value, fileName));
 
 		var listItem = document.createElement('listitem');
@@ -1169,7 +1163,7 @@ mozimage.ui.SideBar = mozimage.define({
 	saveBookmarks : function () {
 		var bookmarklistbox = document.getElementById("bookmark-listbox");
 		var dirUtil = new mozimage.utils.SpecialDir()();
-		var fileUtil = new FileUtils();
+		var fileUtil = new mozimage.utils.FileUtils();
 		var fileName = fileUtil.append(dirUtil.getPrefsDir(), 'mozimage-bookmarks.txt');
 		var file = new File(fileName);
 		var anItem = null;

@@ -1,5 +1,7 @@
 mozimage.ns("mozimage.utils");
 
+mozimage.include("chrome://mozimage/content/utils/filesystem.js");
+
 mozimage.utils.Dir = mozimage.define({
 
 	extend: mozimage.utils.FileSystem,

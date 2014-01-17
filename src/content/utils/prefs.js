@@ -1,4 +1,4 @@
-mozimage.include(jslib_file);
+mozimage.include("chrome://mozimage/content/utils/file.js");
 
 mozimage.ns("mozimage.utils");
 
@@ -112,7 +112,7 @@ mozimage.utils.Prefs = mozimage.define({
 
 			case "string":
 				// path is a string, make it into an nsIFile
-				file = (new File(aFile)).nsIFile;
+				file = (new mozimage.utils.File(aFile)).nsIFile;
 				break;
 		}
 

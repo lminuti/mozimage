@@ -1,9 +1,8 @@
 mozimage.include("chrome://mozimage/content/utils/dir.js");
+mozimage.include("chrome://mozimage/content/utils/file.js");
 mozimage.include("chrome://mozimage/content/utils/specialDir.js");
 mozimage.include("chrome://mozimage/content/utils/fileUtils.js");
 mozimage.include("chrome://mozimage/content/prefs/mozimage_prefs.js");
-
-mozimage.include(jslib_file);
 
 mozimage.comparer = {
 
@@ -278,7 +277,7 @@ mozimage.ui.SideBar = mozimage.define({
 			var fullpath = document.getElementById("fullpath-text");
 			if (fullpath.value) {
 				var aPath = fullpath.value;
-				var file = new File(aPath);
+				var file = new mozimage.utils.File(aPath);
 				var aParent = file.parent.path;
 				this.fillListBox(aParent);
 			}
@@ -357,7 +356,7 @@ mozimage.ui.SideBar = mozimage.define({
 			var fullpath = document.getElementById("fullpath-text");
 			if (fullpath.value) {
 				var aPath = fullpath.value;
-				//var file = new File(aPath);
+				//var file = new mozimage.utils.File(aPath);
 				//var aParent = file.parent.path;
 				this.fillListBox(aPath);
 			}
@@ -745,7 +744,7 @@ mozimage.ui.SideBar = mozimage.define({
 		var dirUtil = new mozimage.utils.SpecialDir();
 		var fileUtil = new mozimage.utils.FileUtils();
 		var fileName = fileUtil.append(dirUtil.getPrefsDir(), 'mozimage-bookmarks.txt');
-		var file = new File(fileName);
+		var file = new mozimage.utils.File(fileName);
 
 		if (!file.exists()) {
 			file.create();
@@ -931,6 +930,7 @@ mozimage.ui.SideBar = mozimage.define({
 		this.emptyList();
 		fullpath.value = adir;
 
+		debugger;
 		for (i = 0; i < dirList.length; i++)
 			dirList[i].isDir() ? dirs.push(dirList[i]) : files.push(dirList[i]);
 
@@ -1165,7 +1165,7 @@ mozimage.ui.SideBar = mozimage.define({
 		var dirUtil = new mozimage.utils.SpecialDir()();
 		var fileUtil = new mozimage.utils.FileUtils();
 		var fileName = fileUtil.append(dirUtil.getPrefsDir(), 'mozimage-bookmarks.txt');
-		var file = new File(fileName);
+		var file = new mozimage.utils.File(fileName);
 		var anItem = null;
 		file.open('w');
 		for (var i = 0; i < bookmarklistbox.getRowCount(); i++) {

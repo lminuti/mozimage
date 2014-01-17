@@ -126,6 +126,15 @@ var mozimage = {
 		return rv;
 	},
 
+	qIntf : function(aObj, aInterface) {
+		try {
+			return aObj.QueryInterface(Components.interfaces[aInterface]);
+		} catch (e) {
+			return mozimage.logError(e);
+		}
+	},
+
+
 	/**
 	 * Include a javascript script into the current scope
 	 * @param aScriptPath

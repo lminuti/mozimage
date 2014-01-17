@@ -1,6 +1,7 @@
 mozimage.ns("mozimage.utils");
 
 mozimage.include("chrome://mozimage/content/utils/filesystem.js");
+mozimage.include("chrome://mozimage/content/utils/file.js");
 
 mozimage.utils.Dir = mozimage.define({
 
@@ -106,11 +107,10 @@ mozimage.utils.Dir = mozimage.define({
 			var listings = new Array();
 			var file;
 
-			include(jslib_file);
 			while (files.hasMoreElements()) {
 				file = files.getNext().QueryInterface(jslibI.nsILocalFile);
 				if (file.isFile())
-					listings.push(new File(file.path));
+					listings.push(new mozimage.utils.File(file.path));
 
 				if (file.isDirectory())
 					listings.push(new mozimage.utils.Dir(file.path));

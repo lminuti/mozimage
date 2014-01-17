@@ -17,8 +17,7 @@ xpi: $(XPI_FILE)
 
 $(XPI_FILE): $(JAR_FILE)
 	cp chrome.manifest COPYING install.rdf $(BUILD_DIR)
-	cd $(BUILD_DIR)
-	zip -r $(XPI_FILE) chrome.manifest COPYING install.rdf $(patsubst $(BUILD_DIR)/%,%,$(JAR_FILE))
+	cd $(BUILD_DIR) && zip -r $(patsubst $(BUILD_DIR)/%,%,$(XPI_FILE)) chrome.manifest COPYING install.rdf chrome
 	@echo "Successfully created XPI file: $(XPI_FILE)"
 
 $(JAR_FILE): $(BUILD_CHROME_DIR)

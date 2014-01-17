@@ -7,7 +7,7 @@ var mozimage = {
 
 	strBundleService : null,
 
-	debug: true,
+	debug: false,
 
 	/**
 	 * Create the given namespace using a dotten notation

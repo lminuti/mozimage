@@ -21,7 +21,7 @@ $(XPI_FILE): $(JAR_FILE)
 	@echo "Successfully created XPI file: $(XPI_FILE)"
 
 $(JAR_FILE): $(BUILD_CHROME_DIR)
-	zip -r $(JAR_FILE) content skin locale
+	cp -r content skin locale $(BUILD_CHROME_DIR)
 	@echo "Successfully created JAR file: $(JAR_FILE)"
 
 $(BUILD_CHROME_DIR): $(BUILD_DIR)

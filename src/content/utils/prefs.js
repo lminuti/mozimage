@@ -63,13 +63,15 @@ mozimage.utils.Prefs = mozimage.define({
 	},
 
 	/*********** GET BOOL ****************/
-	getBool: function (aPrefName) {
+	getBool: function (aPrefName, defaulValue) {
+		var value = defaulValue;
 		if (!aPrefName)
 			throw Error("NS_ERROR_XPC_NOT_ENOUGH_ARGS");
 
 		if (this.isValid(aPrefName)) {
-			return this.prefInst.getBoolPref(aPrefName);
+			value = this.prefInst.getBoolPref(aPrefName);
 		}
+		return value;
 	},
 
 	/*********** SET CHAR PREF ***********/
@@ -81,13 +83,15 @@ mozimage.utils.Prefs = mozimage.define({
 	},
 
 	/*********** GET CHAR PREF ***********/
-	getChar: function (aPrefName) {
+	getChar: function (aPrefName, defaulValue) {
+		var value = defaulValue;
 		if (!aPrefName)
 			throw Error("NS_ERROR_XPC_NOT_ENOUGH_ARGS");
 
 		if (this.isValid(aPrefName)) {
-			return this.prefInst.getCharPref(aPrefName);
+			value = this.prefInst.getCharPref(aPrefName);
 		}
+		return value;
 	},
 
 	/*********** SET INT PREF ***********/
@@ -99,13 +103,15 @@ mozimage.utils.Prefs = mozimage.define({
 	},
 
 	/*********** GET INT PREF ***********/
-	getInt: function (aPrefName) {
+	getInt: function (aPrefName, defaulValue) {
+		var value = defaulValue;
 		if (!aPrefName)
 			throw Error("NS_ERROR_XPC_NOT_ENOUGH_ARGS");
 
 		if (this.isValid(aPrefName)) {
-			return this.prefInst.getIntPref(aPrefName);
+			value = this.prefInst.getIntPref(aPrefName);
 		}
+		return value;
 	},
 
 	/*********** RESET PREF *************/

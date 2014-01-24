@@ -263,7 +263,30 @@ mozimage.xul = {
 		} catch (e) {
 			return mozimage.logError(e);
 		}
+	},
+
+	installButton : function (toolbarId, id, afterId) {
+		// https://developer.mozilla.org/en-US/Add-ons/Code_snippets/Toolbar?redirectlocale=en-US&redirectslug=Code_snippets%2FToolbar
+		if (!document.getElementById(id)) {
+			var toolbar = document.getElementById(toolbarId);
+
+			// If no afterId is given, then append the item to the toolbar
+			var before = null;
+			if (afterId) {
+				var elem = document.getElementById(afterId);
+				if (elem && elem.parentNode == toolbar)
+					before = elem.nextElementSibling;
+			}
+
+			toolbar.insertItem(id, before);
+			toolbar.setAttribute("currentset", toolbar.currentSet);
+			document.persist(toolbar.id, "currentset");
+
+			if (toolbarId == "addon-bar")
+				toolbar.collapsed = false;
+		}
 	}
+
 };
 
 
@@ -289,7 +312,6 @@ mozimage.run = function (getLink) {
 	// object and during the window_load is read and used.
 
 	try {
-
 		var sidebar = document.getElementById("sidebar");
 		var imageUrl = gBrowser.contentWindow.location.href;
 		toggleSidebar('viewMozImageSidebar', true);
@@ -303,3 +325,14 @@ mozimage.run = function (getLink) {
 		mozimage.showError(e);
 	}
 };
+
+(function () {
+	window.addEventListener('load',function(e) {
+		mozimage.include("chrome://mozimage/content/prefs/mozimage_prefs.js");
+		if (mozimage.prefs.firstRun) {
+			mozimage.xul.installButton("nav-bar", "mozimage-button");
+			// The "addon-bar" is available since Firefox 4
+			mozimage.xul.installButton("addon-bar", "mozimage-button");
+		}
+	});
+})();

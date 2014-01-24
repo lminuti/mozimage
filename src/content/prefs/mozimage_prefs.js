@@ -68,9 +68,21 @@ mozimage.Prefs = mozimage.define({
 		if (this.zoom <= 1)
 			this.zoom = 1.5;
 
+		// get default image directory
 		if (this.homeDir == "") {
+			this.firstRun = true;
+			mozimage.include("chrome://mozimage/content/utils/specialDir.js");
 			var dirUtils = new mozimage.utils.SpecialDir();
-			this.homeDir = dirUtils.getHomeDir();
+			this.homeDir = dirUtils.getPath("Pct");
+			if (!this.homeDir) {
+				this.homeDir = dirUtils.getPath("XDGPict");
+			}
+			if (!this.homeDir) {
+				this.homeDir = dirUtils.getPath("Pers");
+			}
+			if (!this.homeDir) {
+				this.homeDir = dirUtils.getHomeDir();
+			}
 		}
 	},
 

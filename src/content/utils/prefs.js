@@ -8,6 +8,14 @@ mozimage.utils.Prefs = mozimage.define({
 
 	JS_PREFS_I_PREF : "nsIPrefService", //"nsIPrefBranch"; //"nsIPref";
 
+	PREF_INVALID : 0,
+
+	PREF_STRING : 32,
+
+	PREF_INT : 64,
+
+	PREF_BOOL : 128,
+
 	init : function () {
 		// create instance of prefs xpcom object
 		//this.prefInst = mozimage.createInstance(JS_PREFS_CID, JS_PREFS_I_PREF);
@@ -34,25 +42,34 @@ mozimage.utils.Prefs = mozimage.define({
 
 	/*********** GET Type ****************/
 	// pref type
-	getType: function (aPrefString) {
-		return this.prefInst.getPrefType(aPrefString);
+	getType: function (aPrefName) {
+		return this.prefInst.getPrefType(aPrefName);
+	},
+
+	/*********** EXISTS *****************/
+	isValid: function (aPrefName) {
+		if (!aPrefName)
+			throw Error("NS_ERROR_XPC_NOT_ENOUGH_ARGS");
+
+		return (this.prefInst.getPrefType(aPrefName) != this.PREF_INVALID);
 	},
 
 	/*********** SET BOOL ****************/
-	setBool: function (aPrefString, aInBool) {
-		if (!aPrefString)
+	setBool: function (aPrefName, aInBool) {
+		if (!aPrefName)
 			throw Error("NS_ERROR_XPC_NOT_ENOUGH_ARGS");
 
-		this.prefInst.setBoolPref(aPrefString, aInBool)
+		this.prefInst.setBoolPref(aPrefName, aInBool);
 	},
 
 	/*********** GET BOOL ****************/
-	getBool: function (aPrefString) {
-		if (!aPrefString)
+	getBool: function (aPrefName) {
+		if (!aPrefName)
 			throw Error("NS_ERROR_XPC_NOT_ENOUGH_ARGS");
 
-		return this.prefInst.getBoolPref(aPrefString)
-
+		if (this.isValid(aPrefName)) {
+			return this.prefInst.getBoolPref(aPrefName);
+		}
 	},
 
 	/*********** SET CHAR PREF ***********/
@@ -60,7 +77,7 @@ mozimage.utils.Prefs = mozimage.define({
 		if (!aPrefName && !aPrefString)
 			throw Error("NS_ERROR_XPC_NOT_ENOUGH_ARGS");
 
-		this.prefInst.setCharPref(aPrefName, aPrefString)
+		this.prefInst.setCharPref(aPrefName, aPrefString);
 	},
 
 	/*********** GET CHAR PREF ***********/
@@ -68,7 +85,9 @@ mozimage.utils.Prefs = mozimage.define({
 		if (!aPrefName)
 			throw Error("NS_ERROR_XPC_NOT_ENOUGH_ARGS");
 
-		return this.prefInst.getCharPref(aPrefName)
+		if (this.isValid(aPrefName)) {
+			return this.prefInst.getCharPref(aPrefName);
+		}
 	},
 
 	/*********** SET INT PREF ***********/
@@ -76,7 +95,7 @@ mozimage.utils.Prefs = mozimage.define({
 		if (!aPrefName && !aInt)
 			throw Error("NS_ERROR_XPC_NOT_ENOUGH_ARGS");
 
-		this.prefInst.setIntPref(aPrefName, aInt)
+		this.prefInst.setIntPref(aPrefName, aInt);
 	},
 
 	/*********** GET INT PREF ***********/
@@ -84,7 +103,9 @@ mozimage.utils.Prefs = mozimage.define({
 		if (!aPrefName)
 			throw Error("NS_ERROR_XPC_NOT_ENOUGH_ARGS");
 
-		return this.prefInst.getIntPref(aPrefName)
+		if (this.isValid(aPrefName)) {
+			return this.prefInst.getIntPref(aPrefName);
+		}
 	},
 
 	/*********** RESET PREF *************/
@@ -120,8 +141,8 @@ mozimage.utils.Prefs = mozimage.define({
 	},
 
 	/*********** CLEAR USER PREF ********/
-	clear: function (aPrefString) {
-		this.prefInst.ClearUserPref(aPrefString);
+	clear: function (aPrefName) {
+		this.prefInst.ClearUserPref(aPrefName);
 	},
 
 	/*********** GET NSIPREF ********/

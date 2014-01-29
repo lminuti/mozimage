@@ -29,7 +29,7 @@ mozimage.utils.FileSystem = mozimage.define({
 	initComponents : function () {
 		this.JS_FS_File_nsIFile = new Components.Constructor(
 			this.JS_FS_LOCAL_CID,
-			"nsILocalFile",
+			"nsIFile",
 			"initWithPath"
 		);
 

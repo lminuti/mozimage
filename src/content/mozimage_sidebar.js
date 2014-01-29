@@ -1175,19 +1175,19 @@ mozimage.ui.SideBar = mozimage.define({
 		file.close();
 	},
 
+	/*
 	save : function (url, fileName) {
 		var ioservice = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
 		var uri = ioservice.newURI(url, null, null);
 		var persist = Components.classes["@mozilla.org/embedding/browser/nsWebBrowserPersist;1"].createInstance(Components.interfaces.nsIWebBrowserPersist);
-		var targetFile = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
-
-		targetFile.initWithPath(fileName);
+		var targetFile = new mozimage.utils.File(fileName);
 
 		if (!targetFile.exists()) {
 			targetFile.create(0x00, 0644);
 		}
 		persist.saveURI(uri, null, null, null, null, targetFile);
 	},
+	*/
 
 	baseNameFromUrl : function (url) {
 		var nsIURL = Components.interfaces.nsIURL;

@@ -108,7 +108,7 @@ mozimage.utils.Dir = mozimage.define({
 			var file;
 
 			while (files.hasMoreElements()) {
-				file = files.getNext().QueryInterface(Components.interfaces.nsILocalFile);
+				file = files.getNext().QueryInterface(Components.interfaces.nsIFile);
 				if (file.isFile())
 					listings.push(new mozimage.utils.File(file.path));
 

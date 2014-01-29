@@ -1185,7 +1185,8 @@ mozimage.ui.SideBar = mozimage.define({
 		if (!targetFile.exists()) {
 			targetFile.create(0x00, 0644);
 		}
-		persist.saveURI(uri, null, null, null, null, targetFile);
+		var context = ????;
+		persist.saveURI(uri, null, null, null, null, targetFile, context);
 	},
 	*/
 

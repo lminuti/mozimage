@@ -8,46 +8,46 @@ mozimage.Prefs = mozimage.define({
 	},
 
 	load: function () {
-		this.homeDir = this.prefs.getChar("mozimage.home_directory", "");
+		this.homeDir = this.prefs.getChar("extensions.mozimage.home_directory", "");
 		this.autoSize = this.prefs.getBool("browser.enable_automatic_image_resizing");
-		this.slideshow = this.prefs.getBool("mozimage.slideshow");
-		this.delay = this.prefs.getInt("mozimage.delay");
-		this.zoom = this.prefs.getChar("mozimage.zoom", "");
+		this.slideshow = this.prefs.getBool("extensions.mozimage.slideshow");
+		this.delay = this.prefs.getInt("extensions.mozimage.delay");
+		this.zoom = this.prefs.getChar("extensions.mozimage.zoom", "");
 		this.listCollapsed = false;
-		this.thumbSize = this.prefs.getChar("mozimage.thumbsize", "");
-		this.orderBy = this.prefs.getChar("mozimage.orderby", "");
-		this.descending = this.prefs.getBool("mozimage.descending");
-		this.forceHttpTumb = this.prefs.getBool("mozimage.forcehttptumb");
-		if (this.prefs.getType("mozimage.enablecache") == mozimage.utils.Prefs.PREF_INVALID)
+		this.thumbSize = this.prefs.getChar("extensions.mozimage.thumbsize", "");
+		this.orderBy = this.prefs.getChar("extensions.mozimage.orderby", "");
+		this.descending = this.prefs.getBool("extensions.mozimage.descending");
+		this.forceHttpTumb = this.prefs.getBool("extensions.mozimage.forcehttptumb");
+		if (this.prefs.getType("extensions.mozimage.enablecache") == mozimage.utils.Prefs.PREF_INVALID)
 			this.enableCache = false;
 		else
-			this.enableCache = this.prefs.getBool("mozimage.enablecache");
+			this.enableCache = this.prefs.getBool("extensions.mozimage.enablecache");
 
-		if (this.prefs.getType("mozimage.enablecurrent") == mozimage.utils.Prefs.PREF_INVALID)
+		if (this.prefs.getType("extensions.mozimage.enablecurrent") == mozimage.utils.Prefs.PREF_INVALID)
 			this.enableCurrent = true;
 		else
-			this.enableCurrent = this.prefs.getBool("mozimage.enablecurrent");
+			this.enableCurrent = this.prefs.getBool("extensions.mozimage.enablecurrent");
 
-		this.convertPath = this.prefs.getChar("mozimage.convertpath", "");
+		this.convertPath = this.prefs.getChar("extensions.mozimage.convertpath", "");
 
-		this.editorName1 = this.prefs.getChar("mozimage.editorname_1", "");
-		this.editorPath1 = this.prefs.getChar("mozimage.editorpath_1", "");
-		this.editorName2 = this.prefs.getChar("mozimage.editorname_2", "");
-		this.editorPath2 = this.prefs.getChar("mozimage.editorpath_2", "");
-		this.editorName3 = this.prefs.getChar("mozimage.editorname_3", "");
-		this.editorPath3 = this.prefs.getChar("mozimage.editorpath_3", "");
-		this.editorName4 = this.prefs.getChar("mozimage.editorname_4", "");
-		this.editorPath4 = this.prefs.getChar("mozimage.editorpath_4", "");
+		this.editorName1 = this.prefs.getChar("extensions.mozimage.editorname_1", "");
+		this.editorPath1 = this.prefs.getChar("extensions.mozimage.editorpath_1", "");
+		this.editorName2 = this.prefs.getChar("extensions.mozimage.editorname_2", "");
+		this.editorPath2 = this.prefs.getChar("extensions.mozimage.editorpath_2", "");
+		this.editorName3 = this.prefs.getChar("extensions.mozimage.editorname_3", "");
+		this.editorPath3 = this.prefs.getChar("extensions.mozimage.editorpath_3", "");
+		this.editorName4 = this.prefs.getChar("extensions.mozimage.editorname_4", "");
+		this.editorPath4 = this.prefs.getChar("extensions.mozimage.editorpath_4", "");
 
 		this.macroName = [];
 		this.macroCode = [];
 
 		for (var i = 0; i < 10; i++) {
-			this.macroName[i] = this.prefs.getChar("mozimage.macroname_" + i, "");
-			this.macroCode[i] = this.prefs.getChar("mozimage.macrocode_" + i, "");
+			this.macroName[i] = this.prefs.getChar("extensions.mozimage.macroname_" + i, "");
+			this.macroCode[i] = this.prefs.getChar("extensions.mozimage.macrocode_" + i, "");
 		}
 
-		var extListStr = this.prefs.getChar("mozimage.extlist", "");
+		var extListStr = this.prefs.getChar("extensions.mozimage.extlist", "");
 
 		if (this.orderBy == "")
 			this.orderBy = "nume";
@@ -104,31 +104,31 @@ mozimage.Prefs = mozimage.define({
 	},
 
 	save: function () {
-		this.prefs.setChar("mozimage.extlist", this.extList.toString());
-		this.prefs.setChar("mozimage.home_directory", this.homeDir);
+		this.prefs.setChar("extensions.mozimage.extlist", this.extList.toString());
+		this.prefs.setChar("extensions.mozimage.home_directory", this.homeDir);
 		this.prefs.setBool("browser.enable_automatic_image_resizing", this.autoSize);
-		this.prefs.setBool("mozimage.slideshow", this.slideshow);
-		this.prefs.setInt("mozimage.delay", this.delay);
-		this.prefs.setChar("mozimage.zoom", this.zoom);
-		this.prefs.setChar("mozimage.thumbsize", this.thumbSize);
-		this.prefs.setChar("mozimage.orderby", this.orderBy);
-		this.prefs.setBool("mozimage.descending", this.descending);
-		this.prefs.setBool("mozimage.forcehttptumb", this.forceHttpTumb);
-		this.prefs.setBool("mozimage.enablecache", this.enableCache);
-		this.prefs.setBool("mozimage.enablecurrent", this.enableCurrent);
-		this.prefs.setChar("mozimage.convertpath", this.convertPath);
-		this.prefs.setChar("mozimage.editorname_1", this.editorName1);
-		this.prefs.setChar("mozimage.editorpath_1", this.editorPath1);
-		this.prefs.setChar("mozimage.editorname_2", this.editorName2);
-		this.prefs.setChar("mozimage.editorpath_2", this.editorPath2);
-		this.prefs.setChar("mozimage.editorname_3", this.editorName3);
-		this.prefs.setChar("mozimage.editorpath_3", this.editorPath3);
-		this.prefs.setChar("mozimage.editorname_4", this.editorName4);
-		this.prefs.setChar("mozimage.editorpath_4", this.editorPath4);
+		this.prefs.setBool("extensions.mozimage.slideshow", this.slideshow);
+		this.prefs.setInt("extensions.mozimage.delay", this.delay);
+		this.prefs.setChar("extensions.mozimage.zoom", this.zoom);
+		this.prefs.setChar("extensions.mozimage.thumbsize", this.thumbSize);
+		this.prefs.setChar("extensions.mozimage.orderby", this.orderBy);
+		this.prefs.setBool("extensions.mozimage.descending", this.descending);
+		this.prefs.setBool("extensions.mozimage.forcehttptumb", this.forceHttpTumb);
+		this.prefs.setBool("extensions.mozimage.enablecache", this.enableCache);
+		this.prefs.setBool("extensions.mozimage.enablecurrent", this.enableCurrent);
+		this.prefs.setChar("extensions.mozimage.convertpath", this.convertPath);
+		this.prefs.setChar("extensions.mozimage.editorname_1", this.editorName1);
+		this.prefs.setChar("extensions.mozimage.editorpath_1", this.editorPath1);
+		this.prefs.setChar("extensions.mozimage.editorname_2", this.editorName2);
+		this.prefs.setChar("extensions.mozimage.editorpath_2", this.editorPath2);
+		this.prefs.setChar("extensions.mozimage.editorname_3", this.editorName3);
+		this.prefs.setChar("extensions.mozimage.editorpath_3", this.editorPath3);
+		this.prefs.setChar("extensions.mozimage.editorname_4", this.editorName4);
+		this.prefs.setChar("extensions.mozimage.editorpath_4", this.editorPath4);
 
 		for (var i = 0; i < 10; i++) {
-			this.prefs.setChar("mozimage.macroname_" + i, this.macroName[i]);
-			this.prefs.setChar("mozimage.macrocode_" + i, this.macroCode[i]);
+			this.prefs.setChar("extensions.mozimage.macroname_" + i, this.macroName[i]);
+			this.prefs.setChar("extensions.mozimage.macrocode_" + i, this.macroCode[i]);
 		}
 	},
 

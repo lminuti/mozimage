@@ -6,9 +6,9 @@ mozimage.ui.PrefsTools = mozimage.define({
 
 	init : function () {
 		this.mozImageBundle = mozimage.getStrBundle("chrome://mozimage/locale/mozimage.properties");
-		mozimage.addEventListener(window, 'pagehide', this.prefs_close, this);
+		mozimage.bind(window, 'pagehide', this.prefs_close, this);
 
-		mozimage.addEventListener('open-filerconvert-button', 'command', this.openFilerConvert, this);
+		mozimage.bind('open-filerconvert-button', 'command', this.openFilerConvert, this);
 
 		this.prefs_load();
 	},

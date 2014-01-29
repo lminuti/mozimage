@@ -10,8 +10,8 @@ mozimage.ui.PrefsDialog = mozimage.define({
 		this.prefsCategories = document.getElementById("prefsCategories");
 
 		// Link the event handlers
-		mozimage.addEventListener(this.dialog, 'dialogaccept', this.prefs_close, this);
-		mozimage.addEventListener(this.prefsCategories, 'command', function (event) {
+		mozimage.bind(this.dialog, 'dialogaccept', this.prefs_close, this);
+		mozimage.bind(this.prefsCategories, 'command', function (event) {
 			this.switchPage(event.target.id);
 		} , this);
 

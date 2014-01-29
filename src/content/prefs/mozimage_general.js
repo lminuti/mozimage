@@ -6,28 +6,28 @@ mozimage.ui.PrefsGeneral = mozimage.define({
 
 	init : function () {
 		this.mozImageBundle = mozimage.getStrBundle("chrome://mozimage/locale/mozimage.properties");
-		mozimage.addEventListener(window, 'pagehide', this.prefs_close, this);
+		mozimage.bind(window, 'pagehide', this.prefs_close, this);
 
-		mozimage.addEventListener('folder-button', 'command', this.getFolder, this);
-		mozimage.addEventListener('current-button', 'command', this.setCurrent, this);
-		mozimage.addEventListener('enablecurrent-check', 'click', this.toggleEnableCurrent, this);
-		mozimage.addEventListener('descending-check', 'click', this.toggleDes, this);
-		mozimage.addEventListener('forcehttptumb-check', 'click', this.toggleForceHTTPTumb, this);
-		mozimage.addEventListener('enablecache-check', 'click', this.toggleEnableCache, this);
+		mozimage.bind('folder-button', 'command', this.getFolder, this);
+		mozimage.bind('current-button', 'command', this.setCurrent, this);
+		mozimage.bind('enablecurrent-check', 'click', this.toggleEnableCurrent, this);
+		mozimage.bind('descending-check', 'click', this.toggleDes, this);
+		mozimage.bind('forcehttptumb-check', 'click', this.toggleForceHTTPTumb, this);
+		mozimage.bind('enablecache-check', 'click', this.toggleEnableCache, this);
 
-		mozimage.addEventListener('jpg-check', 'click', function () {
+		mozimage.bind('jpg-check', 'click', function () {
 			this.toggleExt('jpg');
 		}, this);
-		mozimage.addEventListener('jpeg-check', 'click', function () {
+		mozimage.bind('jpeg-check', 'click', function () {
 			this.toggleExt('jpeg');
 		}, this);
-		mozimage.addEventListener('gif-check', 'click', function () {
+		mozimage.bind('gif-check', 'click', function () {
 			this.toggleExt('gif');
 		}, this);
-		mozimage.addEventListener('bmp-check', 'click', function () {
+		mozimage.bind('bmp-check', 'click', function () {
 			this.toggleExt('bmp');
 		}, this);
-		mozimage.addEventListener('png-check', 'click', function () {
+		mozimage.bind('png-check', 'click', function () {
 			this.toggleExt('png');
 		}, this);
 

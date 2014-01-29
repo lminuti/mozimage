@@ -111,51 +111,51 @@ mozimage.ui.SideBar = mozimage.define({
 		this.zoominButton = document.getElementById("zoomin-button");
 		this.zoomoutButton = document.getElementById("zoomout-button");
 
-		mozimage.addEventListener(window, 'unload', this.window_close, this);
-		mozimage.addEventListener(this.fullpathText, 'keypress', this.fullpath_keypress, this);
-		mozimage.addEventListener(this.goButton, 'command', this.go_click, this);
-		mozimage.addEventListener(this.priorButton, 'command', this.prior_click, this);
-		mozimage.addEventListener(this.nextButton, 'command', this.next_click, this);
-		mozimage.addEventListener(this.upButton, 'command', this.up_click, this);
-		mozimage.addEventListener(this.autosizeButton, 'command', this.autosize_click, this);
-		mozimage.addEventListener(this.zoominButton, 'command', this.zoomin_click, this);
-		mozimage.addEventListener(this.zoomoutButton, 'command', this.zoomout_click, this);
+		mozimage.bind(window, 'unload', this.window_close, this);
+		mozimage.bind(this.fullpathText, 'keypress', this.fullpath_keypress, this);
+		mozimage.bind(this.goButton, 'command', this.go_click, this);
+		mozimage.bind(this.priorButton, 'command', this.prior_click, this);
+		mozimage.bind(this.nextButton, 'command', this.next_click, this);
+		mozimage.bind(this.upButton, 'command', this.up_click, this);
+		mozimage.bind(this.autosizeButton, 'command', this.autosize_click, this);
+		mozimage.bind(this.zoominButton, 'command', this.zoomin_click, this);
+		mozimage.bind(this.zoomoutButton, 'command', this.zoomout_click, this);
 
-		mozimage.addEventListener('explorer-menu', 'command', this.explorer_click, this);
-		mozimage.addEventListener('clear-menu', 'command', this.clear_click, this);
-		mozimage.addEventListener('refresh-menu', 'command', this.refresh_click, this);
+		mozimage.bind('explorer-menu', 'command', this.explorer_click, this);
+		mozimage.bind('clear-menu', 'command', this.clear_click, this);
+		mozimage.bind('refresh-menu', 'command', this.refresh_click, this);
 
-		mozimage.addEventListener('openwith1-menu', 'command', this.openwith1_click, this);
-		mozimage.addEventListener('openwith2-menu', 'command', this.openwith2_click, this);
-		mozimage.addEventListener('openwith3-menu', 'command', this.openwith3_click, this);
-		mozimage.addEventListener('openwith4-menu', 'command', this.openwith4_click, this);
+		mozimage.bind('openwith1-menu', 'command', this.openwith1_click, this);
+		mozimage.bind('openwith2-menu', 'command', this.openwith2_click, this);
+		mozimage.bind('openwith3-menu', 'command', this.openwith3_click, this);
+		mozimage.bind('openwith4-menu', 'command', this.openwith4_click, this);
 
-		mozimage.addEventListener('macro0-menu', 'command', this.macro0_click, this);
-		mozimage.addEventListener('macro1-menu', 'command', this.macro1_click, this);
-		mozimage.addEventListener('macro2-menu', 'command', this.macro2_click, this);
-		mozimage.addEventListener('macro3-menu', 'command', this.macro3_click, this);
-		mozimage.addEventListener('macro4-menu', 'command', this.macro4_click, this);
-		mozimage.addEventListener('macro5-menu', 'command', this.macro5_click, this);
-		mozimage.addEventListener('macro6-menu', 'command', this.macro6_click, this);
-		mozimage.addEventListener('macro7-menu', 'command', this.macro7_click, this);
-		mozimage.addEventListener('macro8-menu', 'command', this.macro8_click, this);
-		mozimage.addEventListener('macro9-menu', 'command', this.macro9_click, this);
+		mozimage.bind('macro0-menu', 'command', this.macro0_click, this);
+		mozimage.bind('macro1-menu', 'command', this.macro1_click, this);
+		mozimage.bind('macro2-menu', 'command', this.macro2_click, this);
+		mozimage.bind('macro3-menu', 'command', this.macro3_click, this);
+		mozimage.bind('macro4-menu', 'command', this.macro4_click, this);
+		mozimage.bind('macro5-menu', 'command', this.macro5_click, this);
+		mozimage.bind('macro6-menu', 'command', this.macro6_click, this);
+		mozimage.bind('macro7-menu', 'command', this.macro7_click, this);
+		mozimage.bind('macro8-menu', 'command', this.macro8_click, this);
+		mozimage.bind('macro9-menu', 'command', this.macro9_click, this);
 
-		mozimage.addEventListener('edit-button', 'command', this.edit_click, this);
-		mozimage.addEventListener('slideshow-button', 'command', this.slideshow_click, this);
-		mozimage.addEventListener('options-menu', 'command', this.options_click, this);
-		mozimage.addEventListener('about-menu', 'command', this.about_click, this);
+		mozimage.bind('edit-button', 'command', this.edit_click, this);
+		mozimage.bind('slideshow-button', 'command', this.slideshow_click, this);
+		mozimage.bind('options-menu', 'command', this.options_click, this);
+		mozimage.bind('about-menu', 'command', this.about_click, this);
 
-		mozimage.addEventListener('directory-listbox', 'select', this.directory_select, this);
+		mozimage.bind('directory-listbox', 'select', this.directory_select, this);
 
-		mozimage.addEventListener('addbookmark-button', 'command', this.addbookmark_click, this);
-		mozimage.addEventListener('deletebookmark-button', 'command', this.deletebookmark_click, this);
-		mozimage.addEventListener('bookmarkup-button', 'command', this.bookmarkup_click, this);
-		mozimage.addEventListener('bookmarkdown-button', 'command', this.bookmarkdown_click, this);
+		mozimage.bind('addbookmark-button', 'command', this.addbookmark_click, this);
+		mozimage.bind('deletebookmark-button', 'command', this.deletebookmark_click, this);
+		mozimage.bind('bookmarkup-button', 'command', this.bookmarkup_click, this);
+		mozimage.bind('bookmarkdown-button', 'command', this.bookmarkdown_click, this);
 
-		mozimage.addEventListener('file-listbox', 'select', this.file_select, this);
+		mozimage.bind('file-listbox', 'select', this.file_select, this);
 
-		mozimage.addEventListener(window, 'keypress', this.window_keypress, this);
+		mozimage.bind(window, 'keypress', this.window_keypress, this);
 
 		this.window_load(e);
 
@@ -764,7 +764,7 @@ mozimage.ui.SideBar = mozimage.define({
 					// add the attributes to show right icon
 					listItem.setAttribute("class", "listitem-iconic");
 					listItem.setAttribute("value", bookmarkValue);
-					mozimage.addEventListener(listItem, 'dblclick', this.bookmark_select, this);
+					mozimage.bind(listItem, 'dblclick', this.bookmark_select, this);
 				}
 			}
 			file.close();
@@ -904,7 +904,7 @@ mozimage.ui.SideBar = mozimage.define({
 		var fullpath = document.getElementById("fullpath-text");
 		var aBrowser = document.getElementById("html-browser");
 
-		mozimage.addEventListener(aBrowser, "load", this.htmlSearch, this);
+		mozimage.bind(aBrowser, "load", this.htmlSearch, this);
 
 		this.numOfLinks = 0;
 		fullpath.value = url;

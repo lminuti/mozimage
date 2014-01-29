@@ -88,7 +88,7 @@ var mozimage = {
 		}
 		target.addEventListener(event, function (e) {
 			handler.call(scope, e);
-		});
+		}, false);
 	},
 
 	/**
@@ -292,6 +292,7 @@ mozimage.xul = {
 
 // Aliases
 mozimage.ns = mozimage.namespace;
+mozimage.bind = mozimage.addEventListener;
 
 mozimage.NS_OK = mozimage.xul.NS_OK;
 mozimage.VOID = mozimage.xul.VOID;

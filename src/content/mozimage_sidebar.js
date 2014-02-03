@@ -1161,7 +1161,7 @@ mozimage.ui.SideBar = mozimage.define({
 
 	saveBookmarks : function () {
 		var bookmarklistbox = document.getElementById("bookmark-listbox");
-		var dirUtil = new mozimage.utils.SpecialDir()();
+		var dirUtil = new mozimage.utils.SpecialDir();
 		var fileUtil = new mozimage.utils.FileUtils();
 		var fileName = fileUtil.append(dirUtil.getPrefsDir(), 'mozimage-bookmarks.txt');
 		var file = new mozimage.utils.File(fileName);
